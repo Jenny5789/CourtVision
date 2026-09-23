@@ -1,0 +1,37 @@
+# 데이터셋·학습 산출물 (용량 큼, 재현 가능)
+data/
+runs/
+models/
+
+# 웹 서비스가 실행 중 만들어내는 파일 (사용자 업로드 영상, 분석 결과, DB)
+webapp/backend/uploads/
+webapp/backend/results/
+*.db
+*.db-journal
+
+# results/ 는 실험 보고서(.md)만 남기고, 용량 큰 원본 산출물은 제외
+# (int8_run1_square960_log.txt 는 보고서가 직접 인용하는 증거라 예외로 남김)
+results/*.mp4
+results/*.png
+results/*.csv
+
+# YOLO 사전학습 가중치 (자동 다운로드됨)
+yolo11n*.pt
+*.pt
+
+# 파이썬
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS / 에디터
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# 환경변수·비밀값
+.env
+.env.*

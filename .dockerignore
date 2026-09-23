@@ -1,0 +1,14 @@
+# 이미지에 넣지 않을 것 (특히 data/는 데이터셋이 수 GB라 빌드가 매우 느려짐)
+data
+runs
+models
+results
+src
+yolo11n.pt
+.git
+.vscode
+**/__pycache__
+**/*.pyc
+**/*.mp4
+webapp/backend/uploads
+webapp/backend/results

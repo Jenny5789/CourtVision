@@ -1,0 +1,16 @@
+services:
+  courtvision:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      UPLOAD_DIR: /app/data/uploads
+      RESULTS_DIR: /app/data/results
+      COURTVISION_DB: /app/data/courtvision.db
+      YOLO_IMGSZ: "960"
+    volumes:
+      - courtvision-data:/app/data
+    restart: unless-stopped
+
+volumes:
+  courtvision-data:

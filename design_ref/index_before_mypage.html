@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>CourtVision</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<script>
+try {
+  var savedTheme = localStorage.getItem("cv-theme");
+  if (savedTheme === "light" || savedTheme === "dark") document.documentElement.dataset.theme = savedTheme;
+} catch (e) {}
+</script>
+<style>
+  :root {
+    --font-serif: "Playfair Display", "Noto Serif KR", Georgia, serif;
+    --font-sans: "Noto Sans KR", "Pretendard", "Segoe UI", sans-serif;
+    --font-script: "Caveat", "Segoe Script", cursive;
+
+    --bg: #0a0a0b;
+    --bg-glow: #141312;
+    --bg-card: #131314;
+    --border: #26262a;
+    --text: #f4f0e9;
+    --text-muted: #9b968d;
+    --text-soft: #c9c4ba;
+    --accent: #d8b07a;
+    --accent-text: #d8b07a;
+    --accent-dim: #2a2318;
+    --on-accent: #1b1409;
+    --btn-bg: #d8b07a;
+    --btn-text: #1b1409;
+    --red: #ff6b6b;
+    --cyan: #5ec8e0;
+    --surface-1: #17171a;
+    --surface-2: #212126;
+    --panel-inset: #0e0e10;
+    --live-bg: #3a2f1c;
+    --disabled-bg: #2a2a2e;
+    --disabled-text: #55555b;
+    --glass-bg: rgba(20,20,22,0.66);
+    --glass-border: rgba(255,255,255,0.09);
+    --hairline: rgba(255,255,255,0.08);
+    --ghost-border: rgba(255,255,255,0.24);
+    --pill-bg: rgba(255,255,255,0.04);
+    --pill-active-bg: #f1ece2;
+    --pill-active-text: #0a0a0b;
+    --shadow: rgba(0,0,0,0.5);
+    --hero-img: url("assets/photos/ball_dark_line.webp");
+    --hero-shift: 0%;
+    --hero-mask: none;
+    --hero-overlay: linear-gradient(90deg, rgba(10,10,11,0.94) 0%, rgba(10,10,11,0.62) 46%, rgba(10,10,11,0.12) 100%);
+    --sec2-img: url("assets/photos/player_closeup.webp");
+    --world-img: url("assets/photos/court_sunset.webp");
+    --world-overlay: linear-gradient(90deg, rgba(10,10,11,0.92) 0%, rgba(10,10,11,0.55) 60%, rgba(10,10,11,0.25) 100%);
+    --cta-img: url("assets/photos/bench_racket_dark.webp");
+    --cta-overlay: linear-gradient(90deg, rgba(10,10,11,0.2) 0%, rgba(10,10,11,0.75) 55%, rgba(10,10,11,0.92) 100%);
+    color-scheme: dark;
+  }
+  :root[data-theme="light"] {
+    --bg: #f6f8fc;
+    --bg-glow: #eaf0fa;
+    --bg-card: #ffffff;
+    --border: #dfe6f1;
+    --text: #0f1a2b;
+    --text-muted: #5b6b80;
+    --text-soft: #3d4c62;
+    --accent: #1f5fd0;
+    --accent-text: #1f5fd0;
+    --accent-dim: #e3edfc;
+    --on-accent: #ffffff;
+    --btn-bg: #0f1a2b;
+    --btn-text: #ffffff;
+    --red: #d64545;
+    --cyan: #1f8fad;
+    --surface-1: #eef3fa;
+    --surface-2: #e6edf7;
+    --panel-inset: #eef3fa;
+    --live-bg: #dbe7fb;
+    --disabled-bg: #dde4ee;
+    --disabled-text: #a0aab8;
+    --glass-bg: rgba(255,255,255,0.78);
+    --glass-border: rgba(15,26,43,0.10);
+    --hairline: rgba(15,26,43,0.09);
+    --ghost-border: rgba(15,26,43,0.26);
+    --pill-bg: rgba(255,255,255,0.7);
+    --pill-active-bg: #0f1a2b;
+    --pill-active-text: #ffffff;
+    --shadow: rgba(20,40,80,0.16);
+    --hero-img: url("assets/photos/ball_bounce.webp");
+    --hero-mask: none;
+    --hero-shift: 0%;
+    --hero-overlay: linear-gradient(90deg, rgba(246,248,252,0.97) 0%, rgba(246,248,252,0.78) 42%, rgba(246,248,252,0) 78%);
+    --sec2-img: url("assets/photos/court_topdown.webp");
+    --world-img: url("assets/photos/sunset_net.webp");
+    --world-overlay: linear-gradient(90deg, rgba(246,248,252,0.96) 0%, rgba(246,248,252,0.7) 55%, rgba(246,248,252,0.25) 100%);
+    --cta-img: url("assets/photos/court_sunset.webp");
+    --cta-overlay: linear-gradient(90deg, rgba(246,248,252,0.1) 0%, rgba(246,248,252,0.78) 55%, rgba(246,248,252,0.96) 100%);
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 24px; margin-bottom: 20px; }
+  .card h3 { margin: 0 0 14px; font-size: 14px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
+  .card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin: 0 0 16px; }
+
+  input[type="file"] { color: var(--text-muted); font-size: 13px; margin-bottom: 16px; display: block; }
+  input[type="file"]::file-selector-button {
+    background: var(--accent-dim); color: var(--accent-text); border: 1px solid var(--border);
+    border-radius: 8px; padding: 8px 14px; font-size: 13px; font-weight: 600; margin-right: 10px; cursor: pointer;
+  }
+
+  button { background: var(--accent); color: var(--on-accent); border: none; padding: 12px 22px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 700; }
+  button:disabled { background: var(--disabled-bg); color: var(--text-muted); cursor: not-allowed; }
+  button.secondary { background: transparent; border: 1px solid var(--border); color: var(--text-muted); margin-left: 8px; }
+
+  #frame-wrap, #frame-wrap2 { position: relative; display: inline-block; border-radius: 12px; overflow: hidden; }
+  #frame-img, #frame-img2 { max-width: 100%; display: block; cursor: crosshair; }
+
+  .corner-marker {
+    position: absolute; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--accent); color: var(--on-accent); font-size: 12px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+    transform: translate(-50%, -50%); border: 2px solid var(--on-accent);
+  }
+  #click-marker {
+    position: absolute; width: 16px; height: 16px; border-radius: 50%;
+    background: var(--cyan); border: 2px solid var(--bg);
+    display: none; transform: translate(-50%, -50%);
+    box-shadow: 0 0 0 4px rgba(94,200,224,0.25);
+  }
+  .player1-box {
+    position: absolute; border: 2px solid var(--red); border-radius: 4px; pointer-events: none;
+  }
+  #court-overlay, #calib-overlay { position: absolute; left: 0; top: 0; width: 100%; height: 100%; pointer-events: none; }
+  .corner-marker.draggable { cursor: grab; touch-action: none; z-index: 5; }
+  .corner-marker.draggable:active { cursor: grabbing; }
+
+  .calib-guide { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 16px; }
+  .calib-guide svg { flex-shrink: 0; background: var(--panel-inset); border: 1px solid var(--border); border-radius: 10px; padding: 8px; }
+  .calib-steps { margin: 0 0 10px; padding-left: 18px; color: var(--text); font-size: 13px; line-height: 1.7; }
+  .calib-steps b { color: var(--accent-text); }
+  .hint { font-size: 12px !important; margin: 0 !important; }
+  .calib-example { width: 100%; max-width: 440px; border-radius: 10px; border: 1px solid var(--border); margin: 12px 0 6px; display: block; }
+
+  .step-label { font-size: 13px; color: var(--accent-text); font-weight: 700; margin-bottom: 10px; }
+
+  .tab-bar { display: flex; gap: 6px; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .tab-btn {
+    background: transparent; color: var(--text-muted); font-weight: 700; font-size: 13px;
+    padding: 10px 16px; border: none; border-bottom: 2px solid transparent; border-radius: 0;
+  }
+  .tab-btn.active { color: var(--accent-text); border-bottom-color: var(--accent-text); }
+  .tab-btn:disabled { color: var(--disabled-text); cursor: not-allowed; background: transparent; }
+
+  #video-bar {
+    position: fixed; top: 0; left: 50%; transform: translateX(-50%);
+    width: min(920px, calc(100% - 32px)); z-index: 50;
+    background: var(--bg-card); border: 1px solid var(--border); border-top: none;
+    border-radius: 0 0 14px 14px; padding: 10px 16px; display: none;
+    box-shadow: 0 10px 24px var(--shadow);
+    align-items: center; gap: 14px;
+  }
+  #video-bar.show { display: flex; }
+  video#video-player { height: 300px; width: auto; max-width: 70%; border-radius: 8px; display: block; }
+  #use-frame-btn { margin: 0 !important; white-space: nowrap; }
+
+  @keyframes flash-highlight {
+    0% { box-shadow: 0 0 0 4px var(--accent); }
+    100% { box-shadow: 0 0 0 0 transparent; }
+  }
+  .flash { animation: flash-highlight 0.9s ease-out; border-radius: 12px; }
+
+  .stats-table { width: 100%; border-collapse: collapse; margin-top: 4px; font-size: 13px; }
+  .stats-table th, .stats-table td { border-bottom: 1px solid var(--border); padding: 10px; text-align: center; }
+  .stats-table th { color: var(--text-muted); font-weight: 600; }
+  .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+
+  #loading, #calib-loading { display: none; color: var(--accent-text); font-size: 13px; margin-left: 12px; }
+  img.result-img { max-width: 100%; border-radius: 12px; margin-top: 10px; border: 1px solid var(--border); }
+  .result-label { font-size: 13px; font-weight: 700; color: var(--text-muted); margin: 20px 0 6px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  /* ---- 페이지 전환 ---- */
+  .page { display: none; }
+  .page.narrow { max-width: 968px; margin: 0 auto; padding: 32px 24px 96px; }
+  body:not([data-page="analyze"]) #video-bar { display: none !important; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---- 헤더 ---- */
+  .site-header { position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--bg) 84%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--hairline); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+  .brand img { width: 34px; height: 34px; border-radius: 9px; object-fit: cover; display: block; }
+  .brand-name { font-family: var(--font-serif); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .pills { display: flex; gap: 30px; }
+  .pills a { position: relative; padding: 8px 2px; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; white-space: nowrap; }
+  .pills a:hover, .pills a.active { color: var(--text); }
+  .pills a.active::after { content: ""; position: absolute; left: 0; right: 0; bottom: -3px; height: 2px; background: var(--accent); }
+  .auth-slot { display: flex; align-items: center; gap: 10px; }
+  .icon-btn { width: 38px; height: 38px; padding: 0; border-radius: 50%; background: transparent; border: 1px solid var(--ghost-border); color: var(--text); display: inline-flex; align-items: center; justify-content: center; }
+  .icon-btn:hover { border-color: var(--accent); }
+  .icon-moon { display: none; }
+  :root[data-theme="light"] .icon-sun { display: none; }
+  :root[data-theme="light"] .icon-moon { display: inline; }
+
+  .btn-primary, .btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; cursor: pointer; border: 1px solid transparent; font-family: inherit; }
+  .btn-primary { background: var(--btn-bg); color: var(--btn-text); }
+  .btn-ghost { background: transparent; border-color: var(--ghost-border); color: var(--text); }
+  .btn-primary.small, .btn-ghost.small { padding: 8px 18px; font-size: 13px; border-radius: 6px; }
+
+  /* ---- 홈 ---- */
+  .script { font-family: var(--font-script); color: var(--accent-text); font-weight: 500; }
+  .eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; line-height: 1.9; color: var(--text-soft); margin-bottom: 26px; padding-left: 12px; border-left: 1px solid var(--ghost-border); }
+  .section-title { font-family: var(--font-serif); font-weight: 500; font-size: 44px; line-height: 1.12; letter-spacing: -0.01em; margin: 0 0 18px; }
+  .section-ko { font-size: 14px; line-height: 1.7; color: var(--text-soft); margin: 0; }
+
+  .hero { position: relative; background: var(--bg); min-height: 620px; display: flex; align-items: center; overflow: hidden; border-bottom: 1px solid var(--hairline); }
+  .hero::before { content: ""; position: absolute; inset: 0; background: var(--hero-img) center / cover no-repeat; transform: translateX(var(--hero-shift)); -webkit-mask-image: var(--hero-mask); mask-image: var(--hero-mask); }
+  .hero::after { content: ""; position: absolute; inset: 0; background: var(--hero-overlay); }
+  .hero .container { position: relative; z-index: 1; width: 100%; padding-top: 72px; padding-bottom: 72px; }
+  .hero-title { font-family: var(--font-serif); font-weight: 500; font-size: 76px; line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 26px; }
+  .hero-title em { font-style: normal; color: var(--accent-text); display: block; }
+  .hero-ko { font-size: 20px; font-weight: 700; margin: 0 0 12px; }
+  .hero-sub { font-size: 15px; line-height: 1.75; color: var(--text-soft); max-width: 440px; margin: 0 0 32px; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-script { position: absolute; right: 9%; bottom: 64px; z-index: 1; font-size: 46px; line-height: 1.05; transform: rotate(-9deg); text-align: left; }
+
+  .insight { padding: 96px 0 40px; }
+  .insight-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
+  .insight-photo { position: relative; height: 320px; border-radius: 14px; overflow: hidden; background: var(--sec2-img) center / cover no-repeat; border: 1px solid var(--hairline); }
+  .insight-tags { position: absolute; top: 18px; right: 20px; display: flex; flex-direction: column; gap: 6px; text-align: right; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.6); }
+  :root[data-theme="light"] .hero-script { color: #fff; text-shadow: 0 2px 12px rgba(10,30,70,0.45); }
+  .insight-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 45%); pointer-events: none; }
+  .insight-tags { z-index: 1; }
+  .features { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 56px; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+  .feature { padding: 34px 20px; text-align: center; border-left: 1px solid var(--hairline); }
+  .feature:first-child { border-left: none; }
+  .feature-icon { width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 50%; background: var(--accent-dim); color: var(--accent-text); display: flex; align-items: center; justify-content: center; }
+  .feature-icon svg { width: 26px; height: 26px; }
+  .feature-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+  .feature-desc { font-size: 12px; line-height: 1.6; color: var(--text-muted); }
+
+  .showcase { padding: 96px 0 40px; }
+  .showcase-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: center; }
+  .showcase-num { display: flex; align-items: center; gap: 14px; margin-top: 28px; font-size: 11px; font-weight: 700; color: var(--text-muted); }
+  .showcase-num::after { content: ""; width: 120px; height: 1px; background: var(--ghost-border); }
+  .showcase-card { position: relative; padding: 18px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--border); box-shadow: 0 20px 50px var(--shadow); }
+  .showcase-card img { width: 100%; display: block; border-radius: 10px; }
+  .showcase-stats { display: flex; gap: 12px; margin-top: 12px; }
+  .stat-tile { flex: 1; padding: 14px 16px; border-radius: 12px; background: var(--surface-1); border: 1px solid var(--hairline); }
+  .stat-tile span { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+  .stat-tile b { font-family: var(--font-serif); font-size: 30px; font-weight: 500; }
+  .stat-tile small { font-size: 12px; color: var(--text-muted); margin-left: 4px; }
+  .sample-note { margin: 10px 2px 0; font-size: 11px; color: var(--text-muted); }
+
+  .recent-section { display: none; padding: 56px 0 0; }
+  .recent-card { padding: 8px 22px; border-radius: 14px; background: var(--bg-card); border: 1px solid var(--border); }
+  .recent-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
+  .recent-head h3 { margin: 0; font-family: var(--font-serif); font-weight: 500; font-size: 26px; }
+  .recent-head a { font-size: 13px; color: var(--accent-text); text-decoration: none; font-weight: 600; }
+  .mini-row { display: flex; align-items: center; gap: 12px; padding: 12px 0; border-top: 1px solid var(--hairline); font-size: 14px; }
+  .mini-row:first-child { border-top: none; }
+  .mini-date { flex: 0 0 64px; color: var(--accent-text); font-weight: 700; }
+  .mini-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  .world { position: relative; margin-top: 96px; padding: 64px 0 0; overflow: hidden; border-top: 1px solid var(--hairline); }
+  .world::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 250px; background: var(--world-img) center / cover no-repeat; }
+  .world::after { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 250px; background: var(--world-overlay); }
+  .world .container { position: relative; z-index: 1; }
+  .world-head { min-height: 200px; }
+  .world-link { display: inline-block; margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--accent-text); text-decoration: none; }
+  .t-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding-bottom: 8px; }
+  .t-card { display: block; text-decoration: none; color: inherit; border-radius: 12px; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border); transition: transform .15s, border-color .15s; }
+  .t-card:hover { transform: translateY(-3px); border-color: var(--accent); }
+  .t-card-img { height: 96px; background: var(--surface-2) center / cover no-repeat; }
+  .t-card-body { padding: 14px 16px 16px; }
+  .t-card-date { font-size: 12px; font-weight: 700; color: var(--accent-text); margin-bottom: 6px; }
+  .t-card-name { font-size: 14px; font-weight: 700; line-height: 1.4; min-height: 40px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; }
+  .t-card-meta { display: flex; flex-wrap: wrap; gap: 6px; }
+
+  .cta { position: relative; margin-top: 88px; min-height: 260px; display: flex; align-items: center; overflow: hidden; border-top: 1px solid var(--hairline); }
+  .cta::before { content: ""; position: absolute; inset: 0; background: var(--cta-img) center / cover no-repeat; }
+  .cta::after { content: ""; position: absolute; inset: 0; background: var(--cta-overlay); }
+  .cta .container { position: relative; z-index: 1; width: 100%; display: flex; justify-content: flex-end; }
+  .cta-box { width: min(440px, 100%); padding: 40px 0; }
+  .cta-title { font-family: var(--font-serif); font-weight: 500; font-size: 34px; line-height: 1.2; margin: 0 0 12px; }
+
+  .site-footer { border-top: 1px solid var(--hairline); padding: 44px 0 36px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 28px; }
+  .footer-brand p { margin: 12px 0 0; font-size: 12px; color: var(--text-muted); }
+  .footer-col h4 { margin: 0 0 12px; font-size: 13px; font-weight: 700; }
+  .footer-col a, .footer-col span { display: block; margin-bottom: 8px; font-size: 12px; color: var(--text-muted); text-decoration: none; }
+  .footer-col a:hover { color: var(--text); }
+  .footer-script { font-size: 26px; transform: rotate(-6deg); display: inline-block; margin-top: 4px; }
+  .footer-copy { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--hairline); font-size: 11px; color: var(--text-muted); }
+
+  .tag { font-size: 11px; background: var(--surface-2); padding: 2px 9px; border-radius: 999px; font-weight: 700; }
+
+  @media (max-width: 900px) {
+    .pills { display: none; }
+    .hero { min-height: 520px; }
+    .hero-title { font-size: 46px; }
+    .hero-script { display: none; }
+    .section-title { font-size: 34px; }
+    .insight-grid, .showcase-grid { grid-template-columns: 1fr; }
+    .features { grid-template-columns: repeat(2, 1fr); }
+    .feature:nth-child(3) { border-left: none; }
+    .t-cards { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .cta .container { justify-content: flex-start; }
+  }
+
+  .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+  .chip { background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 6px 14px; font-size: 12px; border-radius: 999px; }
+  .chip.active { background: var(--accent-dim); color: var(--accent-text); border-color: var(--accent-text); }
+  .t-month { display: flex; align-items: baseline; gap: 10px; margin: 22px 0 4px; padding: 10px 14px; background: var(--surface-1); border-radius: 10px; }
+  .t-month:first-child { margin-top: 4px; }
+  .t-month-title { font-size: 15px; font-weight: 800; color: var(--text); }
+  .t-month-count { font-size: 12px; color: var(--text-muted); }
+  .t-row { display: flex; align-items: center; gap: 16px; padding: 12px 14px; border-top: 1px solid var(--border); }
+  .t-month + .t-row { border-top: none; }
+  .t-date { flex: 0 0 96px; font-size: 13px; font-weight: 700; color: var(--accent-text); }
+  .t-main { flex: 1; min-width: 0; }
+  .t-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .t-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+  .t-sub { font-size: 12px; color: var(--text-muted); }
+  .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); color: var(--text-muted); }
+  .badge.open { background: var(--accent); color: var(--on-accent); }
+  .badge.live { background: var(--live-bg); color: var(--accent-text); }
+  .t-link { flex: 0 0 auto; font-size: 12px; color: var(--accent-text); text-decoration: none; white-space: nowrap; }
+  .t-link:hover { text-decoration: underline; }
+
+  /* ---- 로그인 / 마이페이지 ---- */
+  .user-chip { font-size: 13px; color: var(--text-soft); display: none; }
+  .modal-back { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
+  .modal-back.show { display: flex; }
+  .modal { width: min(760px, 100%); display: grid; grid-template-columns: 0.9fr 1.1fr; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border); border-radius: 22px; box-shadow: 0 20px 60px var(--shadow); }
+  .modal-img { background: var(--surface-2) center/cover no-repeat url("assets/login_side.jpg"); min-height: 360px; }
+  .modal-body { padding: 28px; position: relative; }
+  .modal-body h3 { margin: 0 0 6px; font-size: 20px; }
+  .modal-close { position: absolute; top: 12px; right: 14px; background: none; border: none; color: var(--text-muted); font-size: 22px; cursor: pointer; margin: 0; padding: 4px 8px; }
+  .modal-body label { display: block; font-size: 12px; color: var(--text-muted); margin: 14px 0 5px; }
+  .modal-body input { width: 100%; box-sizing: border-box; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); font-size: 14px; }
+  .modal-body .btn-primary { width: 100%; margin-top: 20px; border: none; cursor: pointer; }
+  .form-error { color: #ff6b6b; font-size: 13px; min-height: 18px; margin-top: 12px; }
+  .switch-mode { background: none; border: none; color: var(--accent-text); font-size: 13px; cursor: pointer; padding: 0; margin: 12px 0 0; }
+  @media (max-width: 700px) { .modal { grid-template-columns: 1fr; } .modal-img { display: none; } }
+
+  .save-box { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; padding: 14px 16px; margin: 14px 0; border: 1px dashed var(--border); border-radius: 12px; }
+  .save-box label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+  .save-box input { padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); font-size: 14px; }
+  .save-box .hint { margin: 0 !important; flex-basis: 100%; }
+
+  .h-day { margin: 22px 0 8px; font-size: 14px; font-weight: 800; color: var(--accent-text); }
+  .h-item { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; background: var(--surface-1); }
+  .h-thumb { width: 96px; height: 60px; object-fit: cover; border-radius: 8px; background: var(--surface-2); flex: 0 0 auto; }
+  .h-info { flex: 1; min-width: 0; }
+  .h-title { font-size: 14px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .h-sub { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
+  .h-actions { display: flex; gap: 8px; }
+  .empty-box { text-align: center; padding: 20px 0; }
+  .empty-box img { max-width: 260px; width: 100%; border-radius: 16px; opacity: 0.9; }
+  .detail-back { margin-bottom: 14px; }
+
+  /* ---- 영상 분석 ---- */
+  .page.wide { max-width: 1120px; }
+  .page-head { margin-bottom: 26px; }
+  .page-title { font-family: var(--font-serif); font-weight: 500; font-size: 60px; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 18px; }
+  .page-title em { font-style: normal; color: var(--accent-text); }
+  .page-head .hero-ko { margin: 0 0 8px; }
+  .stepper { list-style: none; display: flex; gap: 8px; flex-wrap: wrap; padding: 0; margin: 0 0 24px; }
+  .stepper li { display: flex; align-items: center; gap: 10px; padding: 7px 18px 7px 7px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); font-size: 13px; font-weight: 600; }
+  .stepper li b { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--surface-2); font-size: 12px; }
+  .stepper li.on { color: var(--text); border-color: var(--accent); }
+  .stepper li.on b { background: var(--accent); color: var(--on-accent); }
+  .stepper li.done { color: var(--text-soft); }
+  .stepper li.done b { background: var(--accent-dim); color: var(--accent-text); }
+  #video-bar { top: 72px; }
+
+  .card { border-radius: 16px; padding: 28px; }
+  .step-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
+  .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex: 0 0 auto; }
+  .step-title { margin: 0; font-family: var(--font-serif); font-weight: 500; font-size: 26px; }
+  .step-title .opt { font-family: var(--font-sans); font-size: 12px; font-weight: 500; color: var(--text-muted); margin-left: 8px; }
+
+  .upload-grid { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 32px; align-items: center; }
+  .rules { margin-top: 26px; padding-top: 20px; border-top: 1px solid var(--hairline); }
+  .rules h4 { margin: 0 0 10px; font-size: 13px; letter-spacing: 0.04em; color: var(--text-muted); }
+  .rules ul { margin: 0 0 12px; padding-left: 18px; font-size: 13px; line-height: 1.85; color: var(--text-soft); }
+  .rules ul b { color: var(--text); }
+  .guide-fig { margin: 0; }
+  .guide-fig img { width: 100%; max-height: 340px; object-fit: cover; object-position: center 72%; border-radius: 12px; border: 1px solid var(--border); display: block; }
+  .guide-fig figcaption { margin-top: 8px; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
+
+  .calib-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); gap: 24px; align-items: start; }
+  .calib-side { position: sticky; top: 96px; max-height: calc(100vh - 120px); overflow: auto; padding-right: 4px; }
+  .calib-side svg { float: right; width: 110px; height: auto; margin: 0 0 8px 12px; background: var(--panel-inset); border: 1px solid var(--border); border-radius: 10px; padding: 8px; }
+  .calib-side p { margin: 0 0 12px; font-size: 13px; }
+  #frame-wrap, #frame-wrap2 { display: block; }
+  #frame-img, #frame-img2 { width: 100%; }
+  .calib-actions { margin-top: 16px; }
+  details.calib-examples { margin-top: 10px; }
+  details.calib-examples summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--accent-text); margin-bottom: 8px; }
+
+  .tab-bar { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-1); border: 1px solid var(--border); margin-bottom: 22px; }
+  .tab-btn { border-bottom: none; border-radius: 999px; padding: 9px 22px; }
+  .tab-btn.active { background: var(--accent); color: var(--on-accent); border-bottom: none; }
+
+  .result-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); gap: 20px; align-items: start; }
+  .result-card { padding: 16px; border-radius: 14px; background: var(--surface-1); border: 1px solid var(--hairline); }
+  .result-card .result-label { margin: 0 0 8px; }
+  .result-card .result-img { width: 100%; max-width: 100%; margin-top: 0; border: none; border-radius: 10px; display: block; }
+  #heatmap-img { max-width: 720px; margin: 0 auto; }
+  .player-card { padding: 16px 18px; border-radius: 14px; background: var(--surface-1); border: 1px solid var(--hairline); margin-bottom: 12px; }
+  .player-name { display: flex; align-items: center; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
+  .tile-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .tile { padding: 10px 12px; border-radius: 10px; background: var(--bg-card); border: 1px solid var(--hairline); }
+  .tile span { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+  .tile b { font-family: var(--font-serif); font-size: 24px; font-weight: 500; }
+  .tile small { font-size: 12px; color: var(--text-muted); }
+  .note { margin-top: 10px !important; }
+
+  @media (max-width: 900px) {
+    .upload-grid, .calib-layout, .result-grid { grid-template-columns: 1fr; }
+    .calib-side { position: static; max-height: none; }
+    .page-title { font-size: 42px; }
+  }
+  /* ---- 대회 일정 ---- */
+  .band { position: relative; padding: 72px 0 56px; overflow: hidden; border-bottom: 1px solid var(--hairline); }
+  .band::before { content: ""; position: absolute; inset: 0; background: var(--world-img) center 40% / cover no-repeat; }
+  .band::after { content: ""; position: absolute; inset: 0; background: var(--world-overlay); }
+  .band .container { position: relative; z-index: 1; }
+  .band .page-title em { display: block; }
+  .band-script { position: absolute; right: 9%; top: 96px; z-index: 1; font-size: 44px; line-height: 1.1; transform: rotate(-8deg); }
+  :root[data-theme="light"] .band-script { color: #fff; text-shadow: 0 2px 12px rgba(10,30,70,0.45); }
+
+  .src-tabs { display: flex; gap: 30px; padding-top: 18px; border-bottom: 1px solid var(--hairline); margin-bottom: 32px; }
+  .src-tab { background: none; border: none; border-bottom: 2px solid transparent; border-radius: 0; margin-bottom: -1px; padding: 12px 2px; color: var(--text-muted); font-size: 14px; font-weight: 600; cursor: pointer; }
+  .src-tab:hover { color: var(--text); }
+  .src-tab.on { color: var(--text); border-bottom-color: var(--accent); }
+
+  .t-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 36px; padding-bottom: 96px; }
+  .t-side h4 { margin: 0 0 12px; font-size: 13px; font-weight: 700; }
+  .side-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px; }
+  .side-item { background: none; border: none; text-align: left; padding: 10px 12px; border-radius: 8px; color: var(--text-muted); font-size: 13px; font-weight: 600; cursor: pointer; }
+  .side-item:hover { color: var(--text); }
+  .side-item.on { background: var(--accent-dim); color: var(--accent-text); }
+  .check { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; font-size: 13px; color: var(--text-soft); cursor: pointer; }
+  .check input { accent-color: var(--accent); width: 16px; height: 16px; }
+  .side-photo { height: 150px; border-radius: 12px; display: flex; align-items: flex-end; padding: 14px; background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.6)), url("assets/photos/court_topdown.webp") center / cover no-repeat; border: 1px solid var(--hairline); }
+  .side-photo .script { color: #fff; font-size: 24px; line-height: 1.1; transform: rotate(-4deg); }
+
+  .t-sec-head { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 16px; }
+  .t-sec-head h2 { margin: 0; font-family: var(--font-serif); font-weight: 500; font-size: 26px; }
+
+  .tt-head, .tt-row { display: grid; grid-template-columns: 112px minmax(0, 1.7fr) 64px minmax(0, 1.1fr) 96px 34px; gap: 14px; align-items: center; }
+  .tt-head { padding: 8px; font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); border-bottom: 1px solid var(--hairline); }
+  .tt-row { padding: 14px 8px; border-top: 1px solid var(--hairline); font-size: 13px; }
+  .tt-row:hover { background: var(--surface-1); }
+  .t-month + .tt-row { border-top: none; }
+  .tt-date { font-weight: 700; font-size: 13px; color: var(--accent-text); }
+  .tt-title { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-weight: 700; font-size: 14px; }
+  .c-div { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .tt-go { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--ghost-border); display: inline-flex; align-items: center; justify-content: center; color: var(--text); text-decoration: none; font-size: 13px; }
+  .tt-go:hover { border-color: var(--accent); color: var(--accent-text); }
+  .only-m { display: none; }
+
+  @media (max-width: 1100px) {
+    .t-main-col .t-cards { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .band-script { display: none; }
+    .t-layout { grid-template-columns: 1fr; gap: 24px; }
+    .tt-head { display: none; }
+    .tt-row { grid-template-columns: 84px minmax(0, 1fr) 34px; }
+    .c-src, .c-div, .c-reg { display: none; }
+    .only-m { display: flex; margin-top: 6px; }
+  }
+</style>
+
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container topbar">
+    <a class="brand" href="#home">
+      <img src="assets/brand/logo_icon.webp" alt="">
+      <span class="brand-name">CourtVision</span>
+    </a>
+    <nav class="pills">
+      <a href="#home" data-page="home">홈</a>
+      <a href="#analyze" data-page="analyze">영상 분석</a>
+      <a href="#tournaments" data-page="tournaments">대회 일정</a>
+      <a href="#mypage" data-page="mypage">마이페이지</a>
+    </nav>
+    <div class="auth-slot">
+      <button type="button" id="theme-toggle" class="icon-btn" aria-label="라이트/다크 전환" title="라이트/다크 전환">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+        </svg>
+      </button>
+      <span class="user-chip" id="user-chip"></span>
+      <button type="button" class="btn-ghost small" id="login-btn">로그인</button>
+      <button type="button" class="btn-primary small" id="signup-btn">회원가입</button>
+      <button type="button" class="btn-ghost small" id="logout-btn" style="display:none;">로그아웃</button>
+    </div>
+  </div>
+</header>
+
+<section class="page" id="page-home">
+  <div class="hero">
+    <div class="container">
+      <span class="eyebrow">AMATEUR TENNIS ANALYTICS<br>FOR A DEEPER GAME</span>
+      <h1 class="hero-title">Every<br>Match Tells<em>a Story.</em></h1>
+      <p class="hero-ko">당신의 테니스를, 데이터로 더 깊이.</p>
+      <p class="hero-sub">연습·경기 영상을 올리면 선수를 자동으로 추적해서 이동 경로, 이동거리, 코트 히트맵을 만들어 드립니다. 전용 카메라 없이 휴대폰 영상이면 충분합니다.</p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="#analyze">영상 분석 시작 →</a>
+        <a class="btn-ghost" href="#tournaments">다가오는 대회 보기</a>
+      </div>
+    </div>
+    <div class="hero-script script">Play<br>&nbsp;&nbsp;Smarter</div>
+  </div>
+
+  <section class="insight">
+    <div class="container">
+      <div class="insight-grid">
+        <div>
+          <h2 class="section-title">Turn Video<br>Into Insights</h2>
+          <p class="section-ko">단순한 영상이 아니라,<br>성장을 위한 데이터가 됩니다.</p>
+        </div>
+        <div class="insight-photo">
+          <div class="insight-tags"><span>PLAYER TRACKING</span><span>MOVEMENT PATTERN</span><span>COURT HEATMAP</span></div>
+        </div>
+      </div>
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3.5"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
+          <div class="feature-name">선수 추적</div>
+          <div class="feature-desc">영상 속 선수를 자동으로<br>찾아서 따라갑니다</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17c4-1 4-9 8-9s3 8 8 8"/><circle cx="4" cy="17" r="1.6"/><circle cx="20" cy="16" r="1.6"/></svg></div>
+          <div class="feature-name">이동거리·속도</div>
+          <div class="feature-desc">코트 4점을 기준으로<br>미터 단위로 계산합니다</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></svg></div>
+          <div class="feature-name">코트 히트맵</div>
+          <div class="feature-desc">어디에 오래 머물렀는지<br>한눈에 보여드립니다</div>
+        </div>
+        <div class="feature">
+          <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg></div>
+          <div class="feature-name">기록 모아보기</div>
+          <div class="feature-desc">로그인하면 촬영일별로<br>저장해 다시 볼 수 있어요</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase">
+    <div class="container">
+      <div class="showcase-grid">
+        <div>
+          <h2 class="section-title">See the Game<br>Differently</h2>
+          <p class="section-ko">눈으로만 보던 경기를,<br>코트 위 움직임으로 확인해 보세요.</p>
+          <div class="showcase-num">02</div>
+        </div>
+        <div>
+          <div class="showcase-card">
+            <img src="assets/sample_heatmap.png" alt="코트 히트맵 예시">
+            <div class="showcase-stats">
+              <div class="stat-tile"><span>총 이동거리</span><b>13.4</b><small>m</small></div>
+              <div class="stat-tile"><span>최고 속도</span><b>5.3</b><small>m/s</small></div>
+            </div>
+          </div>
+          <p class="sample-note">예시 영상 한 개의 분석 결과입니다. 촬영 조건에 따라 값은 달라질 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="recent-section" id="home-recent-section">
+    <div class="container">
+      <div class="recent-card">
+        <div class="recent-head" style="padding-top:18px;"><h3>Recent Analyses</h3><a href="#mypage">마이페이지 →</a></div>
+        <div id="home-recent"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="world">
+    <div class="container">
+      <div class="world-head">
+        <h2 class="section-title">Tennis<br>Around Korea</h2>
+        <p class="section-ko">국내 아마추어 대회 일정을 한곳에서.</p>
+        <a class="world-link" href="#tournaments">대회 일정 전체 보기 →</a>
+      </div>
+      <div class="t-cards" id="home-tournaments"></div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2 class="cta-title">A Small Step<br>for a Better Tennis</h2>
+        <p class="section-ko" style="margin-bottom:22px;">지금, 내 경기 영상을 분석해 보세요.</p>
+        <a class="btn-primary" href="#analyze">영상 분석 시작 →</a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<section class="page narrow wide" id="page-analyze">
+<div class="page-head">
+  <span class="eyebrow">ANALYZE<br>UNDERSTAND<br>IMPROVE</span>
+  <h1 class="page-title">Match <em>Analysis</em></h1>
+  <p class="hero-ko">경기를 더 깊이, 데이터로 분석하세요.</p>
+  <p class="section-ko">영상을 올리고 코트 4점만 표시하면, 선수의 이동 경로·거리·속도와 코트 히트맵을 만들어 드립니다.</p>
+</div>
+
+<ol class="stepper" id="stepper">
+  <li data-step="1" class="on"><b>1</b><span>영상 업로드</span></li>
+  <li data-step="2"><b>2</b><span>코트 보정</span></li>
+  <li data-step="3"><b>3</b><span>선수 선택</span></li>
+  <li data-step="4"><b>4</b><span>결과</span></li>
+</ol>
+
+<div class="card" id="upload-card">
+  <div class="upload-grid">
+    <div>
+      <div class="step-head"><span class="step-num">1</span><h2 class="step-title">영상 업로드</h2></div>
+      <input type="file" id="video-input" accept="video/*">
+      <button id="upload-btn">업로드</button>
+      <div class="rules">
+        <h4>이런 영상이 좋아요</h4>
+        <ul>
+          <li>삼각대 등으로 <b>카메라를 고정</b>하고, 줌·이동·편집 컷이 없는 연속 영상</li>
+          <li><b>베이스라인 뒤 중앙</b>의 높은 곳에서 코트를 내려다보는 각도</li>
+          <li><b>가까운 쪽 코트 전체</b>(서비스라인, 네트 아래 사이드라인)와 <b>가까운 선수의 몸 전체</b>가 화면 안에 보일 것</li>
+          <li>점수판·자막이 얹힌 <b>방송용 영상은 피해주세요</b></li>
+          <li>밝고 선명한 영상</li>
+        </ul>
+        <p class="hint">조건이 맞지 않으면 결과가 부정확하거나 분석이 실패할 수 있습니다.</p>
+      </div>
+    </div>
+    <figure class="guide-fig">
+      <img src="assets/filming_guide.jpg" alt="촬영 위치 안내: 베이스라인 뒤쪽 높은 곳에서 코트 전체를 향해 삼각대로 고정 촬영">
+      <figcaption>베이스라인 뒤 중앙에 삼각대를 세우고, 코트가 화면에 들어오도록 고정해서 촬영합니다.</figcaption>
+    </figure>
+  </div>
+</div>
+
+<div id="video-bar">
+  <video id="video-player" controls></video>
+  <button id="use-frame-btn" class="secondary" style="display:none; margin-top:10px;">▶ 이 시점 사용</button>
+</div>
+
+<div class="card" id="calib-card" style="display:none;">
+  <div class="step-head"><span class="step-num">2</span><h2 class="step-title">코트 보정</h2></div>
+  <div class="calib-layout">
+    <div>
+      <div id="frame-wrap">
+        <img id="frame-img">
+        <svg id="calib-overlay" xmlns="http://www.w3.org/2000/svg"></svg>
+      </div>
+      <div class="calib-actions">
+        <button id="calibrate-btn" disabled>보정 완료 (0/4)</button>
+        <button id="reset-corners-btn" class="secondary">다시 찍기</button>
+        <span id="calib-loading">선수 검출 중...</span>
+      </div>
+    </div>
+    <aside class="calib-side">
+      <svg viewBox="0 0 190 250" aria-label="클릭할 4점 안내 도식">
+        <rect x="10" y="10" width="170" height="230" fill="none" stroke="#5c6b62" stroke-width="2"/>
+        <line x1="10" y1="10" x2="180" y2="10" style="stroke:var(--accent)" stroke-width="3"/>
+        <line x1="10" y1="132" x2="180" y2="132" stroke="#5c6b62" stroke-width="2"/>
+        <line x1="95" y1="10" x2="95" y2="132" stroke="#5c6b62" stroke-width="2"/>
+        <text x="95" y="28" fill="#8a9891" font-size="10" text-anchor="middle">네트</text>
+        <text x="95" y="228" fill="#8a9891" font-size="10" text-anchor="middle">가까운 베이스라인</text>
+        <circle cx="10" cy="132" r="10" style="fill:var(--accent)"/><text x="10" y="136" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">1</text>
+        <circle cx="180" cy="132" r="10" style="fill:var(--accent)"/><text x="180" y="136" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">2</text>
+        <circle cx="180" cy="10" r="10" style="fill:var(--accent)"/><text x="180" y="14" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">3</text>
+        <circle cx="10" cy="10" r="10" style="fill:var(--accent)"/><text x="10" y="14" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">4</text>
+      </svg>
+      <p>카메라에 <b>가까운 쪽 코트</b>의 사각형 4점을 클릭해주세요. <b>클릭 순서는 상관없습니다</b>(위치로 자동 정렬됩니다). 실제 거리 계산의 기준점이라 정확할수록 좋습니다.</p>
+      <ol class="calib-steps">
+        <li><b>①</b> 가까운 서비스라인의 <b>왼쪽 끝</b> (서비스라인이 왼쪽 사이드라인과 만나는 점)</li>
+        <li><b>②</b> 같은 서비스라인의 <b>오른쪽 끝</b></li>
+        <li><b>③</b> 오른쪽 사이드라인이 <b>네트 아래 바닥</b>과 만나는 점</li>
+        <li><b>④</b> 왼쪽 사이드라인이 네트 아래 바닥과 만나는 점</li>
+      </ol>
+      <p class="hint">복식 사이드라인이 아니라 안쪽 <b>싱글 사이드라인</b> 기준입니다. 맨 아래 <b>베이스라인이 아니라</b> 그 위쪽 서비스라인입니다. 4점을 찍으면 <b>초록색 코트 선이 바로 나타납니다.</b> 실제 선과 어긋나면 <b>번호 점을 드래그해서 옮기세요</b>(선이 실시간으로 따라 움직입니다).</p>
+      <details class="calib-examples">
+        <summary>예시 이미지 보기</summary>
+        <img class="calib-example" src="calib_example.jpg" alt="4점 클릭 예시">
+        <p class="hint">예시: 초록 원이 클릭할 4점, 초록 선이 보정 후 나타나는 코트 선입니다.</p>
+        <img class="calib-example" src="calib_example_net.jpg" alt="네트 쪽 점 확대 예시">
+        <p class="hint"><b>③④는 그물 윗선이 아니라, 흰 사이드라인이 그물 아래 바닥과 만나는 곳</b>입니다. 브라우저를 확대(Ctrl + 마우스 휠)하고 찍으면 정확합니다.</p>
+      </details>
+    </aside>
+  </div>
+</div>
+
+<div class="card" id="tab-card" style="display:none;">
+  <div class="tab-bar">
+    <button type="button" class="tab-btn active" id="tab-select-btn">선수 선택</button>
+    <button type="button" class="tab-btn" id="tab-result-btn" disabled>결과</button>
+  </div>
+
+  <div id="select-panel" class="tab-panel">
+    <div class="step-head"><span class="step-num">3</span><h2 class="step-title">상대 선수 선택 <small class="opt">선택사항</small></h2></div>
+    <p><b>먼저 확인:</b> 초록색 선이 실제 코트 선(외곽선, 서비스라인, 네트)과 겹쳐야 정확한 보정입니다. 어긋나면 <button type="button" id="recalibrate-btn" class="secondary" style="margin:0;padding:6px 12px;">보정 수정하기</button> (찍은 점이 그대로 남아 있어 드래그로 옮길 수 있습니다)</p>
+    <p>Player1(빨강 박스)은 자동 선택됨. 상대 선수도 분석하려면 아래 이미지에서 위치를 클릭하세요.</p>
+    <div id="frame-wrap2">
+      <img id="frame-img2">
+      <svg id="court-overlay" xmlns="http://www.w3.org/2000/svg"></svg>
+      <div id="click-marker"></div>
+    </div>
+    <div class="save-box">
+      <div><label for="rec-date">촬영일</label><input type="date" id="rec-date"></div>
+      <div><label for="rec-title">제목 (선택)</label><input type="text" id="rec-title" maxlength="60" placeholder="예: 주말 랠리 연습"></div>
+      <p class="hint" id="save-hint"></p>
+    </div>
+    <button id="analyze-btn">분석 시작</button>
+    <span id="loading">분석 중입니다... 수 분 소요될 수 있어요</span>
+  </div>
+
+  <div id="result-panel" class="tab-panel" style="display:none;">
+    <div class="step-head"><span class="step-num">4</span><h2 class="step-title">분석 결과</h2></div>
+    <div class="result-grid">
+      <div class="result-card">
+        <div class="result-label">Trajectory</div>
+        <img class="result-img" id="trajectory-img">
+      </div>
+      <div>
+        <div id="stats-table"></div>
+        <p class="hint note">참고용 추정값입니다. 카메라에서 먼 쪽 선수의 거리·속도는 오차가 더 크고, 코트 4점이 정확할수록 결과가 좋아집니다.</p>
+      </div>
+    </div>
+    <div class="result-card" style="margin-top:20px;">
+      <div class="result-label">Heatmap</div>
+      <img class="result-img" id="heatmap-img">
+    </div>
+  </div>
+</div>
+
+</section>
+
+<section class="page" id="page-tournaments">
+  <div class="band">
+    <div class="container">
+      <span class="eyebrow">TENNIS<br>BRINGS OUT<br>A BETTER YOU</span>
+      <h1 class="page-title">Tournaments<em>Around Korea</em></h1>
+      <p class="hero-ko">국내 아마추어 테니스 대회를 한눈에.</p>
+      <p class="section-ko">한국테니스발전협의회(KATO)와 대한테니스협회(KTA)가 공개한 일정을 모아서 보여드립니다.</p>
+    </div>
+    <div class="band-script script">More<br>&nbsp;&nbsp;Tennis Moments</div>
+  </div>
+
+  <div class="container">
+    <div class="src-tabs" id="src-tabs">
+      <button type="button" class="src-tab on" data-source="">전체 대회</button>
+      <button type="button" class="src-tab" data-source="KATO">KATO</button>
+      <button type="button" class="src-tab" data-source="KTA">KTA</button>
+    </div>
+
+    <div class="t-layout">
+      <aside class="t-side">
+        <h4>부 (Division)</h4>
+        <div class="side-list" id="division-list">
+          <button type="button" class="side-item on" data-division="">전체</button>
+          <button type="button" class="side-item" data-division="개나리부">개나리부</button>
+          <button type="button" class="side-item" data-division="국화부">국화부</button>
+          <button type="button" class="side-item" data-division="챌린저부">챌린저부</button>
+          <button type="button" class="side-item" data-division="마스터스부">마스터스부</button>
+        </div>
+        <h4>접수 상태</h4>
+        <label class="check"><input type="checkbox" id="open-only"> 접수중인 대회만</label>
+        <div class="side-photo"><span class="script">A Bigger Stage<br>for a Better You.</span></div>
+      </aside>
+
+      <div class="t-main-col">
+        <div class="t-sec-head"><h2>Upcoming Tournaments</h2></div>
+        <div class="t-cards" id="upcoming-cards"></div>
+
+        <div class="t-sec-head" style="margin-top:44px;"><h2>Full Schedule</h2><span class="hint" id="tournament-count"></span></div>
+        <div id="tournament-list"></div>
+        <p class="hint" id="tournament-foot" style="margin-top:14px !important;"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page narrow" id="page-mypage">
+  <div class="card" id="mypage-list-card">
+    <h3>내 분석 기록</h3>
+    <div id="mypage-body"></div>
+  </div>
+  <div class="card" id="mypage-detail-card" style="display:none;">
+    <button type="button" class="secondary detail-back" id="detail-back">← 목록으로</button>
+    <h3 id="detail-title"></h3>
+    <p class="hint" id="detail-sub"></p>
+    <div id="detail-stats"></div>
+    <div class="result-label">Trajectory</div>
+    <img class="result-img" id="detail-traj">
+    <div class="result-label">Heatmap</div>
+    <img class="result-img" id="detail-heat">
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="#home"><img src="assets/brand/logo_icon.webp" alt=""><span class="brand-name">CourtVision</span></a>
+        <p>내 경기를 데이터로 읽다.</p>
+      </div>
+      <div class="footer-col">
+        <h4>서비스</h4>
+        <a href="#analyze">영상 분석</a>
+        <a href="#tournaments">대회 일정</a>
+        <a href="#mypage">마이페이지</a>
+      </div>
+      <div class="footer-col">
+        <h4>대회 정보 출처</h4>
+        <a href="https://kato.kr" target="_blank" rel="noopener noreferrer">한국테니스발전협의회(KATO) ↗</a>
+        <span>대한테니스협회(KTA)</span>
+      </div>
+      <div class="footer-col">
+        <h4>프로젝트</h4>
+        <span>학습·포트폴리오 목적의 프로젝트입니다.</span>
+        <span class="script footer-script">Play Smarter.</span>
+      </div>
+    </div>
+    <div class="footer-copy">© 2026 CourtVision. 대회 정보는 각 출처의 공개 정보를 요약한 것이며, 정확한 내용은 원본 링크에서 확인하세요.</div>
+  </div>
+</footer>
+
+<div class="modal-back" id="auth-modal">
+  <div class="modal">
+    <div class="modal-img"></div>
+    <form class="modal-body" id="auth-form">
+      <button type="button" class="modal-close" id="auth-close" aria-label="닫기">×</button>
+      <h3 id="auth-title">로그인</h3>
+      <p class="hint" style="margin:0 !important;">로그인하면 분석 결과가 날짜별로 저장됩니다.</p>
+      <div id="nick-row" style="display:none;"><label for="auth-nick">닉네임</label><input id="auth-nick" maxlength="20" autocomplete="nickname"></div>
+      <label for="auth-email">이메일</label><input id="auth-email" type="email" autocomplete="email" required>
+      <label for="auth-pw">비밀번호 (8자 이상)</label><input id="auth-pw" type="password" autocomplete="current-password" required>
+      <div class="form-error" id="auth-error"></div>
+      <button type="submit" class="btn-primary" id="auth-submit">로그인</button>
+      <button type="button" class="switch-mode" id="auth-switch">계정이 없나요? 회원가입</button>
+    </form>
+  </div>
+</div>
+
+<script>
+let currentUser = null;
+let myHistory = [];
+let pendingDetailId = null;
+let videoId = null;
+let corners = [];
+let clickX = null;
+let clickY = null;
+
+function toOriginalCoords(e, img) {
+  const rect = img.getBoundingClientRect();
+  const scaleX = img.naturalWidth / rect.width;
+  const scaleY = img.naturalHeight / rect.height;
+  return {
+    x: Math.round((e.clientX - rect.left) * scaleX),
+    y: Math.round((e.clientY - rect.top) * scaleY),
+    displayX: e.clientX - rect.left,
+    displayY: e.clientY - rect.top,
+  };
+}
+
+document.getElementById("upload-btn").onclick = async () => {
+  const fileInput = document.getElementById("video-input");
+  if (!fileInput.files.length) {
+    alert("영상 파일을 선택해주세요.");
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append("file", fileInput.files[0]);
+
+  document.getElementById("upload-btn").disabled = true;
+  document.getElementById("upload-btn").textContent = "업로드 중...";
+
+  const res = await fetch("/api/upload", { method: "POST", body: formData });
+  const data = await res.json();
+
+  videoId = data.video_id;
+
+  const player = document.getElementById("video-player");
+  player.src = data.video_url;
+
+  const videoBar = document.getElementById("video-bar");
+  videoBar.classList.add("show");
+  document.getElementById("use-frame-btn").style.display = "inline-block";
+
+  document.getElementById("page-analyze").style.paddingTop = (videoBar.offsetHeight + 24) + "px";
+  window.addEventListener("resize", () => {
+    document.getElementById("page-analyze").style.paddingTop = (videoBar.offsetHeight + 24) + "px";
+  });
+
+  document.getElementById("frame-img").src = data.frame_url;
+  document.getElementById("calib-card").style.display = "block";
+  setStep(2);
+  document.getElementById("upload-btn").disabled = false;
+  document.getElementById("upload-btn").textContent = "업로드";
+};
+
+document.getElementById("use-frame-btn").onclick = async () => {
+  const player = document.getElementById("video-player");
+  const timeSec = player.currentTime;
+
+  const res = await fetch("/api/set_frame", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ video_id: videoId, time_sec: timeSec }),
+  });
+  const data = await res.json();
+
+  const frameImg = document.getElementById("frame-img");
+  frameImg.src = data.frame_url + "&v=" + Date.now();
+  resetCorners();
+
+  document.getElementById("calib-card").scrollIntoView({ behavior: "smooth", block: "start" });
+  document.getElementById("frame-wrap").classList.remove("flash");
+  void document.getElementById("frame-wrap").offsetWidth; // 애니메이션 재시작을 위한 트릭
+  document.getElementById("frame-wrap").classList.add("flash");
+};
+
+// ---- calibration math (start) ----
+const REAL_PTS = [[0, 5.485], [8.23, 5.485], [8.23, 11.885], [0, 11.885]];
+const COURT_W = 8.23, COURT_L = 23.77;
+const COURT_LINES = [
+  [[0, 0], [COURT_W, 0]], [[COURT_W, 0], [COURT_W, COURT_L]],
+  [[COURT_W, COURT_L], [0, COURT_L]], [[0, COURT_L], [0, 0]],
+  [[0, 5.485], [COURT_W, 5.485]], [[0, 18.285], [COURT_W, 18.285]],
+  [[COURT_W / 2, 5.485], [COURT_W / 2, 18.285]], [[0, 11.885], [COURT_W, 11.885]],
+];
+
+// 클릭 순서와 무관하게 화면 위치로 정렬 (서버의 order_court_points와 같은 규칙)
+function orderCorners(pts) {
+  const byY = [...pts].sort((a, b) => a[1] - b[1]);
+  const far = byY.slice(0, 2).sort((a, b) => a[0] - b[0]);
+  const near = byY.slice(2).sort((a, b) => a[0] - b[0]);
+  return [near[0], near[1], far[1], far[0]];
+}
+
+// 실제 좌표(m) -> 픽셀 변환 행렬(8개 값) 계산
+function solveH(src, dst) {
+  const A = [], b = [];
+  for (let i = 0; i < 4; i++) {
+    const [x, y] = src[i], [u, v] = dst[i];
+    A.push([x, y, 1, 0, 0, 0, -u * x, -u * y]); b.push(u);
+    A.push([0, 0, 0, x, y, 1, -v * x, -v * y]); b.push(v);
+  }
+  const n = 8;
+  for (let c = 0; c < n; c++) {
+    let p = c;
+    for (let r = c + 1; r < n; r++) if (Math.abs(A[r][c]) > Math.abs(A[p][c])) p = r;
+    if (Math.abs(A[p][c]) < 1e-12) return null;
+    [A[c], A[p]] = [A[p], A[c]]; [b[c], b[p]] = [b[p], b[c]];
+    for (let r = c + 1; r < n; r++) {
+      const f = A[r][c] / A[c][c];
+      for (let k = c; k < n; k++) A[r][k] -= f * A[c][k];
+      b[r] -= f * b[c];
+    }
+  }
+  const h = new Array(n);
+  for (let r = n - 1; r >= 0; r--) {
+    let s = b[r];
+    for (let k = r + 1; k < n; k++) s -= A[r][k] * h[k];
+    h[r] = s / A[r][r];
+  }
+  return h;
+}
+
+function projectPoint(h, X, Y) {
+  const w = h[6] * X + h[7] * Y + 1;
+  if (w <= 1e-9) return null;
+  return [(h[0] * X + h[1] * Y + h[2]) / w, (h[3] * X + h[4] * Y + h[5]) / w];
+}
+// ---- calibration math (end) ----
+
+const markerEls = [];
+
+function drawCalibPreview() {
+  const svg = document.getElementById("calib-overlay");
+  const img = document.getElementById("frame-img");
+  svg.innerHTML = "";
+  if (!img.naturalWidth || corners.length !== 4) return;
+  svg.setAttribute("viewBox", `0 0 ${img.naturalWidth} ${img.naturalHeight}`);
+  const h = solveH(REAL_PTS, orderCorners(corners));
+  if (!h) return;
+  let html = "";
+  for (const [a, b] of COURT_LINES) {
+    const p = projectPoint(h, a[0], a[1]), q = projectPoint(h, b[0], b[1]);
+    if (!p || !q) continue;
+    html += `<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="#7CFC00" stroke-width="4" stroke-linecap="round"/>`;
+  }
+  svg.innerHTML = html;
+}
+
+function layoutMarkers() {
+  const img = document.getElementById("frame-img");
+  if (img.naturalWidth) {
+    const scale = img.getBoundingClientRect().width / img.naturalWidth;
+    markerEls.forEach((el, i) => {
+      el.style.left = (corners[i][0] * scale) + "px";
+      el.style.top = (corners[i][1] * scale) + "px";
+    });
+  }
+  drawCalibPreview();
+}
+
+function updateCalibButton() {
+  const btn = document.getElementById("calibrate-btn");
+  btn.textContent = `보정 완료 (${corners.length}/4)`;
+  btn.disabled = corners.length !== 4;
+}
+
+function addMarker(index) {
+  const el = document.createElement("div");
+  el.className = "corner-marker draggable";
+  el.textContent = index + 1;
+  el.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
+    el.setPointerCapture(e.pointerId);
+    const img = document.getElementById("frame-img");
+    const move = (ev) => {
+      const rect = img.getBoundingClientRect();
+      const x = Math.min(Math.max((ev.clientX - rect.left) * (img.naturalWidth / rect.width), 0), img.naturalWidth);
+      const y = Math.min(Math.max((ev.clientY - rect.top) * (img.naturalHeight / rect.height), 0), img.naturalHeight);
+      corners[index] = [Math.round(x), Math.round(y)];
+      layoutMarkers();
+    };
+    const up = () => {
+      el.removeEventListener("pointermove", move);
+      el.removeEventListener("pointerup", up);
+    };
+    el.addEventListener("pointermove", move);
+    el.addEventListener("pointerup", up);
+  });
+  document.getElementById("frame-wrap").appendChild(el);
+  markerEls.push(el);
+}
+
+function resetCorners() {
+  corners = [];
+  markerEls.forEach(el => el.remove());
+  markerEls.length = 0;
+  document.getElementById("calib-overlay").innerHTML = "";
+  updateCalibButton();
+}
+
+document.getElementById("frame-img").onclick = (e) => {
+  if (corners.length >= 4) return;
+  const coord = toOriginalCoords(e, e.target);
+  corners.push([coord.x, coord.y]);
+  addMarker(corners.length - 1);
+  layoutMarkers();
+  updateCalibButton();
+};
+
+document.getElementById("frame-img").addEventListener("load", layoutMarkers);
+window.addEventListener("resize", layoutMarkers);
+
+document.getElementById("reset-corners-btn").onclick = resetCorners;
+
+document.getElementById("calibrate-btn").onclick = async () => {
+  document.getElementById("calib-loading").style.display = "inline";
+  document.getElementById("calibrate-btn").disabled = true;
+
+  const res = await fetch("/api/calibrate", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ video_id: videoId, corners: corners }),
+  });
+  const data = await res.json();
+
+  document.getElementById("calib-loading").style.display = "none";
+
+  if (!res.ok) {
+    alert("보정 실패: " + (data.detail || "알 수 없는 오류"));
+    document.getElementById("calibrate-btn").disabled = false;
+    return;
+  }
+
+  document.getElementById("tab-card").style.display = "block";
+  setStep(3);
+  drawCalibrationResult(data);
+  document.getElementById("tab-card").scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
+function drawCalibrationResult(data) {
+  const img = document.getElementById("frame-img2");
+  const wrap = document.getElementById("frame-wrap2");
+  const svg = document.getElementById("court-overlay");
+
+  const render = () => {
+    wrap.querySelectorAll(".player1-box").forEach(el => el.remove());
+    const scale = img.getBoundingClientRect().width / img.naturalWidth;
+    const p1 = data.candidates.find(c => c.track_id === data.player1_id);
+    if (p1) {
+      const box = document.createElement("div");
+      box.className = "player1-box";
+      box.style.left = (p1.x1 * scale) + "px";
+      box.style.top = (p1.y1 * scale) + "px";
+      box.style.width = ((p1.x2 - p1.x1) * scale) + "px";
+      box.style.height = ((p1.y2 - p1.y1) * scale) + "px";
+      wrap.appendChild(box);
+    }
+    svg.setAttribute("viewBox", `0 0 ${img.naturalWidth} ${img.naturalHeight}`);
+    svg.innerHTML = data.overlay.map(s =>
+      `<line x1="${s[0]}" y1="${s[1]}" x2="${s[2]}" y2="${s[3]}" stroke="#7CFC00" stroke-width="4" stroke-linecap="round"/>`
+    ).join("");
+  };
+
+  const newSrc = document.getElementById("frame-img").src;
+  if (img.src === newSrc && img.complete && img.naturalWidth) {
+    render();
+  } else {
+    img.onload = render;
+    img.src = newSrc;
+  }
+}
+
+document.getElementById("recalibrate-btn").onclick = () => {
+  document.getElementById("tab-card").style.display = "none";
+  setStep(2);
+  updateCalibButton();
+  layoutMarkers();
+  document.getElementById("calib-card").scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
+document.getElementById("frame-img2").onclick = (e) => {
+  const coord = toOriginalCoords(e, e.target);
+  clickX = coord.x;
+  clickY = coord.y;
+
+  const marker = document.getElementById("click-marker");
+  marker.style.left = coord.displayX + "px";
+  marker.style.top = coord.displayY + "px";
+  marker.style.display = "block";
+};
+
+document.getElementById("analyze-btn").onclick = async () => {
+  document.getElementById("loading").style.display = "inline";
+  document.getElementById("analyze-btn").disabled = true;
+
+  const body = { video_id: videoId, click_x: clickX, click_y: clickY,
+                 recorded_date: currentUser ? document.getElementById("rec-date").value : null,
+                 title: document.getElementById("rec-title").value };
+
+  const res = await fetch("/api/analyze", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  const data = await res.json();
+
+  document.getElementById("loading").style.display = "none";
+  document.getElementById("analyze-btn").disabled = false;
+
+  if (!res.ok) {
+    alert("분석 실패: " + (data.detail || "알 수 없는 오류"));
+    return;
+  }
+
+  statsTable(document.getElementById("stats-table"), data.stats);
+  document.getElementById("trajectory-img").src = data.trajectory_url;
+  document.getElementById("heatmap-img").src = data.heatmap_url;
+
+  document.getElementById("tab-result-btn").disabled = false;
+  switchTab("result");
+  setStep(4);
+  if (data.saved_id) { loadHistory(); }
+};
+
+function setStep(n) {
+  document.querySelectorAll("#stepper li").forEach(li => {
+    const k = Number(li.dataset.step);
+    li.classList.toggle("done", k < n);
+    li.classList.toggle("on", k === n);
+  });
+}
+
+function switchTab(name) {
+  const isSelect = name === "select";
+  document.getElementById("select-panel").style.display = isSelect ? "block" : "none";
+  document.getElementById("result-panel").style.display = isSelect ? "none" : "block";
+  document.getElementById("tab-select-btn").classList.toggle("active", isSelect);
+  document.getElementById("tab-result-btn").classList.toggle("active", !isSelect);
+}
+
+document.getElementById("tab-select-btn").onclick = () => switchTab("select");
+document.getElementById("tab-result-btn").onclick = () => {
+  if (!document.getElementById("tab-result-btn").disabled) switchTab("result");
+};
+
+// ---- 다가오는 대회 (크롤링 데이터) ----
+function el(tag, cls, text) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (text !== undefined) e.textContent = text;   // 외부 사이트 텍스트는 글자로만 넣는다(HTML 해석 금지)
+  return e;
+}
+
+// ---- 대회 일정 ----
+const CARD_PHOTOS = ["court_sunset", "sunset_net", "court_topdown", "bench_racket_dark"];
+const TFILTER = { source: "", division: "", openOnly: false };
+
+function isOpenReg(t) { return !!(t.registration && t.registration.includes("접수중")); }
+function mdText(d) { return d.slice(5).replace("-", "."); }
+
+function makeTournamentCard(t, i) {
+  const card = el("a", "t-card");
+  if (/^https:\/\//.test(t.url)) { card.href = t.url; card.target = "_blank"; card.rel = "noopener noreferrer"; }
+  const img = el("div", "t-card-img");
+  img.style.backgroundImage = `url("assets/photos/${CARD_PHOTOS[i % CARD_PHOTOS.length]}.webp")`;
+  const body = el("div", "t-card-body");
+  body.appendChild(el("div", "t-card-date", `${mdText(t.start_date)} ~ ${mdText(t.end_date)}`));
+  body.appendChild(el("div", "t-card-name", t.name));
+  const meta = el("div", "t-card-meta");
+  meta.appendChild(el("span", "badge", t.source));
+  if (t.registration) meta.appendChild(el("span", "badge" + (isOpenReg(t) ? " open" : ""), t.registration));
+  body.appendChild(meta);
+  card.appendChild(img);
+  card.appendChild(body);
+  return card;
+}
+
+async function loadTournaments() {
+  const listEl = document.getElementById("tournament-list");
+  const cardsEl = document.getElementById("upcoming-cards");
+  const params = new URLSearchParams({ upcoming: "true", limit: "300" });
+  if (TFILTER.source) params.set("source", TFILTER.source);
+  if (TFILTER.division) params.set("division", TFILTER.division);
+
+  let data;
+  try {
+    const res = await fetch("/api/tournaments?" + params);
+    data = await res.json();
+  } catch (e) {
+    cardsEl.replaceChildren();
+    listEl.textContent = "대회 정보를 불러오지 못했습니다.";
+    return;
+  }
+  const items = TFILTER.openOnly ? data.items.filter(isOpenReg) : data.items;
+
+  cardsEl.replaceChildren();
+  items.slice(0, 4).forEach((t, i) => cardsEl.appendChild(makeTournamentCard(t, i)));
+
+  listEl.replaceChildren();
+  if (!items.length) {
+    listEl.appendChild(el("p", "hint", "조건에 맞는 대회가 없습니다."));
+  } else {
+    const head = el("div", "tt-head");
+    ["날짜", "대회", "출처", "부", "접수", ""].forEach(h => head.appendChild(el("span", "", h)));
+    listEl.appendChild(head);
+  }
+
+  let currentMonth = "";
+  for (const t of items) {
+    const month = t.start_date.slice(0, 7);                    // 예: 2026-10
+    if (month !== currentMonth) {                              // 월이 바뀌면 구분 헤더를 넣는다
+      currentMonth = month;
+      const count = items.filter(x => x.start_date.startsWith(month)).length;
+      const mh = el("div", "t-month");
+      mh.appendChild(el("span", "t-month-title", `${month.slice(0, 4)}년 ${month.slice(5)}월`));
+      mh.appendChild(el("span", "t-month-count", `${count}건`));
+      listEl.appendChild(mh);
+    }
+
+    const row = el("div", "tt-row");
+    row.appendChild(el("span", "tt-date", `${mdText(t.start_date)} ~ ${mdText(t.end_date)}`));
+
+    const name = el("div", "");
+    const title = el("div", "tt-title", t.name);
+    if (t.phase === "진행중") title.appendChild(el("span", "badge live", "진행중"));
+    name.appendChild(title);
+    if (t.venue) name.appendChild(el("div", "t-sub", t.venue));
+    const mobile = el("div", "t-meta only-m");
+    mobile.appendChild(el("span", "badge", t.source));
+    if (t.registration) mobile.appendChild(el("span", "badge" + (isOpenReg(t) ? " open" : ""), t.registration));
+    name.appendChild(mobile);
+    row.appendChild(name);
+
+    const src = el("span", "c-src"); src.appendChild(el("span", "badge", t.source)); row.appendChild(src);
+    row.appendChild(el("span", "c-div t-sub", t.divisions || "-"));
+    const reg = el("span", "c-reg");
+    reg.appendChild(t.registration ? el("span", "badge" + (isOpenReg(t) ? " open" : ""), t.registration) : document.createTextNode("-"));
+    row.appendChild(reg);
+
+    if (/^https:\/\//.test(t.url)) {                          // https 링크만 허용
+      const a = el("a", "tt-go", "↗");
+      a.href = t.url; a.target = "_blank"; a.rel = "noopener noreferrer";
+      a.setAttribute("aria-label", "원본 보기");
+      row.appendChild(a);
+    } else {
+      row.appendChild(el("span", ""));
+    }
+    listEl.appendChild(row);
+  }
+
+  document.getElementById("tournament-count").textContent = `${items.length}건`;
+  const when = data.last_crawled ? data.last_crawled.replace("T", " ") : "-";
+  document.getElementById("tournament-foot").textContent =
+    `출처: 한국테니스발전협의회(KATO), 대한테니스협회(KTA) · 마지막 수집: ${when} · 정확한 내용은 원본 링크에서 확인하세요.`;
+}
+
+function bindFilter(selector, key, attr, cls) {
+  document.querySelectorAll(selector).forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll(selector).forEach(b => b.classList.remove(cls));
+      btn.classList.add(cls);
+      TFILTER[key] = btn.dataset[attr];
+      loadTournaments();
+    };
+  });
+}
+bindFilter("#src-tabs .src-tab", "source", "source", "on");
+bindFilter("#division-list .side-item", "division", "division", "on");
+document.getElementById("open-only").onchange = (e) => { TFILTER.openOnly = e.target.checked; loadTournaments(); };
+loadTournaments();
+
+// ---- 홈: 다가오는 대회 미리보기 ----
+async function loadHomeTournaments() {
+  const box = document.getElementById("home-tournaments");
+  try {
+    const res = await fetch("/api/tournaments?upcoming=true&limit=4");
+    const data = await res.json();
+    box.replaceChildren();
+    if (!data.items.length) { box.appendChild(el("p", "hint", "예정된 대회가 없습니다.")); return; }
+    data.items.forEach((t, i) => box.appendChild(makeTournamentCard(t, i)));
+  } catch (e) {
+    box.textContent = "대회 정보를 불러오지 못했습니다.";
+  }
+}
+loadHomeTournaments();
+
+// ---- 페이지(탭) 전환: 주소의 #home / #analyze / #tournaments / #mypage ----
+const PAGES = ["home", "analyze", "tournaments", "mypage"];
+function showPage(name) {
+  if (!PAGES.includes(name)) name = "home";
+  if (name === "mypage") { if (pendingDetailId) { const id = pendingDetailId; pendingDetailId = null; showMyList(); showMyDetail(id); } else showMyList(); }
+  PAGES.forEach(p => {
+    document.getElementById("page-" + p).style.display = p === name ? "block" : "none";
+  });
+  document.querySelectorAll(".pills a").forEach(a => a.classList.toggle("active", a.dataset.page === name));
+  document.body.dataset.page = name;
+  window.scrollTo(0, 0);
+}
+window.addEventListener("hashchange", () => showPage(location.hash.slice(1)));
+showPage(location.hash.slice(1));
+
+// ---- 로그인 / 회원가입 ----
+let authMode = "login";
+
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+}
+document.getElementById("rec-date").value = todayStr();
+
+function setAuthMode(mode) {
+  authMode = mode;
+  const signup = mode === "signup";
+  document.getElementById("auth-title").textContent = signup ? "회원가입" : "로그인";
+  document.getElementById("auth-submit").textContent = signup ? "가입하고 시작하기" : "로그인";
+  document.getElementById("auth-switch").textContent = signup ? "이미 계정이 있나요? 로그인" : "계정이 없나요? 회원가입";
+  document.getElementById("nick-row").style.display = signup ? "block" : "none";
+  document.getElementById("auth-pw").autocomplete = signup ? "new-password" : "current-password";
+  document.getElementById("auth-error").textContent = "";
+}
+function openAuth(mode) { setAuthMode(mode || "login"); document.getElementById("auth-modal").classList.add("show"); }
+function closeAuth() { document.getElementById("auth-modal").classList.remove("show"); }
+
+document.getElementById("auth-switch").onclick = () => setAuthMode(authMode === "login" ? "signup" : "login");
+document.getElementById("auth-close").onclick = closeAuth;
+document.getElementById("auth-modal").addEventListener("mousedown", e => { if (e.target.id === "auth-modal") closeAuth(); });
+
+document.getElementById("auth-form").onsubmit = async (e) => {
+  e.preventDefault();
+  const body = { email: document.getElementById("auth-email").value, password: document.getElementById("auth-pw").value };
+  if (authMode === "signup") body.nickname = document.getElementById("auth-nick").value;
+  const res = await fetch(authMode === "signup" ? "/api/signup" : "/api/login", {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    const d = data.detail;
+    document.getElementById("auth-error").textContent = typeof d === "string" ? d : "입력값을 확인해주세요.";
+    return;
+  }
+  document.getElementById("auth-pw").value = "";
+  closeAuth();
+  await refreshUser();
+};
+
+document.getElementById("login-btn").onclick = () => openAuth("login");
+document.getElementById("signup-btn").onclick = () => openAuth("signup");
+document.getElementById("logout-btn").onclick = async () => {
+  await fetch("/api/logout", { method: "POST" });
+  await refreshUser();
+  if (location.hash === "#mypage") showMyList();
+};
+
+async function refreshUser() {
+  try {
+    const res = await fetch("/api/me");
+    currentUser = (await res.json()).user;
+  } catch (e) { currentUser = null; }
+  const chip = document.getElementById("user-chip");
+  chip.style.display = currentUser ? "inline" : "none";
+  chip.textContent = currentUser ? currentUser.nickname + " 님" : "";
+  document.getElementById("login-btn").style.display = currentUser ? "none" : "";
+  document.getElementById("signup-btn").style.display = currentUser ? "none" : "";
+  document.getElementById("logout-btn").style.display = currentUser ? "" : "none";
+  document.getElementById("save-hint").textContent = currentUser
+    ? "분석이 끝나면 이 촬영일로 마이페이지에 자동 저장됩니다."
+    : "로그인하면 분석 결과를 촬영일별로 저장할 수 있습니다. (로그인 없이도 분석은 가능)";
+  document.getElementById("rec-date").disabled = !currentUser;
+  document.getElementById("rec-title").disabled = !currentUser;
+  await loadHistory();
+}
+
+// ---- 마이페이지: 날짜별 기록 ----
+const PLAYER_COLORS = { player1: "#ff6b6b", player2: "#5ec8e0" };
+
+function statsTable(box, stats) {
+  box.replaceChildren();
+  for (const [player, s] of Object.entries(stats)) {
+    const card = el("div", "player-card");
+    const name = el("div", "player-name");
+    const dot = el("span", "dot");
+    dot.style.background = PLAYER_COLORS[player] || "var(--accent)";
+    name.appendChild(dot);
+    name.appendChild(document.createTextNode(player.replace(/^player(\d+)$/, "Player $1")));
+    card.appendChild(name);
+    const row = el("div", "tile-row");
+    [["총 이동거리", s.total_distance_m, "m"], ["평균 속도", s.avg_speed_mps, "m/s"], ["최고 속도", s.max_speed_mps, "m/s"]].forEach(([label, v, unit]) => {
+      const t = el("div", "tile");
+      t.appendChild(el("span", "", label));
+      t.appendChild(el("b", "", String(v)));
+      t.appendChild(el("small", "", " " + unit));
+      row.appendChild(t);
+    });
+    card.appendChild(row);
+    box.appendChild(card);
+  }
+}
+
+async function loadHistory() {
+  myHistory = [];
+  if (currentUser) {
+    try {
+      const res = await fetch("/api/analyses");
+      if (res.ok) myHistory = (await res.json()).items;
+    } catch (e) {}
+  }
+  renderHomeRecent();
+  if (document.body.dataset.page === "mypage") renderMyList();
+}
+
+function renderHomeRecent() {
+  const section = document.getElementById("home-recent-section");
+  const box = document.getElementById("home-recent");
+  box.replaceChildren();
+  section.style.display = currentUser ? "block" : "none";
+  if (!currentUser) return;
+  if (!myHistory.length) { box.appendChild(el("p", "hint", "아직 저장된 분석이 없습니다. 영상 분석을 시작해보세요.")); return; }
+  for (const a of myHistory.slice(0, 3)) {
+    const row = el("div", "mini-row");
+    row.appendChild(el("span", "mini-date", a.recorded_date.slice(5).replace("-", ".")));
+    row.appendChild(el("span", "mini-name", a.title || "제목 없음"));
+    const open = el("a", "t-link", "보기");
+    open.href = "#mypage";
+    open.onclick = () => { pendingDetailId = a.id; if (location.hash === "#mypage") showPage("mypage"); };
+    row.appendChild(open);
+    box.appendChild(row);
+  }
+}
+
+function showMyList() {
+  document.getElementById("mypage-list-card").style.display = "block";
+  document.getElementById("mypage-detail-card").style.display = "none";
+  renderMyList();
+}
+
+function renderMyList() {
+  const body = document.getElementById("mypage-body");
+  body.replaceChildren();
+  if (!currentUser) {
+    body.appendChild(el("p", "", "로그인하면 분석한 영상을 날짜별로 모아 보고, 결과를 다시 확인할 수 있습니다."));
+    const b = el("button", "", "로그인 / 회원가입");
+    b.onclick = () => openAuth("login");
+    body.appendChild(b);
+    return;
+  }
+  if (!myHistory.length) {
+    const box = el("div", "empty-box");
+    const img = el("img"); img.src = "assets/empty_history.jpg"; img.alt = "";
+    box.appendChild(img);
+    box.appendChild(el("p", "", "아직 저장된 분석이 없습니다."));
+    const go = el("a", "btn-primary", "영상 분석 시작"); go.href = "#analyze";
+    box.appendChild(go);
+    body.appendChild(box);
+    return;
+  }
+  body.appendChild(el("p", "hint", `${myHistory.length}건 · 촬영일 기준 최신순`));
+  let day = "";
+  for (const a of myHistory) {
+    if (a.recorded_date !== day) {
+      day = a.recorded_date;
+      body.appendChild(el("div", "h-day", day.replace("-", "년 ").replace("-", "월 ") + "일"));
+    }
+    const item = el("div", "h-item");
+    const th = el("img", "h-thumb"); th.src = a.heatmap_url; th.alt = ""; th.loading = "lazy";
+    item.appendChild(th);
+    const info = el("div", "h-info");
+    info.appendChild(el("div", "h-title", a.title || "제목 없음"));
+    const p1 = a.stats.player1;
+    info.appendChild(el("div", "h-sub", p1 ? `player1 · ${p1.total_distance_m} m · 최고 ${p1.max_speed_mps} m/s` : ""));
+    item.appendChild(info);
+    const act = el("div", "h-actions");
+    const view = el("button", "secondary", "보기"); view.onclick = () => showMyDetail(a.id);
+    const del = el("button", "secondary", "삭제");
+    del.onclick = async () => {
+      if (!confirm("이 분석 기록을 삭제할까요?")) return;
+      await fetch("/api/analyses/" + a.id, { method: "DELETE" });
+      await loadHistory();
+    };
+    act.appendChild(view); act.appendChild(del);
+    item.appendChild(act);
+    body.appendChild(item);
+  }
+}
+
+function showMyDetail(id) {
+  const a = myHistory.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById("mypage-list-card").style.display = "none";
+  document.getElementById("mypage-detail-card").style.display = "block";
+  document.getElementById("detail-title").textContent = a.title || "제목 없음";
+  document.getElementById("detail-sub").textContent = `촬영일 ${a.recorded_date} · 분석일 ${a.created_at.replace("T", " ")}`;
+  statsTable(document.getElementById("detail-stats"), a.stats);
+  document.getElementById("detail-traj").src = a.trajectory_url;
+  document.getElementById("detail-heat").src = a.heatmap_url;
+  window.scrollTo(0, 0);
+}
+document.getElementById("detail-back").onclick = showMyList;
+
+refreshUser();
+
+// ---- 라이트/다크 전환 (선택은 이 브라우저에 저장) ----
+document.getElementById("theme-toggle").onclick = () => {
+  const next = document.documentElement.dataset.theme === "light" ? "dark" : "light";
+  document.documentElement.dataset.theme = next;
+  try { localStorage.setItem("cv-theme", next); } catch (e) {}
+};
+</script>
+
+</body>
+</html>
