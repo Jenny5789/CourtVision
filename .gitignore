@@ -9,11 +9,12 @@ webapp/backend/results/
 *.db
 *.db-journal
 
-# results/ 는 실험 보고서(.md)만 남기고, 용량 큰 원본 산출물은 제외
-# (int8_run1_square960_log.txt 는 보고서가 직접 인용하는 증거라 예외로 남김)
-results/*.mp4
-results/*.png
-results/*.csv
+# results/ 는 실험 보고서(.md)만 남기고, 용량 큰 원본 산출물은 제외 (하위 폴더 포함)
+# (int8_run1_square960_log.txt, int8_service_compare_log.txt 는 보고서가 직접 인용하는 증거라 예외로 남김)
+results/**/*.mp4
+results/**/*.png
+results/**/*.csv
+results/**/*.jpg
 
 # YOLO 사전학습 가중치 (자동 다운로드됨)
 yolo11n*.pt

@@ -1,0 +1,5 @@
+영상: data/raw/archive/video9.mp4
+코트 4점(근사): [[690, 610], [1230, 610], [1130, 435], [795, 435]]
+
+FP32 (PyTorch): {'total_distance_m': 33.83, 'avg_speed_mps': 3.41, 'max_speed_mps': 14.6, 'elapsed_sec': 40.6, 'ms_per_frame': 64.7}
+INT8 (OpenVINO): {'total_distance_m': 33.99, 'avg_speed_mps': 3.4, 'max_speed_mps': 13.43, 'elapsed_sec': 37.6, 'ms_per_frame': 59.9}
