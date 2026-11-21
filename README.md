@@ -6,8 +6,6 @@ YOLO11n·BoT-SORT·Homography·INT8 경량화를 적용한 **컴퓨터비전 풀
 
 `Python` · `YOLO11n` · `BoT-SORT` · `OpenVINO` · `FastAPI` · `SQLite` · `Docker`
 
-<img src="docs/screenshots/home.jpg" alt="홈 화면" width="88%" />
-
 </div>
 
 ---
@@ -31,35 +29,29 @@ YOLO11n·BoT-SORT·Homography·INT8 경량화를 적용한 **컴퓨터비전 풀
 **서비스 구조**
 
 <p align="center">
-  <img src="docs/readme/architecture.svg" alt="CourtVision 서비스 구조" width="100%">
+  <img src="docs/readme/architecture.png" alt="CourtVision 서비스 구조" width="85%">
 </p>
 
 **DB 관계도**
 
 <p align="center">
-  <img src="docs/readme/erd.svg" alt="CourtVision DB 관계도" width="100%">
+  <img src="docs/readme/erd.png" alt="CourtVision DB 관계도" width="90%">
 </p>
 
 **영상 분석 흐름**
 
-```mermaid
-flowchart LR
-    A[영상 업로드] --> B[코트 4점 클릭] --> C[YOLO11n 검출] --> D[BoT-SORT 추적] --> E["Homography\n픽셀 → 코트(m)"] --> F["통계·히트맵\n이동거리·속도·궤적"]
-```
+<p align="center">
+  <img src="docs/readme/flow.png" alt="CourtVision 영상 분석 흐름" width="90%">
+</p>
 
 ---
 
-## 2. 주요 결과 화면
+## 2. 주요 화면
 
-| 홈 화면 | 영상 분석 |
-| --- | --- |
-| <img src="docs/screenshots/home.jpg" width="100%" alt="홈"> | <img src="docs/screenshots/analyze.jpg" width="100%" alt="영상 분석"> |
-| ① 분석 결과 요약, 다크/라이트·모바일 지원 | ② 4단계 위저드, 코트 4점 클릭 → 추적·히트맵 |
-
-| 대회 일정 | 공 검출 궤적 |
-| --- | --- |
-| <img src="docs/screenshots/tournaments.jpg" width="100%" alt="대회 일정"> | <img src="docs/screenshots/ball_dark_line.jpg" width="100%" alt="공 궤적"> |
-| ③ KATO·KTA 일정 수집, 출처·부별·접수중 필터 | ④ 공 검출 결과 — 프레임 간 궤적 추적은 미구현 |
+| 홈 화면 | 영상 분석 | 대회 일정 |
+| --- | --- | --- |
+| <img src="docs/screenshots/home.jpg" width="100%" alt="홈"> | <img src="docs/screenshots/analyze.jpg" width="100%" alt="영상 분석"> | <img src="docs/screenshots/tournaments.jpg" width="100%" alt="대회 일정"> |
+| ① 분석 결과 요약, 다크/라이트·모바일 지원 | ② 4단계 위저드, 코트 4점 클릭 → 추적·히트맵 | ③ KATO·KTA 일정 수집, 출처·부별·접수중 필터 |
 
 ---
 
@@ -132,6 +124,7 @@ CPU(Xeon W-2223), 입력 544×960, 300프레임 기준
 - **코트 보정 수동:** 4점 클릭 방식 — 자동 코트 인식 미구현
 - **INT8 서비스 미연결:** 경량화 실험만 완료, 서비스 적용은 아직
 - **실험 단일 샘플:** 대부분 영상 1개·측정 1회 기준 — 일반화 한계
+- **학습 데이터 부족:** 모델 성능 향상을 위해 다양한 환경·조건의 영상과 어노테이션 데이터를 추가로 수집·학습해야 함
 
 ---
 
