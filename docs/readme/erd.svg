@@ -1,0 +1,95 @@
+<svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <rect width="1000" height="480" fill="#F8FAFC"/>
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#64748B"/>
+    </marker>
+    <marker id="arrl" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto-start-reverse">
+      <polygon points="0 0,10 3.5,0 7" fill="#64748B"/>
+    </marker>
+  </defs>
+  <rect x="40" y="30" width="215" height="156" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" rx="4"/>
+  <rect x="40" y="30" width="215" height="32" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="4"/>
+  <rect x="40" y="58" width="215" height="4" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="0"/>
+  <text x="147" y="51" text-anchor="middle" font-size="12" font-weight="600" fill="#FFFFFF">users</text>
+  <rect x="40" y="66" width="215" height="24" fill="#FEF9C3" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="50" y="82" text-anchor="start" font-size="10" font-weight="400" fill="#334155">id  INTEGER PK</text>
+  <rect x="40" y="90" width="215" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="50" y="106" text-anchor="start" font-size="10" font-weight="400" fill="#334155">email  TEXT UNIQUE</text>
+  <rect x="40" y="114" width="215" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="50" y="130" text-anchor="start" font-size="10" font-weight="400" fill="#334155">nickname  TEXT</text>
+  <rect x="40" y="138" width="215" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="50" y="154" text-anchor="start" font-size="10" font-weight="400" fill="#334155">password_hash  TEXT</text>
+  <rect x="40" y="162" width="215" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="50" y="178" text-anchor="start" font-size="10" font-weight="400" fill="#334155">created_at  TEXT</text>
+  <rect x="40" y="210" width="240" height="108" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" rx="4"/>
+  <rect x="40" y="210" width="240" height="32" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="4"/>
+  <rect x="40" y="238" width="240" height="4" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="0"/>
+  <text x="160" y="231" text-anchor="middle" font-size="12" font-weight="600" fill="#FFFFFF">login_sessions</text>
+  <rect x="40" y="246" width="240" height="24" fill="#FEF9C3" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="50" y="262" text-anchor="start" font-size="10" font-weight="400" fill="#334155">token_hash  TEXT PK</text>
+  <rect x="40" y="270" width="240" height="24" fill="#FFE4E6" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="50" y="286" text-anchor="start" font-size="10" font-weight="400" fill="#334155">user_id  INTEGER FK→users</text>
+  <rect x="40" y="294" width="240" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="50" y="310" text-anchor="start" font-size="10" font-weight="400" fill="#334155">expires_at  TEXT</text>
+  <line x1="147" y1="186" x2="147" y2="210" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="147" y="179" text-anchor="middle" font-size="10" fill="#94A3B8">1:N</text>
+  <rect x="320" y="100" width="240" height="180" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" rx="4"/>
+  <rect x="320" y="100" width="240" height="32" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="4"/>
+  <rect x="320" y="128" width="240" height="4" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="0"/>
+  <text x="440" y="121" text-anchor="middle" font-size="12" font-weight="600" fill="#FFFFFF">analyses</text>
+  <rect x="320" y="136" width="240" height="24" fill="#FEF9C3" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="330" y="152" text-anchor="start" font-size="10" font-weight="400" fill="#334155">id  INTEGER PK</text>
+  <rect x="320" y="160" width="240" height="24" fill="#FFE4E6" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="330" y="176" text-anchor="start" font-size="10" font-weight="400" fill="#334155">user_id  INTEGER FK→users</text>
+  <rect x="320" y="184" width="240" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="330" y="200" text-anchor="start" font-size="10" font-weight="400" fill="#334155">video_id  TEXT</text>
+  <rect x="320" y="208" width="240" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="330" y="224" text-anchor="start" font-size="10" font-weight="400" fill="#334155">title  TEXT</text>
+  <rect x="320" y="232" width="240" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="330" y="248" text-anchor="start" font-size="10" font-weight="400" fill="#334155">recorded_date  TEXT</text>
+  <rect x="320" y="256" width="240" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="330" y="272" text-anchor="start" font-size="10" font-weight="400" fill="#334155">stats_json  TEXT</text>
+  <path d="M 255 95 C 285 95, 310 150, 320 165" stroke="#64748B" stroke-width="1.5" fill="none" marker-end="url(#arr)"/>
+  <rect x="630" y="30" width="265" height="204" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" rx="4"/>
+  <rect x="630" y="30" width="265" height="32" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="4"/>
+  <rect x="630" y="58" width="265" height="4" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="0"/>
+  <text x="762" y="51" text-anchor="middle" font-size="12" font-weight="600" fill="#FFFFFF">tournaments</text>
+  <rect x="630" y="66" width="265" height="24" fill="#FEF9C3" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="82" text-anchor="start" font-size="10" font-weight="400" fill="#334155">uid  TEXT PK</text>
+  <rect x="630" y="90" width="265" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="106" text-anchor="start" font-size="10" font-weight="400" fill="#334155">source  TEXT</text>
+  <rect x="630" y="114" width="265" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="130" text-anchor="start" font-size="10" font-weight="400" fill="#334155">name  TEXT</text>
+  <rect x="630" y="138" width="265" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="154" text-anchor="start" font-size="10" font-weight="400" fill="#334155">start_date / end_date  TEXT</text>
+  <rect x="630" y="162" width="265" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="178" text-anchor="start" font-size="10" font-weight="400" fill="#334155">venue / divisions  TEXT</text>
+  <rect x="630" y="186" width="265" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="202" text-anchor="start" font-size="10" font-weight="400" fill="#334155">registration  TEXT</text>
+  <rect x="630" y="210" width="265" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="226" text-anchor="start" font-size="10" font-weight="400" fill="#334155">url  TEXT</text>
+  <rect x="630" y="270" width="265" height="156" fill="#FFFFFF" stroke="#94A3B8" stroke-width="1.5" rx="4"/>
+  <rect x="630" y="270" width="265" height="32" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="4"/>
+  <rect x="630" y="298" width="265" height="4" fill="#1E293B" stroke="#1E293B" stroke-width="1.5" rx="0"/>
+  <text x="762" y="291" text-anchor="middle" font-size="12" font-weight="600" fill="#FFFFFF">tournament_changes</text>
+  <rect x="630" y="306" width="265" height="24" fill="#FEF9C3" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="322" text-anchor="start" font-size="10" font-weight="400" fill="#334155">id  INTEGER PK</text>
+  <rect x="630" y="330" width="265" height="24" fill="#FFE4E6" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="346" text-anchor="start" font-size="10" font-weight="400" fill="#334155">uid  TEXT FK→tournaments</text>
+  <rect x="630" y="354" width="265" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="370" text-anchor="start" font-size="10" font-weight="400" fill="#334155">changed_at  TEXT</text>
+  <rect x="630" y="378" width="265" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="394" text-anchor="start" font-size="10" font-weight="400" fill="#334155">field  TEXT</text>
+  <rect x="630" y="402" width="265" height="24" fill="#FAFAFA" stroke="#E2E8F0" stroke-width="0.5"/>
+  <text x="640" y="418" text-anchor="start" font-size="10" font-weight="400" fill="#334155">old_value / new_value  TEXT</text>
+  <line x1="762" y1="234" x2="762" y2="270" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="762" y="227" text-anchor="middle" font-size="10" fill="#94A3B8">1:N</text>
+  <rect x="40" y="420" width="300" height="42" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5" rx="4"/>
+  <text x="55" y="437" text-anchor="start" font-size="11" font-weight="600" fill="#475569">범례</text>
+  <rect x="100" y="427" width="12" height="12" fill="#FEF9C3" stroke="#CA8A04" stroke-width="1.5" rx="2"/>
+  <text x="118" y="438" text-anchor="start" font-size="10" font-weight="400" fill="#334155">PRIMARY KEY</text>
+  <rect x="230" y="427" width="12" height="12" fill="#FFE4E6" stroke="#E11D48" stroke-width="1.5" rx="2"/>
+  <text x="248" y="438" text-anchor="start" font-size="10" font-weight="400" fill="#334155">FOREIGN KEY</text>
+  <text x="55" y="455" text-anchor="start" font-size="10" font-weight="400" fill="#94A3B8">→ FK 참조  · 1:N 관계선</text>
+</svg>
