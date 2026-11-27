@@ -152,7 +152,10 @@ try {
 
   .calib-guide { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 16px; }
   .calib-guide svg { flex-shrink: 0; background: var(--panel-inset); border: 1px solid var(--border); border-radius: 4px; padding: 8px; }
-  .calib-steps { margin: 0 0 10px; padding-left: 18px; color: var(--text); font-size: 13px; line-height: 1.7; }
+  .calib-title { font-size: 15px !important; line-height: 1.5; }
+  .calib-warn { color: #ff8a80; font-size: 14px !important; font-weight: 700; }
+  .calib-side .calib-example { margin-top: 0; }
+  .calib-steps { margin: 0 0 10px; padding-left: 18px; color: var(--text); font-size: 14px; line-height: 1.8; }
   .calib-steps b { color: var(--accent-text); }
   .hint.file-format { margin: -6px 0 18px !important; }
   .hint { font-size: 13px !important; margin: 0 !important; color: var(--text-soft); }
@@ -846,32 +849,21 @@ try {
       </div>
     </div>
     <aside class="calib-side">
-      <svg viewBox="0 0 190 250" aria-label="클릭할 4점 안내 도식">
-        <rect x="10" y="10" width="170" height="230" fill="none" stroke="#5c6b62" stroke-width="2"/>
-        <line x1="10" y1="10" x2="180" y2="10" style="stroke:var(--accent)" stroke-width="3"/>
-        <line x1="10" y1="132" x2="180" y2="132" stroke="#5c6b62" stroke-width="2"/>
-        <line x1="95" y1="10" x2="95" y2="132" stroke="#5c6b62" stroke-width="2"/>
-        <text x="95" y="28" fill="#8a9891" font-size="10" text-anchor="middle">네트</text>
-        <text x="95" y="228" fill="#8a9891" font-size="10" text-anchor="middle">가까운 베이스라인</text>
-        <circle cx="10" cy="132" r="10" style="fill:var(--accent)"/><text x="10" y="136" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">1</text>
-        <circle cx="180" cy="132" r="10" style="fill:var(--accent)"/><text x="180" y="136" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">2</text>
-        <circle cx="180" cy="10" r="10" style="fill:var(--accent)"/><text x="180" y="14" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">3</text>
-        <circle cx="10" cy="10" r="10" style="fill:var(--accent)"/><text x="10" y="14" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">4</text>
-      </svg>
-      <p>카메라에 <b>가까운 쪽 코트</b>의 사각형 4점을 클릭해 주세요. <b>클릭 순서는 상관없어요</b>(위치로 자동 정렬돼요). 실제 거리 계산의 기준점이라 정확할수록 좋아요.</p>
+      <p class="calib-title"><b>사진에 점 4개를 찍어 주세요</b> <span class="hint">순서는 상관없어요</span></p>
+      <img class="calib-example" src="calib_guide.jpg" alt="점을 찍을 4곳 예시: 가로 선의 양 끝 2곳과 네트 아래 양쪽 2곳">
       <ol class="calib-steps">
-        <li><b>①</b> 가까운 서비스라인의 <b>왼쪽 끝</b> (서비스라인이 왼쪽 사이드라인과 만나는 점)</li>
-        <li><b>②</b> 같은 서비스라인의 <b>오른쪽 끝</b></li>
-        <li><b>③</b> 오른쪽 사이드라인이 <b>네트 아래 바닥</b>과 만나는 점</li>
-        <li><b>④</b> 왼쪽 사이드라인이 네트 아래 바닥과 만나는 점</li>
+        <li><b>①</b> 가로 선의 <b>왼쪽 끝</b></li>
+        <li><b>②</b> 가로 선의 <b>오른쪽 끝</b></li>
+        <li><b>③</b> 네트 아래 <b>오른쪽</b></li>
+        <li><b>④</b> 네트 아래 <b>왼쪽</b></li>
       </ol>
-      <p class="hint">복식 사이드라인이 아니라 안쪽 <b>싱글 사이드라인</b> 기준이에요. 맨 아래 <b>베이스라인이 아니라</b> 그 위쪽 서비스라인이에요. 4점을 찍으면 <b>초록색 코트 선이 바로 나타나요.</b> 실제 선과 어긋나면 <b>번호 점을 드래그해서 옮겨 주세요</b>(선이 실시간으로 따라 움직여요).</p>
+      <p class="hint">가로 선은 내 앞쪽 코트에 있는, 가운데쯤의 긴 흰 선이에요.</p>
+      <p class="calib-warn">※ 사진 맨 아래 선에는 점을 찍지 마세요.</p>
+      <p class="hint">다 찍으면 초록 선이 나와요. <b>코트 선과 겹치면 성공!</b> 안 맞으면 점을 끌어서 옮기세요.</p>
       <details class="calib-examples">
-        <summary>예시 이미지 보기</summary>
-        <img class="calib-example" src="calib_example.jpg" alt="4점 클릭 예시">
-        <p class="hint">예시: 초록 원이 클릭할 4점, 초록 선이 보정 후 나타나는 코트 선이에요.</p>
-        <img class="calib-example" src="calib_example_net.jpg" alt="네트 쪽 점 확대 예시">
-        <p class="hint"><b>③④는 그물 윗선이 아니라, 흰 사이드라인이 그물 아래 바닥과 만나는 곳</b>이에요. 브라우저를 확대(Ctrl + 마우스 휠)하고 찍으면 정확해요.</p>
+        <summary>네트 아래는 어디예요?</summary>
+        <img class="calib-example" src="calib_example_net.jpg" alt="네트 아래 점 확대 예시">
+        <p class="hint">네트 윗줄이 아니라, <b>네트 바로 밑 바닥</b>에서 <b>흰 옆선이 닿는 곳</b>이에요. 화면을 확대(Ctrl + 마우스 휠)하면 찍기 쉬워요.</p>
       </details>
     </aside>
   </div>
