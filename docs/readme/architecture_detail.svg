@@ -1,0 +1,68 @@
+<svg viewBox="0 0 760 400" xmlns="http://www.w3.org/2000/svg" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <rect width="760" height="400" fill="#FFFFFF"/>
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#374151"/>
+    </marker>
+    <marker id="arrl" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto-start-reverse">
+      <polygon points="0 0,10 3.5,0 7" fill="#374151"/>
+    </marker>
+  </defs>
+
+  <!-- 화면 -->
+  <rect x="20" y="20" width="130" height="150" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="5"/>
+  <text x="85" y="83" text-anchor="middle" font-size="13" font-weight="600" fill="#111827">HTML/JS</text>
+  <text x="85" y="100" text-anchor="middle" font-size="11" fill="#6B7280">프론트엔드</text>
+  <text x="85" y="117" text-anchor="middle" font-size="10" fill="#6B7280">다크/라이트 · 모바일</text>
+
+  <!-- FastAPI 서버 (크롤러 스레드 포함) -->
+  <rect x="200" y="20" width="270" height="200" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
+  <text x="335" y="46" text-anchor="middle" font-size="13" font-weight="600" fill="#111827">FastAPI 백엔드 (서버 1개)</text>
+  <text x="335" y="68" text-anchor="middle" font-size="11" fill="#6B7280">로그인 · 세션 (1일 + 연장)</text>
+  <text x="335" y="85" text-anchor="middle" font-size="11" fill="#6B7280">영상 업로드 · 코트 보정 · 분석 API</text>
+  <text x="335" y="102" text-anchor="middle" font-size="11" fill="#6B7280">분석 기록 API · 대회 일정 API</text>
+  <text x="335" y="119" text-anchor="middle" font-size="10" fill="#6B7280">화면 파일도 이 서버가 직접 제공</text>
+  <rect x="214" y="140" width="242" height="66" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.2" rx="4"/>
+  <text x="335" y="164" text-anchor="middle" font-size="12" font-weight="600" fill="#111827">크롤러 스레드 (서버 안에서 실행)</text>
+  <text x="335" y="183" text-anchor="middle" font-size="10" fill="#6B7280">하루 1회 무작위 시각에 수집</text>
+  <text x="335" y="197" text-anchor="middle" font-size="10" fill="#6B7280">서버를 켰을 때 24시간 지났으면 보충</text>
+
+  <!-- DB -->
+  <rect x="520" y="20" width="220" height="150" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
+  <text x="630" y="60" text-anchor="middle" font-size="13" font-weight="600" fill="#111827">SQLite DB</text>
+  <text x="630" y="80" text-anchor="middle" font-size="11" fill="#6B7280">users / login_sessions</text>
+  <text x="630" y="97" text-anchor="middle" font-size="11" fill="#6B7280">analyses (분석 기록·통계)</text>
+  <text x="630" y="114" text-anchor="middle" font-size="11" fill="#6B7280">tournaments</text>
+  <text x="630" y="131" text-anchor="middle" font-size="11" fill="#6B7280">tournament_changes</text>
+
+  <!-- 외부 사이트 -->
+  <rect x="520" y="195" width="220" height="56" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5" rx="5"/>
+  <text x="630" y="219" text-anchor="middle" font-size="13" font-weight="600" fill="#111827">KATO · KTA 사이트</text>
+  <text x="630" y="237" text-anchor="middle" font-size="10" fill="#6B7280">외부 · 공개 대회 일정 (서버 렌더링 페이지)</text>
+
+  <!-- 하단: 분석 모듈, 파일 -->
+  <rect x="20" y="300" width="170" height="80" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" stroke-dasharray="6 4" rx="5"/>
+  <text x="105" y="328" text-anchor="middle" font-size="13" font-weight="600" fill="#111827">공 궤적 (실험 기능)</text>
+  <text x="105" y="346" text-anchor="middle" font-size="11" fill="#6B7280">공 검출 v4 · 공 추적기</text>
+  <text x="105" y="362" text-anchor="middle" font-size="10" fill="#6B7280">가중치가 있을 때만 동작</text>
+
+  <rect x="235" y="300" width="200" height="80" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="5"/>
+  <text x="335" y="326" text-anchor="middle" font-size="13" font-weight="600" fill="#111827">선수 분석 파이프라인</text>
+  <text x="335" y="344" text-anchor="middle" font-size="11" fill="#6B7280">YOLO26n · BoT-SORT · Homography</text>
+  <text x="335" y="361" text-anchor="middle" font-size="10" fill="#6B7280">서버 안에서 함수로 호출</text>
+
+  <rect x="460" y="300" width="280" height="80" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="5"/>
+  <text x="600" y="326" text-anchor="middle" font-size="13" font-weight="600" fill="#111827">업로드·결과 파일 (폴더)</text>
+  <text x="600" y="344" text-anchor="middle" font-size="11" fill="#6B7280">uploads/ 영상 · results/ 궤적·히트맵·공 궤적 그림</text>
+  <text x="600" y="361" text-anchor="middle" font-size="10" fill="#6B7280">DB에는 기록과 통계만, 파일은 폴더에 저장</text>
+
+  <!-- 화살표 -->
+  <line x1="150" y1="95" x2="200" y2="95" stroke="#374151" stroke-width="1.5" marker-end="url(#arr)" marker-start="url(#arrl)"/>
+  <text x="175" y="88" text-anchor="middle" font-size="10" fill="#6B7280">REST API</text>
+  <line x1="470" y1="95" x2="520" y2="95" stroke="#374151" stroke-width="1.5" marker-end="url(#arr)" marker-start="url(#arrl)"/>
+  <path d="M 456 179 L 494 179 L 494 223 L 520 223" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#arr)" marker-start="url(#arrl)"/>
+  <text x="500" y="203" text-anchor="start" font-size="10" fill="#6B7280">수집</text>
+  <line x1="335" y1="220" x2="335" y2="300" stroke="#374151" stroke-width="1.5" marker-end="url(#arr)"/>
+  <path d="M 250 220 L 250 262 L 105 262 L 105 300" stroke="#374151" stroke-width="1.5" fill="none" stroke-dasharray="6 4" marker-end="url(#arr)"/>
+  <path d="M 420 220 L 420 275 L 600 275 L 600 300" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#arr)" marker-start="url(#arrl)"/>
+</svg>
