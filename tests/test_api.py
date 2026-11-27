@@ -111,3 +111,26 @@ def test_calibrate_requires_exactly_four_corners(client):
     main.sessions["v"] = {"video_path": "unused", "output_dir": "unused"}
     r = client.post("/api/calibrate", json={"video_id": "v", "corners": [[0, 0], [1, 1], [2, 2]]})
     assert r.status_code == 400
+
+
+
+# ---- 로그인 연장 (버튼으로 3시간) ----
+def test_me_reports_expiry_and_extend_adds_three_hours(client):
+    from datetime import datetime, timedelta
+    signup(client)
+    before = datetime.fromisoformat(client.get("/api/me").json()["user"]["expires_at"])
+    r = client.post("/api/session/extend")
+    assert r.status_code == 200
+    assert datetime.fromisoformat(r.json()["expires_at"]) - before == timedelta(hours=3)
+    assert "cv_session" in r.headers["set-cookie"] and "httponly" in r.headers["set-cookie"].lower()
+    assert client.get("/api/me").json()["user"]["expires_at"] == r.json()["expires_at"]
+
+
+def test_extend_requires_valid_login_and_api_use_does_not_extend(client):
+    assert client.post("/api/session/extend").status_code == 401
+    signup(client)
+    before = client.get("/api/me").json()["user"]["expires_at"]
+    client.get("/api/analyses")
+    assert client.get("/api/me").json()["user"]["expires_at"] == before   # 자동 연장 없음
+    client.post("/api/logout")
+    assert client.post("/api/session/extend").status_code == 401

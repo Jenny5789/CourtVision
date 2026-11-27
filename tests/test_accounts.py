@@ -132,3 +132,40 @@ def test_delete_analysis_removes_own_record_once(user):
     assert accounts.delete_analysis(user, aid) is True
     assert accounts.delete_analysis(user, aid) is False
     assert accounts.list_analyses(user) == []
+
+
+
+# ---- 로그인 연장 (버튼으로 3시간) ----
+def _expires(db):
+    with sqlite3.connect(db) as c:
+        return c.execute("SELECT expires_at FROM login_sessions").fetchone()[0]
+
+
+def test_session_lasts_one_day(user, db):
+    accounts.create_session(user)
+    left = datetime.fromisoformat(_expires(db)) - datetime.now()
+    assert timedelta(hours=23) < left <= timedelta(days=1)
+
+
+def test_extend_session_adds_three_hours_to_current_expiry(user, db):
+    token = accounts.create_session(user)
+    before = datetime.fromisoformat(_expires(db))
+    new = accounts.extend_session(token)
+    assert datetime.fromisoformat(new) - before == timedelta(hours=3)
+    assert _expires(db) == new
+
+
+def test_extend_session_ignores_expired_missing_and_unknown(user, db):
+    token = accounts.create_session(user)
+    past = (datetime.now() - timedelta(minutes=1)).isoformat(timespec="seconds")
+    with sqlite3.connect(db) as c:
+        c.execute("UPDATE login_sessions SET expires_at=?", (past,))
+    assert accounts.extend_session(token) is None
+    assert accounts.extend_session(None) is None
+    assert accounts.extend_session("unknown-token") is None
+    assert _expires(db) == past
+
+
+def test_user_from_token_includes_expires_at(user):
+    token = accounts.create_session(user)
+    assert accounts.user_from_token(token)["expires_at"]

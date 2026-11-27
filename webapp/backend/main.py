@@ -73,6 +73,11 @@ def require_user(request: Request):
     return user
 
 
+def _seconds_left(expires_at: str) -> int:
+    """만료까지 남은 초 (화면이 서버와 시간대가 달라도 쓰도록 시각 대신 초를 내려준다)."""
+    return max(int((datetime.fromisoformat(expires_at) - datetime.now()).total_seconds()), 0)
+
+
 def _set_login_cookie(response: Response, user_id: int):
     response.set_cookie(COOKIE_NAME, accounts.create_session(user_id),
                         max_age=accounts.SESSION_DAYS * 86400,
@@ -119,7 +124,22 @@ async def logout(request: Request, response: Response):
 @app.get("/api/me")
 async def me(request: Request):
     user = current_user(request)
-    return {"user": {"email": user["email"], "nickname": user["nickname"]} if user else None}
+    return {"user": {"email": user["email"], "nickname": user["nickname"],
+                     "expires_at": user["expires_at"],
+                     "expires_in": _seconds_left(user["expires_at"])} if user else None}
+
+
+@app.post("/api/session/extend")
+async def extend_session(request: Request, response: Response):
+    """로그인 만료를 3시간 연장한다. 만료됐거나 로그인 상태가 아니면 401."""
+    token = request.cookies.get(COOKIE_NAME)
+    new_expires = accounts.extend_session(token)
+    if new_expires is None:
+        raise HTTPException(status_code=401, detail="로그인이 만료되었습니다. 다시 로그인해주세요.")
+    remaining = _seconds_left(new_expires)
+    response.set_cookie(COOKIE_NAME, token, max_age=remaining,
+                        httponly=True, samesite="lax", secure=COOKIE_SECURE)
+    return {"expires_at": new_expires, "expires_in": remaining}
 
 
 @app.get("/api/analyses")

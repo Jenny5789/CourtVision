@@ -10,7 +10,8 @@ from datetime import datetime, timedelta
 
 from crawler.store import DB_PATH
 
-SESSION_DAYS = 14
+SESSION_DAYS = 1
+EXTEND_HOURS = 3        # '연장' 버튼을 한 번 누를 때 늘어나는 시간
 EMAIL_RE = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 
 SCHEMA = """
@@ -116,11 +117,26 @@ def user_from_token(token: str | None):
         return None
     with _conn() as c:
         row = c.execute(
-            """SELECT u.id, u.email, u.nickname FROM login_sessions s
+            """SELECT u.id, u.email, u.nickname, s.expires_at FROM login_sessions s
                JOIN users u ON u.id = s.user_id
                WHERE s.token_hash=? AND s.expires_at > ?""",
             (_token_hash(token), _now())).fetchone()
     return dict(row) if row else None
+
+
+def extend_session(token: str | None) -> str | None:
+    """유효한 세션의 만료 시각을 EXTEND_HOURS 시간 뒤로 미룬다. 새 만료 시각을 돌려주고, 무효면 None."""
+    if not token:
+        return None
+    with _conn() as c:
+        row = c.execute("SELECT expires_at FROM login_sessions WHERE token_hash=? AND expires_at > ?",
+                        (_token_hash(token), _now())).fetchone()
+        if row is None:
+            return None
+        new = (datetime.fromisoformat(row["expires_at"]) + timedelta(hours=EXTEND_HOURS)
+               ).isoformat(timespec="seconds")
+        c.execute("UPDATE login_sessions SET expires_at=? WHERE token_hash=?", (new, _token_hash(token)))
+        return new
 
 
 def delete_session(token: str | None):
