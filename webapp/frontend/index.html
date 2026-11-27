@@ -152,6 +152,11 @@ try {
 
   .calib-guide { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 16px; }
   .calib-guide svg { flex-shrink: 0; background: var(--panel-inset); border: 1px solid var(--border); border-radius: 4px; padding: 8px; }
+  .save-note { margin: 22px 0 4px; padding: 14px 18px; border-radius: 4px; border: 1px solid var(--hairline); background: var(--surface-1); color: var(--text); font-size: 15px; line-height: 1.6; text-align: center; }
+  .result-row { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; align-items: start; }
+  .result-row.two { grid-template-columns: 1fr 1fr; }
+  .result-row #heatmap-img { max-width: 100%; }
+  @media (max-width: 900px) { .result-row.two { grid-template-columns: 1fr; } }
   .calib-title { font-size: 15px !important; line-height: 1.5; }
   .calib-warn { color: #ff8a80; font-size: 14px !important; font-weight: 700; }
   .calib-side .calib-example { margin-top: 0; }
@@ -593,34 +598,37 @@ try {
   :root { --about-img: url("assets/photos/gear_sunset_b.webp"); }
   .band.band-about { padding: 88px 0 72px; }
   .band.band-about::before { background-image: var(--about-img); }
-  .band-about .hero-sub { max-width: 520px; }
+  .band-about .hero-sub { max-width: 620px; font-size: 17px; line-height: 1.8; color: var(--text); text-shadow: 0 1px 10px rgba(0,0,0,0.85); }
+  .band-about .hero-ko { text-shadow: 0 1px 10px rgba(0,0,0,0.85); }
   .about-sec { padding: 84px 0 0; }
-  .about-sec .section-ko { margin-bottom: 36px; }
+  .about-sec .section-ko { margin-bottom: 36px; font-size: 17px; line-height: 1.7; color: var(--text); }
 
-  .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
-  .how-step { padding: 30px 24px; border-left: 1px solid var(--hairline); }
-  .how-step:first-child { border-left: none; padding-left: 0; }
-  .how-num { font-family: var(--font-serif); font-size: 34px; color: var(--accent-text); margin-bottom: 10px; }
-  .how-name { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-  .how-step p, .value p { margin: 0; font-size: 14px; line-height: 1.75; color: var(--text-soft); }
+  /* 소개 화면: 글자를 키우고 색을 밝게, 칸을 넓게(2x2) 해서 읽기 쉽게 */
+  .how-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--hairline); }
+  .how-step { padding: 32px 28px; border-left: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+  .how-step:nth-child(odd) { border-left: none; padding-left: 0; }
+  .how-num { font-family: var(--font-serif); font-size: 36px; color: var(--accent-text); margin-bottom: 10px; }
+  .how-name { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .how-step p, .value p { margin: 0; font-size: 16px; line-height: 1.85; color: var(--text); }
 
-  .values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .value { padding: 24px 22px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); }
-  .value-num { font-family: var(--font-serif); font-size: 26px; color: var(--accent-text); margin-bottom: 8px; }
-  .value-name { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .value { padding: 28px 26px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); }
+  .value-num { font-family: var(--font-serif); font-size: 28px; color: var(--accent-text); margin-bottom: 8px; }
+  .value-name { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
 
-  .num-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .num-tile { padding: 24px 22px; border-radius: 4px; background: var(--surface-1); border: 1px solid var(--hairline); }
-  .num-tile b { display: block; font-family: var(--font-serif); font-size: 44px; font-weight: 500; line-height: 1.1; margin-bottom: 10px; color: var(--accent-text); }
-  .num-tile b small { font-size: 16px; color: var(--text-muted); }
-  .num-tile span { font-size: 13px; line-height: 1.6; color: var(--text-soft); }
-  .fine { margin: 20px 0 0; font-size: 13px; line-height: 1.7; color: var(--text-soft); max-width: 760px; }
+  .num-strip { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .num-tile { padding: 28px 26px; border-radius: 4px; background: var(--surface-1); border: 1px solid var(--hairline); }
+  .num-tile b { display: block; font-family: var(--font-serif); font-size: 52px; font-weight: 500; line-height: 1.1; margin-bottom: 12px; color: var(--accent-text); }
+  .num-tile b small { font-size: 18px; color: var(--text-soft); }
+  .num-tile span { font-size: 16px; line-height: 1.7; color: var(--text); }
+  .fine { margin: 24px 0 0; font-size: 15px; line-height: 1.85; color: var(--text); max-width: 860px; }
   .fine a { color: var(--accent-text); }
 
-  .status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .status-card { padding: 24px 24px 20px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); }
-  .status-card h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-size: 15px; font-weight: 700; }
-  .status-card ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.85; color: var(--text-soft); }
+  .status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .status-card { padding: 28px 26px 24px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); }
+  .status-card h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 16px; font-size: 19px; font-weight: 700; }
+  .status-card ul { margin: 0; padding-left: 20px; font-size: 16px; line-height: 1.9; color: var(--text); }
+  .status-card li { margin-bottom: 6px; }
   .dot-ok, .dot-part, .dot-no { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
   .dot-ok { background: var(--accent); }
   .dot-part { background: transparent; border: 2px solid var(--accent); }
@@ -877,8 +885,8 @@ try {
 
   <div id="select-panel" class="tab-panel">
     <div class="step-head"><span class="step-num">3</span><h2 class="step-title">선수 확인</h2></div>
-    <p><b>먼저 확인:</b> 초록색 선이 실제 코트 선(외곽선, 서비스라인, 네트)과 겹쳐야 정확한 보정이에요. 어긋나면 <button type="button" id="recalibrate-btn" class="secondary" style="margin:0;padding:6px 12px;">보정 수정하기</button> (찍은 점이 그대로 남아 있어 드래그로 옮길 수 있어요)</p>
-    <p>카메라에서 가까운 선수(빨간 박스) 한 명을 자동으로 선택해 분석해요. 멀리 있는 선수는 화면에서 작게 찍혀 추적이 불안정해서 분석하지 않아요. 빨간 박스가 가까운 선수가 아니거나 박스가 없으면, 2단계로 돌아가 가까운 선수가 코트 안에 보이는 장면을 골라 주세요.</p>
+    <p><b>① 초록 선이 코트 선과 겹치는지 확인하세요.</b><br>안 맞으면 <button type="button" id="recalibrate-btn" class="secondary" style="margin:0;padding:6px 12px;">보정 수정하기</button>를 눌러 점을 끌어서 옮겨 주세요.</p>
+    <p><b>② 빨간 박스가 가까운 선수인지 확인하세요.</b><br>카메라에서 가까운 선수 한 명만 분석해요.<br>박스가 없거나 다른 사람이면, 2단계로 돌아가서 가까운 선수가 코트 안에 보이는 장면을 골라 주세요.</p>
     <div id="frame-wrap2">
       <img id="frame-img2">
       <svg id="court-overlay" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -904,15 +912,18 @@ try {
         <p class="hint note">참고용 추정값이에요. 카메라에서 먼 쪽 선수의 거리·속도는 오차가 더 크고, 코트 4점이 정확할수록 결과가 좋아져요.</p>
       </div>
     </div>
-    <div class="result-card" style="margin-top:20px;">
-      <div class="result-label">히트맵</div>
-      <img class="result-img" id="heatmap-img">
+    <div class="result-row" id="result-row">
+      <div class="result-card">
+        <div class="result-label">히트맵</div>
+        <img class="result-img" id="heatmap-img">
+      </div>
+      <div class="result-card" id="ball-card" style="display:none;">
+        <div class="result-label">공 궤적 (실험 기능)</div>
+        <img class="result-img" id="ball-img">
+        <p class="hint note" id="ball-note"></p>
+      </div>
     </div>
-    <div class="result-card" id="ball-card" style="margin-top:20px; display:none;">
-      <div class="result-label">공 궤적 (실험 기능)</div>
-      <img class="result-img" id="ball-img">
-      <p class="hint note" id="ball-note"></p>
-    </div>
+    <p class="save-note" id="save-note"></p>
   </div>
 </div>
 
@@ -1048,10 +1059,10 @@ try {
       <h2 class="section-title">How It Works</h2>
       <p class="section-ko">영상 한 개가 결과가 되기까지, 네 단계예요.</p>
       <div class="how-grid">
-        <div class="how-step"><div class="how-num">01</div><div class="how-name">영상 업로드</div><p>휴대폰으로 찍은 연습·경기 영상을 올려요. 카메라를 고정하고 코트가 잘 보이는 영상이 가장 좋아요.</p></div>
-        <div class="how-step"><div class="how-num">02</div><div class="how-name">코트 4점 보정</div><p>서비스라인 양 끝과 네트 아래 사이드라인 두 점을 클릭하면, 화면 좌표가 실제 코트 미터 좌표로 바뀌어요.</p></div>
-        <div class="how-step"><div class="how-num">03</div><div class="how-name">선수 검출·추적</div><p>영상 속 사람을 찾고 프레임 사이에서 같은 사람으로 이어 붙여요. 가까운 선수는 자동으로, 상대는 클릭으로 골라요.</p></div>
-        <div class="how-step"><div class="how-num">04</div><div class="how-name">결과 확인</div><p>이동거리, 평균·최고 속도, 궤적, 코트 히트맵을 보여주고, 로그인하면 촬영일별로 저장해요.</p></div>
+        <div class="how-step"><div class="how-num">01</div><div class="how-name">영상 업로드</div><p>휴대폰으로 찍은 연습·경기 영상을 올려요.<br>카메라를 고정하고 코트가 잘 보이는 영상이 가장 좋아요.</p></div>
+        <div class="how-step"><div class="how-num">02</div><div class="how-name">코트 4점 보정</div><p>사진에 점 4개(가로 선 양 끝, 네트 아래 양쪽)를 찍으면,<br>화면 좌표가 실제 코트 미터 좌표로 바뀌어요.</p></div>
+        <div class="how-step"><div class="how-num">03</div><div class="how-name">선수 검출·추적</div><p>영상 속 사람을 찾고 프레임 사이에서 같은 사람으로 이어 붙여요.<br>카메라에서 가까운 선수 한 명을 자동으로 골라요.</p></div>
+        <div class="how-step"><div class="how-num">04</div><div class="how-name">결과 확인</div><p>이동거리, 평균·최고 속도(참고용 추정값), 궤적, 코트 히트맵을 보여줘요.<br>공 궤적도 실험 기능으로 함께 보여줘요.<br>로그인하면 촬영일별로 저장해요.</p></div>
       </div>
     </div>
   </section>
@@ -1062,7 +1073,7 @@ try {
       <p class="section-ko">서비스에서 실제로 쓰는 기술이에요.</p>
       <div class="values">
         <div class="value"><div class="value-num">01</div><div class="value-name">선수 검출</div><p>YOLO26n(COCO 사전학습)으로 사람만 찾아요. 직접 학습하지 않은 모델이에요.</p></div>
-        <div class="value"><div class="value-num">02</div><div class="value-name">선수 추적</div><p>BoT-SORT(Ultralytics 내장, 기본 설정)로 프레임이 바뀌어도 같은 선수를 유지해요.</p></div>
+        <div class="value"><div class="value-num">02</div><div class="value-name">선수 추적</div><p>BoT-SORT(Ultralytics 내장, 기본 설정)로 프레임이 바뀌어도 같은 선수를 유지해요. 작게 찍힌 먼 쪽 선수는 번호가 쪼개지기 쉬워서 가까운 선수만 분석해요.</p></div>
         <div class="value"><div class="value-num">03</div><div class="value-name">좌표 변환</div><p>OpenCV의 Homography로 화면을 코트 위에서 본 좌표로 바꿔요. 학습이 아니라 기하 계산이에요.</p></div>
         <div class="value"><div class="value-num">04</div><div class="value-name">서비스</div><p>FastAPI와 SQLite, 단일 HTML/JS 화면. 대회 일정은 KATO·KTA 공개 정보를 매일 한 번 수집해요.</p></div>
       </div>
@@ -1076,10 +1087,10 @@ try {
       <div class="num-strip">
         <div class="num-tile"><b>3.5<small> MB</small></b><span>INT8 경량화 모델 크기<br>(FP32 변환본 10.9MB)</span></div>
         <div class="num-tile"><b>1.7<small> ×</small></b><span>INT8 추론 속도<br>(OpenVINO FP32 대비, CPU)</span></div>
-        <div class="num-tile"><b>95.3<small> %</small></b><span>공 검출 적중률<br>(오검출 15.6%, 검증 영상 1개)</span></div>
+        <div class="num-tile"><b>0.75</b><span>공 검출·추적 종합 점수(F1)<br>(처음 보는 방송 영상, 이전 0.42)</span></div>
         <div class="num-tile"><b id="about-tcount">-<small> 건</small></b><span>수집 중인 예정 대회<br>(매일 무작위 시각 1회 갱신)</span></div>
       </div>
-      <p class="fine">각 실험은 1회 측정이며 영상 한 개를 기준으로 했어요. 공 검출과 INT8은 실험 결과이고, 아직 서비스 화면에는 연결하지 않았어요. 측정 조건과 한계는 프로젝트의 실험 기록에 정리해 두었어요.</p>
+      <p class="fine">각 실험은 1회 측정이에요. 공 검출 점수는 방송 중계 영상(TrackNet) 기준이고 우리 영상에서는 오검출·미검출이 있어요. 공 궤적은 실험 기능으로 연결했고, INT8은 아직 서비스에 연결하지 않았어요. 측정 조건과 한계는 프로젝트의 실험 기록에 정리해 두었어요.</p>
     </div>
   </section>
 
@@ -1091,7 +1102,7 @@ try {
         <div class="status-card">
           <h3><span class="dot-ok"></span>지금 돼요</h3>
           <ul>
-            <li>영상 분석: 선수 추적, 이동거리·속도, 궤적, 히트맵</li>
+            <li>영상 분석: 가까운 선수 한 명의 추적, 이동거리·속도(참고용), 궤적, 히트맵</li>
             <li>로그인과 촬영일별 분석 기록 저장</li>
             <li>KATO·KTA 대회 일정 수집과 필터</li>
             <li>다크·라이트 화면</li>
@@ -1100,14 +1111,15 @@ try {
         <div class="status-card">
           <h3><span class="dot-part"></span>실험만 했어요</h3>
           <ul>
-            <li>공 검출 파인튜닝(검출까지, 서비스 미연결)</li>
+            <li>공 궤적: 실험 기능으로 분석 결과에 표시(공을 놓치거나 잘못 찾을 수 있어요)</li>
             <li>INT8 경량화(OpenVINO, 서비스 미연결)</li>
+            <li>YOLO11n·26n 등 모델 비교</li>
           </ul>
         </div>
         <div class="status-card">
           <h3><span class="dot-no"></span>아직 안 돼요</h3>
           <ul>
-            <li>공 추적(궤적)</li>
+            <li>두 선수 동시 분석(지금은 가까운 선수 한 명만)</li>
             <li>이동거리·속도의 실측 검증. 지금은 참고용 추정값이에요.</li>
             <li>코트 자동 인식(지금은 4점을 직접 클릭)</li>
             <li>서버 배포(현재는 내 컴퓨터에서만 동작)</li>
@@ -1504,6 +1516,16 @@ document.getElementById("analyze-btn").onclick = async () => {
     ballCard.style.display = "block";
   } else {
     ballCard.style.display = "none";
+  }
+  document.getElementById("result-row").classList.toggle("two", !!data.ball);   // 공 궤적이 있으면 히트맵과 나란히
+
+  const saveNote = document.getElementById("save-note");                         // 자동 저장 안내
+  if (data.saved_id) {
+    saveNote.textContent = "✓ 분석 결과가 마이페이지에 자동으로 저장됐어요.";
+  } else if (currentUser) {
+    saveNote.textContent = "저장되지 않았어요. 3단계에서 촬영일을 입력하면 마이페이지에 자동으로 저장돼요.";
+  } else {
+    saveNote.textContent = "로그인하면 분석 결과가 마이페이지에 자동으로 저장돼요.";
   }
 
   document.getElementById("tab-result-btn").disabled = false;
