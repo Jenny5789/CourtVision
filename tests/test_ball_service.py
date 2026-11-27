@@ -3,6 +3,8 @@
 공 검출 모델은 쓰지 않는다. 모델 호출 부분(_get_ball_model, _ball_detect_frames)을 가짜로 바꿔
 "후보 -> 추적 -> 그림·CSV·응답" 흐름과 "공 추적이 실패해도 선수 분석은 돌려준다"는 약속을 검증한다.
 """
+import os
+
 import cv2
 import numpy as np
 import pandas as pd
@@ -130,6 +132,26 @@ def test_analyze_covers_only_player1_even_if_a_second_player_is_clicked(analyze_
     session["candidates"] = [{"track_id": 2, "x1": 900, "y1": 250, "x2": 960, "y2": 340}]
     body = analyze_ready.post("/api/analyze", json={"video_id": "v", "click_x": 930, "click_y": 300}).json()
     assert list(body["stats"]) == ["player1"]
+
+
+def test_my_page_list_gives_ball_url_only_when_the_ball_image_exists(db):
+    """마이페이지 목록: 공 궤적 그림이 있는 기록에만 ball_url, 없으면 None."""
+    import accounts
+    client = TestClient(main.app)
+    client.post("/api/signup", json={"email": "ball@example.com", "nickname": "닉", "password": "password123"})
+    uid = accounts.authenticate("ball@example.com", "password123")["id"]
+    stats = {"player1": {"total_distance_m": 1.0, "avg_speed_mps": 1.0, "max_speed_mps": 1.0}}
+    accounts.save_analysis(uid, "with-ball", "2099-01-02", "공 있음", stats)
+    accounts.save_analysis(uid, "no-ball", "2099-01-01", "공 없음", stats)
+    folder = os.path.join(main.RESULTS_DIR, "with-ball")
+    os.makedirs(folder, exist_ok=True)
+    with open(os.path.join(folder, "ball_trajectory.jpg"), "wb") as f:
+        f.write(b"x")
+
+    by_title = {i["title"]: i for i in client.get("/api/analyses").json()["items"]}
+    assert by_title["공 있음"]["ball_url"] == "/results/with-ball/ball_trajectory.jpg"
+    assert by_title["공 없음"]["ball_url"] is None
+    assert "heatmap_url" in by_title["공 없음"]                         # 기존 항목은 그대로
 
 
 def test_analyze_ball_is_none_when_feature_is_off(analyze_ready, monkeypatch):

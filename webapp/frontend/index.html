@@ -553,21 +553,22 @@ try {
   .my-layout { display: none; grid-template-columns: 210px minmax(0, 1fr) 260px; gap: 28px; align-items: start; }
   .my-filters h4, .my-progress h4 { margin: 0 0 14px; font-size: 14px; font-weight: 700; }
   .field { margin-bottom: 16px; }
-  .field label { display: block; margin-bottom: 6px; font-size: 12px; color: var(--text-muted); }
+  .field label { display: block; margin-bottom: 6px; font-size: 14px; color: var(--text-soft); }
   .field input, .field select { width: 100%; padding: 10px 12px; border-radius: 4px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); font-size: 13px; font-family: inherit; }
   .my-progress { position: sticky; top: 96px; padding: 20px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); }
-  .progress-row { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 0; border-top: 1px solid var(--hairline); font-size: 13px; color: var(--text-muted); }
+  .progress-row { display: flex; justify-content: space-between; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--hairline); font-size: 15px; color: var(--text-soft); }
   .progress-row:first-child { border-top: none; }
   .progress-row b { font-family: var(--font-serif); font-size: 22px; font-weight: 500; color: var(--text); }
   .progress-row small { font-size: 12px; color: var(--text-muted); margin-left: 2px; }
 
-  .h-day { margin: 22px 0 10px; font-size: 13px; font-weight: 700; color: var(--accent-text); letter-spacing: 0.02em; }
+  .h-day { margin: 22px 0 10px; font-size: 15px; font-weight: 700; color: var(--accent-text); letter-spacing: 0.02em; }
   .h-day:first-child { margin-top: 0; }
   .m-card { display: grid; grid-template-columns: 132px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 12px; margin-bottom: 10px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-card); transition: border-color .15s; }
   .m-card:hover { border-color: var(--accent); }
   .m-thumb { width: 132px; height: 84px; object-fit: cover; border-radius: 4px; background: var(--surface-2); display: block; }
-  .m-title { font-size: 15px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .m-sub { margin: 4px 0 8px; font-size: 12px; color: var(--text-muted); }
+  .m-title { font-size: 18px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .m-sub { margin: 4px 0 10px; font-size: 14px; color: var(--text-soft); }
+  .m-badges .badge { font-size: 14px; padding: 4px 10px; color: var(--text); }
   .m-badges { display: flex; flex-wrap: wrap; gap: 6px; }
   .m-actions { display: flex; gap: 8px; }
   .empty-box { text-align: center; padding: 24px 0; }
@@ -583,7 +584,9 @@ try {
 
   .detail-back { margin-bottom: 8px; }
   .detail-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; margin: 18px 0 22px; }
-  #detail-heat { max-width: 720px; margin: 0 auto; }
+  .detail-head .step-title { font-size: 28px; }
+  #detail-row #detail-heat { max-width: 100%; }
+  #detail-sub { font-size: 15px !important; color: var(--text) !important; }
 
   @media (max-width: 1000px) {
     .my-layout { grid-template-columns: 1fr; }
@@ -909,7 +912,7 @@ try {
       </div>
       <div>
         <div id="stats-table"></div>
-        <p class="hint note">참고용 추정값이에요. 카메라에서 먼 쪽 선수의 거리·속도는 오차가 더 크고, 코트 4점이 정확할수록 결과가 좋아져요.</p>
+        <p class="hint note">참고용 추정값이에요. 카메라에서 가까운 선수 한 명만 분석해요. 코트 4점이 정확할수록 결과가 좋아져요.</p>
       </div>
     </div>
     <div class="result-row" id="result-row">
@@ -1031,12 +1034,19 @@ try {
         </div>
         <div>
           <div id="detail-stats"></div>
-          <p class="hint note">참고용 추정값이에요. 카메라에서 먼 쪽 선수의 거리·속도는 오차가 더 크고, 코트 4점이 정확할수록 결과가 좋아져요.</p>
+          <p class="hint note">참고용 추정값이에요. 카메라에서 가까운 선수 한 명만 분석해요. 코트 4점이 정확할수록 결과가 좋아져요.</p>
         </div>
       </div>
-      <div class="result-card" style="margin-top:20px;">
-        <div class="result-label">히트맵</div>
-        <img class="result-img" id="detail-heat">
+      <div class="result-row" id="detail-row">
+        <div class="result-card">
+          <div class="result-label">히트맵</div>
+          <img class="result-img" id="detail-heat">
+        </div>
+        <div class="result-card" id="detail-ball-card" style="display:none;">
+          <div class="result-label">공 궤적 (실험 기능)</div>
+          <img class="result-img" id="detail-ball">
+          <p class="hint note">공을 놓치거나 다른 물체를 공으로 잘못 찾을 수 있어요.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -2089,6 +2099,10 @@ function showMyDetail(id) {
   statsTable(document.getElementById("detail-stats"), a.stats);
   document.getElementById("detail-traj").src = a.trajectory_url;
   document.getElementById("detail-heat").src = a.heatmap_url;
+  const detailBall = document.getElementById("detail-ball-card");          // 공 궤적이 저장된 기록이면 히트맵과 나란히
+  if (a.ball_url) { document.getElementById("detail-ball").src = a.ball_url; detailBall.style.display = "block"; }
+  else { detailBall.style.display = "none"; }
+  document.getElementById("detail-row").classList.toggle("two", !!a.ball_url);
   window.scrollTo(0, 0);
 }
 document.getElementById("detail-back").onclick = showMyList;

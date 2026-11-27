@@ -73,6 +73,14 @@ def require_user(request: Request):
     return user
 
 
+def _with_ball_url(item: dict) -> dict:
+    """공 궤적 그림이 있는 기록에만 ball_url 을 붙인다(공 추적을 끈 상태로 분석했거나 옛 기록은 None)."""
+    vid = item["video_id"]
+    has_ball = os.path.exists(os.path.join(RESULTS_DIR, vid, "ball_trajectory.jpg"))
+    item["ball_url"] = f"/results/{vid}/ball_trajectory.jpg" if has_ball else None
+    return item
+
+
 def _seconds_left(expires_at: str) -> int:
     """만료까지 남은 초 (화면이 서버와 시간대가 달라도 쓰도록 시각 대신 초를 내려준다)."""
     return max(int((datetime.fromisoformat(expires_at) - datetime.now()).total_seconds()), 0)
@@ -145,7 +153,7 @@ async def extend_session(request: Request, response: Response):
 @app.get("/api/analyses")
 async def list_my_analyses(request: Request):
     user = require_user(request)
-    return {"items": accounts.list_analyses(user["id"])}
+    return {"items": [_with_ball_url(item) for item in accounts.list_analyses(user["id"])]}
 
 
 @app.delete("/api/analyses/{analysis_id}")
