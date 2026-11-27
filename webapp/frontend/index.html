@@ -48,14 +48,14 @@ try {
     --pill-active-bg: #f1ece2;
     --pill-active-text: #0a0a0b;
     --shadow: rgba(0,0,0,0.5);
-    --hero-img: url("assets/photos/ball_dark_line.webp");
+    --hero-img: url("assets/photos/hero_serve_night.webp");
     --hero-shift: 0%;
     --hero-mask: none;
     --hero-overlay: linear-gradient(90deg, rgba(10,10,11,0.94) 0%, rgba(10,10,11,0.62) 46%, rgba(10,10,11,0.12) 100%);
-    --sec2-img: url("assets/photos/player_closeup.webp");
-    --world-img: url("assets/photos/court_sunset.webp");
+    --sec2-img: url("assets/photos/insight_face.webp");
+    --world-img: url("assets/photos/stadium_night.webp");
     --world-overlay: linear-gradient(90deg, rgba(10,10,11,0.92) 0%, rgba(10,10,11,0.55) 60%, rgba(10,10,11,0.25) 100%);
-    --cta-img: url("assets/photos/bench_racket_dark.webp");
+    --cta-img: url("assets/photos/cta_racket_dust.webp");
     --cta-overlay: linear-gradient(90deg, rgba(10,10,11,0.2) 0%, rgba(10,10,11,0.75) 55%, rgba(10,10,11,0.92) 100%);
     color-scheme: dark;
   }
@@ -275,6 +275,7 @@ try {
   .stat-tile b { font-family: var(--font-serif); font-size: 30px; font-weight: 500; }
   .stat-tile small { font-size: 12px; color: var(--text-muted); margin-left: 4px; }
   .sample-note { margin: 10px 2px 0; font-size: 11px; color: var(--text-muted); }
+  .mock-badge { position: absolute; top: 30px; left: 30px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.65); color: #d8b07a; border: 1px solid rgba(216,176,122,0.5); }
 
   .recent-section { display: none; padding: 56px 0 0; }
   .recent-card { padding: 8px 22px; border-radius: 14px; background: var(--bg-card); border: 1px solid var(--border); }
@@ -715,13 +716,10 @@ try {
         </div>
         <div>
           <div class="showcase-card">
-            <img src="assets/sample_heatmap.png" alt="코트 히트맵 예시">
-            <div class="showcase-stats">
-              <div class="stat-tile"><span>총 이동거리</span><b>13.4</b><small>m</small></div>
-              <div class="stat-tile"><span>최고 속도</span><b>5.3</b><small>m/s</small></div>
-            </div>
+            <img src="assets/photos/game_insight_mock.webp" alt="디자인 예시: 공 궤적과 코트 점유율">
+            <span class="mock-badge">예시 · 구현 예정</span>
           </div>
-          <p class="sample-note">예시 영상 한 개의 분석 결과입니다. 촬영 조건에 따라 값은 달라질 수 있습니다.</p>
+          <p class="sample-note">디자인 예시 화면입니다. 공 추적·랠리 수·코트 점유율은 구현 예정 기능이며, 표시된 수치는 실제 분석 결과가 아닙니다.</p>
         </div>
       </div>
     </div>
