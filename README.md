@@ -135,7 +135,7 @@ YOLO·BoT-SORT·Homography 기반 **선수 추적 웹 서비스**와 공 검출�
 | 2. 프레임 선택 | 코트와 선수가 잘 보이는 시각 선택(선택 사항) | `POST /api/set_frame`: 해당 시각의 프레임 반환 |
 | 3. 코트 보정 | 프레임에서 코트 4점 클릭 | `POST /api/calibrate`: Homography 계산, **영상 전체 선수 추적(가장 오래 걸리는 단계)**, 선택 시각에 코트 안에서 가장 큰 박스(= 카메라에서 가까운 선수)를 player1로 자동 선택 |
 | 4. 분석 | 빨간 박스가 가까운 선수인지 확인 후 분석 시작 | `POST /api/analyze`: 가까운 선수 한 명의 추적 결과 → 코트 좌표 변환 → 궤적·히트맵·통계, 공 궤적(실험 기능, 공 모델 가중치가 있을 때) |
-| 5. 저장 | 촬영일·제목 입력 후 저장 | 로그인 회원의 분석 기록 저장, 마이페이지에서 조회·삭제 |
+| 5. 자동 저장 | 로그인했다면 분석 후 안내 문구 확인(촬영일·제목은 3단계에서 입력) | 분석 때 기록을 **자동 저장**, 마이페이지에서 조회·삭제 |
 
 <details>
 <summary><b>API 목록 보기</b></summary>
@@ -148,6 +148,110 @@ YOLO·BoT-SORT·Homography 기반 **선수 추적 웹 서비스**와 공 검출�
 | 계정 | `POST /api/signup`, `/api/login`, `/api/logout`, `/api/session/extend`, `GET /api/me` |
 | 기록 | `GET /api/analyses`, `DELETE /api/analyses/{id}` |
 | 대회 | `GET /api/tournaments` (출처·접수중 필터) |
+
+</details>
+
+### 4-2. 시퀀스 다이어그램
+
+<details>
+<summary><b>영상 분석 시퀀스 보기</b></summary>
+
+<br>
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'fontSize':'18px','primaryColor':'#ffffff','primaryBorderColor':'#2b3a67','primaryTextColor':'#222222','textColor':'#222222','lineColor':'#2b3a67','mainBkg':'#ffffff','nodeBorder':'#2b3a67','secondaryColor':'#f4f2ee','tertiaryColor':'#f4f2ee','edgeLabelBackground':'#f4f2ee','actorBkg':'#ffffff','actorBorder':'#2b3a67','actorTextColor':'#222222','actorLineColor':'#c4bdb1','signalColor':'#2b3a67','signalTextColor':'#222222','labelBoxBkgColor':'#ffffff','labelBoxBorderColor':'#2b3a67','labelTextColor':'#222222','loopTextColor':'#222222','noteBkgColor':'#ffffff','noteBorderColor':'#2b3a67','noteTextColor':'#222222'},'sequence':{'actorMargin':30,'width':140,'wrap':true}}}%%
+sequenceDiagram
+    box rgb(244,242,238)
+        actor U as 사용자
+        participant F as 화면(브라우저)
+        participant B as FastAPI 서버
+        participant A as 분석 모듈<br/>(YOLO26n·BoT-SORT)
+        participant S as 파일 폴더
+        participant D as SQLite DB
+    end
+
+    Note over U,D: 1. 영상 올리기
+    U->>F: 영상 선택, 업로드
+    F->>B: POST /api/upload
+    B->>S: 영상과 첫 장면 저장
+    B-->>F: video_id, 첫 장면
+    opt 장면을 바꾸고 싶을 때
+        U->>F: 선수가 보이는 장면 선택
+        F->>B: POST /api/set_frame
+        B->>S: 해당 장면 저장
+    end
+
+    Note over U,D: 2. 코트 4점 찍기, 선수 추적
+    U->>F: 코트 4점 클릭
+    F->>B: POST /api/calibrate
+    B->>A: 영상 전체 선수 추적 (가장 오래 걸림)
+    A-->>B: 프레임별 선수 위치
+    B->>B: Homography 계산, 가까운 선수(player1) 자동 선택
+    B-->>F: 선수 후보, 초록 코트 선
+    F-->>U: 빨간 박스로 선수 확인
+
+    Note over U,D: 3. 분석과 저장
+    U->>F: 분석 시작
+    F->>B: POST /api/analyze
+    B->>B: 코트 좌표(m) 변환, 거리·속도 계산
+    B->>S: 궤적·히트맵 그림 저장
+    opt 공 모델 가중치가 있을 때 (실험 기능)
+        B->>A: 공 검출과 공 추적기
+        A-->>B: 공 궤적
+        B->>S: 공 궤적 그림 저장
+    end
+    opt 로그인했고 촬영일이 있을 때
+        B->>D: 분석 기록(통계) 자동 저장
+    end
+    B-->>F: 통계, 그림 주소, 공 궤적, 저장 여부
+    F-->>U: 결과 화면과 자동 저장 안내
+```
+
+</details>
+
+<details>
+<summary><b>대회 일정 수집 시퀀스 보기</b></summary>
+
+<br>
+
+```mermaid
+%%{init: {'theme':'base','themeVariables':{'fontSize':'18px','primaryColor':'#ffffff','primaryBorderColor':'#2b3a67','primaryTextColor':'#222222','textColor':'#222222','lineColor':'#2b3a67','mainBkg':'#ffffff','nodeBorder':'#2b3a67','secondaryColor':'#f4f2ee','tertiaryColor':'#f4f2ee','edgeLabelBackground':'#f4f2ee','actorBkg':'#ffffff','actorBorder':'#2b3a67','actorTextColor':'#222222','actorLineColor':'#c4bdb1','signalColor':'#2b3a67','signalTextColor':'#222222','labelBoxBkgColor':'#ffffff','labelBoxBorderColor':'#2b3a67','labelTextColor':'#222222','loopTextColor':'#222222','noteBkgColor':'#ffffff','noteBorderColor':'#2b3a67','noteTextColor':'#222222'},'sequence':{'actorMargin':30,'width':140,'wrap':true}}}%%
+sequenceDiagram
+    box rgb(244,242,238)
+        participant B as FastAPI 서버
+        participant C as 크롤러 스레드<br/>(서버 안에서 실행)
+        participant X as KATO·KTA 사이트
+        participant D as SQLite DB
+        actor U as 사용자
+        participant F as 화면(브라우저)
+    end
+
+    Note over B,D: 서버를 켤 때
+    B->>C: 크롤러 스레드 시작
+    C->>D: 마지막 수집 시각 확인
+    alt 24시간이 지났을 때
+        C->>X: 대회 일정 요청
+        X-->>C: 공개 일정 페이지
+        C->>D: 신규·변경 구분해 저장 (upsert, 변경 이력 기록)
+    end
+
+    loop 하루 1회, 매번 다른 무작위 시각
+        C->>D: 마지막 수집 시각 확인
+        alt 20시간 이상 지났을 때
+            C->>X: 대회 일정 요청
+            X-->>C: 공개 일정 페이지
+            C->>D: upsert
+        end
+    end
+
+    Note over U,D: 사용자가 일정을 볼 때
+    U->>F: 대회 일정 열기
+    F->>B: GET /api/tournaments
+    B->>D: 조회 (출처, 접수중 필터)
+    D-->>B: 대회 목록
+    B-->>F: 목록
+    F-->>U: 일정 표시
+```
 
 </details>
 
