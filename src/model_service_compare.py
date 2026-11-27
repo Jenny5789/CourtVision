@@ -63,7 +63,7 @@ def main():
         tracks, fps, elapsed, n_frames = track_full_video(VIDEO, model)
         print(f"프레임 {n_frames}개, {elapsed:.1f}초 ({elapsed / n_frames * 1000:.0f}ms/프레임), fps={fps:.1f}", flush=True)
 
-        # 이전 방식(첫 프레임에서 코트 근처 가장 큰 박스)은 video9 첫 프레임에 선수가 없어 비선수를 고르므로 참고로만 기록
+        # 이전 방식(첫 프레임에서 코트 근처 가장 큰 박스)은 video9 첫 프레임에서 먼 쪽 선수(서브하는 사람)를 고르므로 참고로만 기록
         _, auto_id = pipeline.get_candidates_at_time(tracks, fps, court_polygon, 0.0)
 
         # 정답 위치(player_l, player_r)와 겹치는 박스의 track id 중 가장 많이 나온 id 를 선수 id 로 사용
@@ -103,8 +103,8 @@ def main():
 
     with open("results/model_service_compare_log.txt", "w", encoding="utf-8") as f:
         f.write(f"영상: {VIDEO}\n코트 4점(근사): {CORNERS}\nconf {CONF}, imgsz {IMGSZ}, BoT-SORT 기본\n")
-        f.write("선수 id 는 정답 위치(player_l=player1, player_r=player2)와 겹치는 박스의 최다 track id\n")
-        f.write("참고: 이전 방식(첫 프레임 코트 근처 최대 박스)은 video9 첫 프레임에 선수가 없어 비선수를 고름 -> 11n 33.83m / 26n 0.17m 는 비선수 기준값\n\n")
+        f.write("선수 id 는 정답 위치(player_l·player_r = 카메라에서 가까운 선수 한 명의 좌·우 발)와 겹치는 박스의 최다 track id\n")
+        f.write("참고: 이전 방식(첫 프레임 코트 근처 최대 박스)은 video9 첫 프레임에서 먼 쪽 선수(서브하는 사람, 추적 번호 2)를 골랐음 -> 11n 33.83m / 26n 0.17m 는 먼 쪽 선수 기준값이며, 26n에서 이 선수의 추적 번호가 쪼개져 일부만 계산된 실제 차이(results/model_selection_experiment.md 참고)\n\n")
         for n in names:
             f.write(f"{n}: {all_stats[n]} | {extra[n]}\n")
 

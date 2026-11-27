@@ -10,7 +10,7 @@ Pretrained YOLO가 테니스공을 잘 잡는지 확인하고, 부족하면 우�
 
 ## 학습 조건
 - yolo11n.pt, 단일 클래스(tennis_ball), epochs 50, imgsz 960, batch 16, RTX 3080, 약 12분
-- 결과 폴더: D:\JEN\VISION_AI\hyrox\runs\detect\runs\ball_detection\v1-4 (results.csv, results.png, weights/best.pt)
+- 결과 폴더: Ultralytics runs 폴더의 `ball_detection\v1-4` (results.csv, results.png, weights/best.pt)
 - 프로젝트 내 사본: models/tennis_ball_best.pt
 
 ## 대표 결과 (학습에 쓰지 않은 video9·10, 118장)

@@ -1,5 +1,6 @@
 영상: data/raw/archive/video9.mp4
 코트 4점(근사): [[690, 610], [1230, 610], [1130, 435], [795, 435]]
+정정(2026-11-27): 아래 값은 자동 선택이 고른 먼 쪽 선수(서브하는 사람, 추적 번호 2) 기준. FP32 대비 INT8의 상대 변화만 참고하고 절대 이동거리로 쓰지 말 것
 
 FP32 (PyTorch): {'total_distance_m': 33.83, 'avg_speed_mps': 3.41, 'max_speed_mps': 14.6, 'elapsed_sec': 40.6, 'ms_per_frame': 64.7}
 INT8 (OpenVINO): {'total_distance_m': 33.99, 'avg_speed_mps': 3.4, 'max_speed_mps': 13.43, 'elapsed_sec': 37.6, 'ms_per_frame': 59.9}
