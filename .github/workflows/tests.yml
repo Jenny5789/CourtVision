@@ -15,10 +15,10 @@ jobs:
         with:
           python-version: "3.11"
 
-      # ultralytics(torch 포함)는 용량이 커서 제외. 테스트에서는 가짜 모듈로 대체한다(tests/conftest.py).
+      # ultralytics(torch 포함)와 lap(추적용)은 테스트에 필요 없고 용량이 커서 제외. 테스트에서는 가짜 모듈로 대체한다(tests/conftest.py).
       - name: Install dependencies
         run: |
-          grep -v '^ultralytics' webapp/backend/requirements.txt > requirements-ci.txt
+          grep -v -E '^(ultralytics|lap)' webapp/backend/requirements.txt > requirements-ci.txt
           pip install -r requirements-ci.txt opencv-python-headless httpx pytest
 
       - name: Run tests
