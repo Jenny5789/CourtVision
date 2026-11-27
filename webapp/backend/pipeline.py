@@ -4,6 +4,8 @@ import pandas as pd
 import os
 from ultralytics import YOLO
 
+from ball_tracker import TrackerConfig, track_ball
+
 MODEL = YOLO("yolo26n.pt")   # 2026-11: yolo11n 에서 교체. 선수 적중률·이동거리 지표 동급, GPU/ONNX 에서 더 빠름(results/model_selection_experiment.md)
 IMGSZ = int(os.environ.get("YOLO_IMGSZ", "960"))   # CPU 컨테이너에서는 값을 낮추면 빨라짐(정확도는 약간 하락)
 
@@ -134,13 +136,6 @@ def get_candidates_at_time(full_tracks, fps, court_corners, time_sec):
         player1_id = max(areas, key=lambda a: a[1])[0]
 
     return candidates, player1_id
-
-
-def pick_player2(candidates, click_x, click_y):
-    for c in candidates:
-        if c["x1"] <= click_x <= c["x2"] and c["y1"] <= click_y <= c["y2"]:
-            return c["track_id"]
-    return None
 
 
 def run_full_analysis(full_tracks, fps, target_ids, H, video_path, output_dir):
@@ -279,4 +274,90 @@ def _draw_heatmap(df, output_dir):
     path = os.path.join(output_dir, "heatmap.png")
     plt.savefig(path, facecolor=BG, dpi=110)
     plt.close(fig)
+    return path
+
+
+# ---------------------------------------------------------------------------
+# 공 추적 (실험 기능): 공 검출 모델(v4)로 프레임별 후보를 뽑고 공 추적기로 이어 하나의 궤적으로 만든다.
+# - 가중치(models/*.pt)는 저장소에 없으므로 파일이 없으면 기능이 꺼지고 선수 분석만 동작한다.
+# - 설정은 4개 그룹(video9·TrackNet game5·game6-10·video10)에서 모두 무너지지 않는 값을 골랐다
+#   (video10 결과를 보고 골라 video10 은 더 이상 깨끗한 시험 데이터가 아님, results/model_selection_experiment.md).
+# ---------------------------------------------------------------------------
+_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BALL_MODEL_PATH = os.environ.get("COURTVISION_BALL_MODEL", os.path.join(_ROOT, "models", "tennis_ball_v4_yolo26n.pt"))
+BALL_ENABLED = os.environ.get("COURTVISION_BALL", "1") != "0"    # 0 이면 공 추적을 끈다(분석 시간 단축)
+BALL_CONF, BALL_IMGSZ, BALL_TOPK = 0.1, 960, 8                   # 후보는 낮은 기준으로 넉넉히 뽑고 추적기가 거른다
+BALL_DRAW_LINK = 0.06                                            # 그림에서 점끼리 선으로 잇는 최대 거리(영상 너비 대비, 프레임당)
+BALL_CFG = TrackerConfig(max_gap=3, start_cost=5.0, dist_weight=1.0, conf_bias=2.2, min_peak_conf=0.30, trim_conf=0.2)
+_ball_model = None
+
+
+def _get_ball_model():
+    """공 검출 모델을 처음 필요할 때 한 번만 불러온다. 꺼져 있거나 가중치가 없으면 None."""
+    global _ball_model
+    if not BALL_ENABLED or not os.path.exists(BALL_MODEL_PATH):
+        return None
+    if _ball_model is None:
+        _ball_model = YOLO(BALL_MODEL_PATH)
+    return _ball_model
+
+
+def _ball_detect_frames(video_path, model):
+    """프레임마다 공 후보 [x, y, conf] 배열을 모은다(확신도 높은 순 상위 BALL_TOPK 개). (후보 목록, 영상 너비) 반환."""
+    cap = cv2.VideoCapture(video_path)
+    width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
+    dets = []
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            break
+        boxes = model.predict(frame, conf=BALL_CONF, imgsz=BALL_IMGSZ, verbose=False)[0].boxes
+        if boxes is None or len(boxes) == 0:
+            dets.append(np.zeros((0, 3), np.float32))
+            continue
+        xy = boxes.xywh[:, :2].cpu().numpy()
+        conf = boxes.conf.cpu().numpy()[:, None]
+        cand = np.hstack([xy, conf]).astype(np.float32)
+        dets.append(cand[np.argsort(-cand[:, 2])[:BALL_TOPK]])
+    cap.release()
+    return dets, width
+
+
+def run_ball_analysis(video_path, output_dir):
+    """공 추적을 실행해 결과 그림·CSV 를 저장한다. 기능이 꺼져 있거나 가중치가 없으면 None."""
+    model = _get_ball_model()
+    if model is None:
+        return None
+    dets, width = _ball_detect_frames(video_path, model)
+    if not dets:
+        return None
+    out = track_ball(dets, width, BALL_CFG)
+
+    os.makedirs(output_dir, exist_ok=True)
+    pd.DataFrame({"frame": np.arange(len(out)), "x": out[:, 0], "y": out[:, 1], "conf": out[:, 2],
+                  "state": out[:, 3].astype(int)}).to_csv(os.path.join(output_dir, "ball_tracking.csv"), index=False)
+    image = _draw_ball_trajectory(video_path, out, output_dir)
+    return {"image": image, "tracked_frames": int((out[:, 3] > 0).sum()), "total_frames": len(out)}
+
+
+def _draw_ball_trajectory(video_path, out, output_dir):
+    """첫 프레임 위에 공 궤적(시간 순서대로 노란색 -> 주황색)을 그린다. 끊긴 구간은 이어 그리지 않는다."""
+    cap = cv2.VideoCapture(video_path)
+    ret, frame = cap.read()
+    cap.release()
+
+    tracked = [i for i in range(len(out)) if out[i, 3] > 0]
+    n = max(len(tracked), 1)
+    link_limit = BALL_DRAW_LINK * frame.shape[1]                  # 이보다 멀리 떨어진 점은 서로 다른 구간으로 보고 잇지 않음
+    for k, i in enumerate(tracked):
+        t = k / max(n - 1, 1)
+        color = (0, int(255 - 120 * t), 255)                      # BGR: 노란색(0,255,255) -> 주황색(0,135,255)
+        p = (int(out[i, 0]), int(out[i, 1]))
+        if i > 0 and out[i - 1, 3] > 0 and np.hypot(out[i, 0] - out[i - 1, 0], out[i, 1] - out[i - 1, 1]) <= link_limit:
+            cv2.line(frame, (int(out[i - 1, 0]), int(out[i - 1, 1])), p, color, 2)
+        if out[i, 3] == 1:                                        # 검출된 점만 원으로 표시(보간한 점은 선만)
+            cv2.circle(frame, p, 4, color, -1)
+
+    path = os.path.join(output_dir, "ball_trajectory.jpg")
+    cv2.imwrite(path, frame)
     return path

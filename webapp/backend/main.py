@@ -257,17 +257,24 @@ async def analyze_video(req: AnalyzeRequest, request: Request):
     if session is None or "H" not in session:
         raise HTTPException(status_code=404, detail="먼저 코트 보정을 완료해 주세요.")
 
+    # 분석 대상은 카메라에서 가까운 선수 한 명(player1). 먼 쪽 선수는 화면에서 작게 찍혀 추적 번호가 쪼개지기 쉬워 제외
+    # (click_x, click_y 는 예전 화면과의 호환을 위해 받기만 하고 쓰지 않는다)
     target_ids = {session["player1_id"]: "player1"}
-
-    if req.click_x is not None and req.click_y is not None:
-        player2_id = pipeline.pick_player2(session["candidates"], req.click_x, req.click_y)
-        if player2_id is not None and player2_id != session["player1_id"]:
-            target_ids[player2_id] = "player2"
 
     result = pipeline.run_full_analysis(
         session["full_tracks"], session["fps"], target_ids, session["H"],
         session["video_path"], session["output_dir"]
     )
+
+    # 공 추적(실험 기능): 실패하거나 꺼져 있어도 선수 분석 결과는 그대로 돌려준다
+    ball = None
+    try:
+        ball_result = pipeline.run_ball_analysis(session["video_path"], session["output_dir"])
+        if ball_result is not None:
+            ball = {"image_url": f"/results/{req.video_id}/ball_trajectory.jpg",
+                    "tracked_frames": ball_result["tracked_frames"], "total_frames": ball_result["total_frames"]}
+    except Exception as e:
+        print(f"[공 추적 실패 - 선수 분석 결과만 반환] {type(e).__name__}: {e}", flush=True)
 
     saved_id = None
     user = current_user(request)
@@ -282,6 +289,7 @@ async def analyze_video(req: AnalyzeRequest, request: Request):
         "stats": result["stats"],
         "trajectory_url": f"/results/{req.video_id}/trajectory.jpg",
         "heatmap_url": f"/results/{req.video_id}/heatmap.png",
+        "ball": ball,
         "saved_id": saved_id,
     }
 

@@ -117,12 +117,6 @@ def test_candidates_use_nearest_frame_and_handle_nobody(clicked_corners):
     assert pipeline.get_candidates_at_time(far, 30.0, polygon, 0.0) == ([], None)
 
 
-def test_pick_player2_by_click_position():
-    cands = [{"track_id": 4, "x1": 100, "y1": 100, "x2": 200, "y2": 300}]
-    assert pipeline.pick_player2(cands, 150, 200) == 4
-    assert pipeline.pick_player2(cands, 500, 500) is None
-
-
 # ---- 통계: 알려진 속도로 움직이는 선수 ----
 def moving_player_tracks(speed_mps, seconds=3, fps=30, x_m=4.0, y_start=2.0, track_id=1):
     rows = []

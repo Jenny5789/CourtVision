@@ -143,12 +143,6 @@ try {
     display: flex; align-items: center; justify-content: center;
     transform: translate(-50%, -50%); border: 2px solid var(--on-accent);
   }
-  #click-marker {
-    position: absolute; width: 16px; height: 16px; border-radius: 50%;
-    background: var(--cyan); border: 2px solid var(--bg);
-    display: none; transform: translate(-50%, -50%);
-    box-shadow: 0 0 0 4px rgba(94,200,224,0.25);
-  }
   .player1-box {
     position: absolute; border: 2px solid var(--red); border-radius: 4px; pointer-events: none;
   }
@@ -890,13 +884,12 @@ try {
   </div>
 
   <div id="select-panel" class="tab-panel">
-    <div class="step-head"><span class="step-num">3</span><h2 class="step-title">상대 선수 선택 <small class="opt">선택사항</small></h2></div>
+    <div class="step-head"><span class="step-num">3</span><h2 class="step-title">선수 확인</h2></div>
     <p><b>먼저 확인:</b> 초록색 선이 실제 코트 선(외곽선, 서비스라인, 네트)과 겹쳐야 정확한 보정이에요. 어긋나면 <button type="button" id="recalibrate-btn" class="secondary" style="margin:0;padding:6px 12px;">보정 수정하기</button> (찍은 점이 그대로 남아 있어 드래그로 옮길 수 있어요)</p>
-    <p>선수 1(빨간 박스)은 자동으로 선택돼요. 상대 선수도 분석하려면 아래 이미지에서 위치를 클릭해 주세요.</p>
+    <p>카메라에서 가까운 선수(빨간 박스) 한 명을 자동으로 선택해 분석해요. 멀리 있는 선수는 화면에서 작게 찍혀 추적이 불안정해서 분석하지 않아요. 빨간 박스가 가까운 선수가 아니거나 박스가 없으면, 2단계로 돌아가 가까운 선수가 코트 안에 보이는 장면을 골라 주세요.</p>
     <div id="frame-wrap2">
       <img id="frame-img2">
       <svg id="court-overlay" xmlns="http://www.w3.org/2000/svg"></svg>
-      <div id="click-marker"></div>
     </div>
     <div class="save-box">
       <div><label for="rec-date">촬영일</label><input type="date" id="rec-date"></div>
@@ -922,6 +915,11 @@ try {
     <div class="result-card" style="margin-top:20px;">
       <div class="result-label">히트맵</div>
       <img class="result-img" id="heatmap-img">
+    </div>
+    <div class="result-card" id="ball-card" style="margin-top:20px; display:none;">
+      <div class="result-label">공 궤적 (실험 기능)</div>
+      <img class="result-img" id="ball-img">
+      <p class="hint note" id="ball-note"></p>
     </div>
   </div>
 </div>
@@ -1210,8 +1208,6 @@ let currentDetailId = null;
 let pendingDetailId = null;
 let videoId = null;
 let corners = [];
-let clickX = null;
-let clickY = null;
 
 function toOriginalCoords(e, img) {
   const rect = img.getBoundingClientRect();
@@ -1480,22 +1476,11 @@ function drawCalibrationResult(data) {
 
 document.getElementById("recalibrate-btn").onclick = () => goToStep(2);
 
-document.getElementById("frame-img2").onclick = (e) => {
-  const coord = toOriginalCoords(e, e.target);
-  clickX = coord.x;
-  clickY = coord.y;
-
-  const marker = document.getElementById("click-marker");
-  marker.style.left = coord.displayX + "px";
-  marker.style.top = coord.displayY + "px";
-  marker.style.display = "block";
-};
-
 document.getElementById("analyze-btn").onclick = async () => {
   document.getElementById("loading").style.display = "inline";
   document.getElementById("analyze-btn").disabled = true;
 
-  const body = { video_id: videoId, click_x: clickX, click_y: clickY,
+  const body = { video_id: videoId,
                  recorded_date: currentUser ? document.getElementById("rec-date").value : null,
                  title: document.getElementById("rec-title").value };
 
@@ -1517,6 +1502,17 @@ document.getElementById("analyze-btn").onclick = async () => {
   statsTable(document.getElementById("stats-table"), data.stats);
   document.getElementById("trajectory-img").src = data.trajectory_url;
   document.getElementById("heatmap-img").src = data.heatmap_url;
+
+  const ballCard = document.getElementById("ball-card");
+  if (data.ball) {
+    document.getElementById("ball-img").src = data.ball.image_url + "?t=" + Date.now();
+    document.getElementById("ball-note").textContent =
+      "공 검출 모델과 공 추적기를 적용한 실험 기능이에요. 영상 " + data.ball.total_frames + "프레임 중 " +
+      data.ball.tracked_frames + "프레임에서 공 위치를 찾았어요. 영상 환경에 따라 공을 놓치거나 다른 물체를 공으로 잘못 찾을 수 있어요.";
+    ballCard.style.display = "block";
+  } else {
+    ballCard.style.display = "none";
+  }
 
   document.getElementById("tab-result-btn").disabled = false;
   switchTab("result");

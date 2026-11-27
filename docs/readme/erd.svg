@@ -1,145 +1,175 @@
-<svg viewBox="0 0 870 520" xmlns="http://www.w3.org/2000/svg" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
-  <rect width="870" height="520" fill="#FFFFFF"/>
+<svg viewBox="0 0 870 620" xmlns="http://www.w3.org/2000/svg" font-family="'Malgun Gothic','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <rect width="870" height="620" fill="#FFFFFF"/>
   <defs>
     <marker id="arr" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
       <polygon points="0 0,10 3.5,0 7" fill="#374151"/>
     </marker>
-    <marker id="arrl" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto-start-reverse">
-      <polygon points="0 0,10 3.5,0 7" fill="#374151"/>
-    </marker>
   </defs>
+  <!-- users -->
   <rect x="20" y="30" width="230" height="146" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
   <rect x="20" y="30" width="230" height="36" fill="#374151" rx="5"/>
   <rect x="20" y="50" width="230" height="16" fill="#374151"/>
-  <text x="30" y="45" text-anchor="start" font-size="12" font-weight="700" fill="#FFFFFF">users</text>
-  <text x="30" y="59" text-anchor="start" font-size="9" font-weight="400" fill="#9CA3AF">회원</text>
-  <rect x="20" y="66" width="230" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
+  <text x="30" y="45" font-size="12" font-weight="700" fill="#FFFFFF">users</text>
+  <text x="30" y="59" font-size="9" fill="#9CA3AF">회원</text>
+  <rect x="20" y="66" width="230" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5"/>
   <rect x="26" y="70" width="22" height="14" fill="#374151" rx="3"/>
   <text x="37" y="81" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">PK</text>
-  <text x="54" y="82" text-anchor="start" font-size="10" fill="#111827">id</text>
-  <text x="242" y="82" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">INTEGER</text>
-  <rect x="20" y="88" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="30" y="104" text-anchor="start" font-size="10" fill="#111827">email</text>
-  <text x="242" y="104" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT UNIQUE</text>
-  <rect x="20" y="110" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="30" y="126" text-anchor="start" font-size="10" fill="#111827">nickname</text>
-  <text x="242" y="126" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="20" y="132" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="30" y="148" text-anchor="start" font-size="10" fill="#111827">password_hash</text>
-  <text x="242" y="148" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="20" y="154" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="30" y="170" text-anchor="start" font-size="10" fill="#111827">created_at</text>
-  <text x="242" y="170" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
+  <text x="54" y="82" font-size="10" fill="#111827">id</text>
+  <text x="242" y="82" text-anchor="end" font-size="9" fill="#6B7280">INTEGER</text>
+  <rect x="20" y="88" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="30" y="104" font-size="10" fill="#111827">email</text>
+  <text x="242" y="104" text-anchor="end" font-size="9" fill="#6B7280">TEXT UNIQUE</text>
+  <rect x="20" y="110" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="30" y="126" font-size="10" fill="#111827">nickname</text>
+  <text x="242" y="126" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="20" y="132" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="30" y="148" font-size="10" fill="#111827">password_hash</text>
+  <text x="242" y="148" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="20" y="154" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="30" y="170" font-size="10" fill="#111827">created_at</text>
+  <text x="242" y="170" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <!-- login_sessions -->
   <rect x="20" y="310" width="230" height="102" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
   <rect x="20" y="310" width="230" height="36" fill="#374151" rx="5"/>
   <rect x="20" y="330" width="230" height="16" fill="#374151"/>
-  <text x="30" y="325" text-anchor="start" font-size="12" font-weight="700" fill="#FFFFFF">login_sessions</text>
-  <text x="30" y="339" text-anchor="start" font-size="9" font-weight="400" fill="#9CA3AF">로그인 세션</text>
-  <rect x="20" y="346" width="230" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
+  <text x="30" y="325" font-size="12" font-weight="700" fill="#FFFFFF">login_sessions</text>
+  <text x="30" y="339" font-size="9" fill="#9CA3AF">로그인 세션</text>
+  <rect x="20" y="346" width="230" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5"/>
   <rect x="26" y="350" width="22" height="14" fill="#374151" rx="3"/>
   <text x="37" y="361" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">PK</text>
-  <text x="54" y="362" text-anchor="start" font-size="10" fill="#111827">token_hash</text>
-  <text x="242" y="362" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="20" y="368" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
+  <text x="54" y="362" font-size="10" fill="#111827">token_hash</text>
+  <text x="242" y="362" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="20" y="368" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
   <rect x="26" y="372" width="22" height="14" fill="#6B7280" rx="3"/>
   <text x="37" y="383" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">FK</text>
-  <text x="54" y="384" text-anchor="start" font-size="10" fill="#111827">user_id</text>
-  <text x="242" y="384" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">→ users</text>
-  <rect x="20" y="390" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="30" y="406" text-anchor="start" font-size="10" fill="#111827">expires_at</text>
-  <text x="242" y="406" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="290" y="30" width="230" height="168" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
+  <text x="54" y="384" font-size="10" fill="#111827">user_id</text>
+  <text x="242" y="384" text-anchor="end" font-size="9" fill="#6B7280">→ users</text>
+  <rect x="20" y="390" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="30" y="406" font-size="10" fill="#111827">expires_at</text>
+  <text x="242" y="406" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <!-- analyses -->
+  <rect x="290" y="30" width="230" height="190" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
   <rect x="290" y="30" width="230" height="36" fill="#374151" rx="5"/>
   <rect x="290" y="50" width="230" height="16" fill="#374151"/>
-  <text x="300" y="45" text-anchor="start" font-size="12" font-weight="700" fill="#FFFFFF">analyses</text>
-  <text x="300" y="59" text-anchor="start" font-size="9" font-weight="400" fill="#9CA3AF">분석 기록</text>
-  <rect x="290" y="66" width="230" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
+  <text x="300" y="45" font-size="12" font-weight="700" fill="#FFFFFF">analyses</text>
+  <text x="300" y="59" font-size="9" fill="#9CA3AF">분석 기록</text>
+  <rect x="290" y="66" width="230" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5"/>
   <rect x="296" y="70" width="22" height="14" fill="#374151" rx="3"/>
   <text x="307" y="81" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">PK</text>
-  <text x="324" y="82" text-anchor="start" font-size="10" fill="#111827">id</text>
-  <text x="512" y="82" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">INTEGER</text>
-  <rect x="290" y="88" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
+  <text x="324" y="82" font-size="10" fill="#111827">id</text>
+  <text x="512" y="82" text-anchor="end" font-size="9" fill="#6B7280">INTEGER</text>
+  <rect x="290" y="88" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
   <rect x="296" y="92" width="22" height="14" fill="#6B7280" rx="3"/>
   <text x="307" y="103" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">FK</text>
-  <text x="324" y="104" text-anchor="start" font-size="10" fill="#111827">user_id</text>
-  <text x="512" y="104" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">→ users</text>
-  <rect x="290" y="110" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="300" y="126" text-anchor="start" font-size="10" fill="#111827">video_id</text>
-  <text x="512" y="126" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="290" y="132" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="300" y="148" text-anchor="start" font-size="10" fill="#111827">title</text>
-  <text x="512" y="148" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="290" y="154" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="300" y="170" text-anchor="start" font-size="10" fill="#111827">recorded_date</text>
-  <text x="512" y="170" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="290" y="176" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="300" y="192" text-anchor="start" font-size="10" fill="#111827">stats_json</text>
-  <text x="512" y="192" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="30" width="230" height="190" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
-  <rect x="580" y="30" width="230" height="36" fill="#374151" rx="5"/>
-  <rect x="580" y="50" width="230" height="16" fill="#374151"/>
-  <text x="590" y="45" text-anchor="start" font-size="12" font-weight="700" fill="#FFFFFF">tournaments</text>
-  <text x="590" y="59" text-anchor="start" font-size="9" font-weight="400" fill="#9CA3AF">대회 일정</text>
-  <rect x="580" y="66" width="230" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
+  <text x="324" y="104" font-size="10" fill="#111827">user_id</text>
+  <text x="512" y="104" text-anchor="end" font-size="9" fill="#6B7280">→ users</text>
+  <rect x="290" y="110" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="300" y="126" font-size="10" fill="#111827">video_id</text>
+  <text x="512" y="126" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="290" y="132" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="300" y="148" font-size="10" fill="#111827">title</text>
+  <text x="512" y="148" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="290" y="154" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="300" y="170" font-size="10" fill="#111827">recorded_date</text>
+  <text x="512" y="170" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="290" y="176" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="300" y="192" font-size="10" fill="#111827">created_at</text>
+  <text x="512" y="192" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="290" y="198" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="300" y="214" font-size="10" fill="#111827">stats_json</text>
+  <text x="512" y="214" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <text x="290" y="238" font-size="9" fill="#6B7280">UNIQUE (user_id, video_id)</text>
+  <!-- tournaments -->
+  <rect x="580" y="30" width="270" height="344" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
+  <rect x="580" y="30" width="270" height="36" fill="#374151" rx="5"/>
+  <rect x="580" y="50" width="270" height="16" fill="#374151"/>
+  <text x="590" y="45" font-size="12" font-weight="700" fill="#FFFFFF">tournaments</text>
+  <text x="590" y="59" font-size="9" fill="#9CA3AF">대회 일정</text>
+  <rect x="580" y="66" width="270" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5"/>
   <rect x="586" y="70" width="22" height="14" fill="#374151" rx="3"/>
   <text x="597" y="81" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">PK</text>
-  <text x="614" y="82" text-anchor="start" font-size="10" fill="#111827">uid</text>
-  <text x="802" y="82" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="88" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="104" text-anchor="start" font-size="10" fill="#111827">source</text>
-  <text x="802" y="104" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="110" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="126" text-anchor="start" font-size="10" fill="#111827">name</text>
-  <text x="802" y="126" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="132" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="148" text-anchor="start" font-size="10" fill="#111827">start_date</text>
-  <text x="802" y="148" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="154" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="170" text-anchor="start" font-size="10" fill="#111827">end_date</text>
-  <text x="802" y="170" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="176" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="192" text-anchor="start" font-size="10" fill="#111827">venue</text>
-  <text x="802" y="192" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="198" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="214" text-anchor="start" font-size="10" fill="#111827">url</text>
-  <text x="802" y="214" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="310" width="230" height="168" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
-  <rect x="580" y="310" width="230" height="36" fill="#374151" rx="5"/>
-  <rect x="580" y="330" width="230" height="16" fill="#374151"/>
-  <text x="590" y="325" text-anchor="start" font-size="12" font-weight="700" fill="#FFFFFF">tournament_changes</text>
-  <text x="590" y="339" text-anchor="start" font-size="9" font-weight="400" fill="#9CA3AF">변경 이력</text>
-  <rect x="580" y="346" width="230" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <rect x="586" y="350" width="22" height="14" fill="#374151" rx="3"/>
-  <text x="597" y="361" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">PK</text>
-  <text x="614" y="362" text-anchor="start" font-size="10" fill="#111827">id</text>
-  <text x="802" y="362" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">INTEGER</text>
-  <rect x="580" y="368" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <rect x="586" y="372" width="22" height="14" fill="#6B7280" rx="3"/>
-  <text x="597" y="383" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">FK</text>
-  <text x="614" y="384" text-anchor="start" font-size="10" fill="#111827">uid</text>
-  <text x="802" y="384" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">→ tournaments</text>
-  <rect x="580" y="390" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="406" text-anchor="start" font-size="10" fill="#111827">changed_at</text>
-  <text x="802" y="406" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="412" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="428" text-anchor="start" font-size="10" fill="#111827">field</text>
-  <text x="802" y="428" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="434" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="450" text-anchor="start" font-size="10" fill="#111827">old_value</text>
-  <text x="802" y="450" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <rect x="580" y="456" width="230" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="0"/>
-  <text x="590" y="472" text-anchor="start" font-size="10" fill="#111827">new_value</text>
-  <text x="802" y="472" text-anchor="end" font-size="9" font-weight="400" fill="#6B7280">TEXT</text>
-  <line x1="135" y1="178" x2="135" y2="302" stroke="#374151" stroke-width="1.5" marker-end="url(#arr)"/>
-  <text x="141" y="247" text-anchor="start" font-size="10" fill="#6B7280">1:N</text>
-  <path d="M 252 77 L 282 77 L 282 99" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#arr)"/>
-  <text x="270" y="69" text-anchor="middle" font-size="10" font-weight="400" fill="#6B7280">1:N</text>
-  <line x1="695" y1="222" x2="695" y2="302" stroke="#374151" stroke-width="1.5" marker-end="url(#arr)"/>
-  <text x="701" y="269" text-anchor="start" font-size="10" fill="#6B7280">1:N</text>
-  <rect x="20" y="474" width="440" height="34" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="4"/>
+  <text x="614" y="82" font-size="10" fill="#111827">uid</text>
+  <text x="842" y="82" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="88" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="104" font-size="10" fill="#111827">source</text>
+  <text x="842" y="104" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="110" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="126" font-size="10" fill="#111827">source_id</text>
+  <text x="842" y="126" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="132" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="148" font-size="10" fill="#111827">name</text>
+  <text x="842" y="148" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="154" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="170" font-size="10" fill="#111827">start_date</text>
+  <text x="842" y="170" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="176" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="192" font-size="10" fill="#111827">end_date</text>
+  <text x="842" y="192" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="198" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="214" font-size="10" fill="#111827">venue</text>
+  <text x="842" y="214" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="220" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="236" font-size="10" fill="#111827">divisions</text>
+  <text x="842" y="236" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="242" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="258" font-size="10" fill="#111827">registration</text>
+  <text x="842" y="258" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="264" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="280" font-size="10" fill="#111827">ranking_group</text>
+  <text x="842" y="280" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="286" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="302" font-size="10" fill="#111827">category</text>
+  <text x="842" y="302" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="308" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="324" font-size="10" fill="#111827">url</text>
+  <text x="842" y="324" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="330" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="346" font-size="10" fill="#111827">first_seen</text>
+  <text x="842" y="346" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="352" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="368" font-size="10" fill="#111827">last_seen</text>
+  <text x="842" y="368" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <!-- tournament_changes -->
+  <rect x="580" y="430" width="270" height="168" fill="#FFFFFF" stroke="#374151" stroke-width="1.5" rx="5"/>
+  <rect x="580" y="430" width="270" height="36" fill="#374151" rx="5"/>
+  <rect x="580" y="450" width="270" height="16" fill="#374151"/>
+  <text x="590" y="445" font-size="12" font-weight="700" fill="#FFFFFF">tournament_changes</text>
+  <text x="590" y="459" font-size="9" fill="#9CA3AF">변경 이력</text>
+  <rect x="580" y="466" width="270" height="22" fill="#F3F4F6" stroke="#9CA3AF" stroke-width="1.5"/>
+  <rect x="586" y="470" width="22" height="14" fill="#374151" rx="3"/>
+  <text x="597" y="481" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">PK</text>
+  <text x="614" y="482" font-size="10" fill="#111827">id</text>
+  <text x="842" y="482" text-anchor="end" font-size="9" fill="#6B7280">INTEGER</text>
+  <rect x="580" y="488" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <rect x="586" y="492" width="22" height="14" fill="#6B7280" rx="3"/>
+  <text x="597" y="503" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">FK</text>
+  <text x="614" y="504" font-size="10" fill="#111827">uid</text>
+  <text x="842" y="504" text-anchor="end" font-size="9" fill="#6B7280">→ tournaments</text>
+  <rect x="580" y="510" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="526" font-size="10" fill="#111827">changed_at</text>
+  <text x="842" y="526" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="532" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="548" font-size="10" fill="#111827">field</text>
+  <text x="842" y="548" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="554" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="570" font-size="10" fill="#111827">old_value</text>
+  <text x="842" y="570" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <rect x="580" y="576" width="270" height="22" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5"/>
+  <text x="590" y="592" font-size="10" fill="#111827">new_value</text>
+  <text x="842" y="592" text-anchor="end" font-size="9" fill="#6B7280">TEXT</text>
+  <!-- 관계선 -->
+  <line x1="135" y1="178" x2="135" y2="308" stroke="#374151" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="141" y="247" font-size="10" fill="#6B7280">1:N</text>
+  <path d="M 252 77 L 271 77 L 271 99 L 288 99" stroke="#374151" stroke-width="1.5" fill="none" marker-end="url(#arr)"/>
+  <text x="271" y="69" text-anchor="middle" font-size="10" fill="#6B7280">1:N</text>
+  <line x1="715" y1="376" x2="715" y2="428" stroke="#374151" stroke-width="1.5" marker-end="url(#arr)"/>
+  <text x="721" y="404" font-size="10" fill="#6B7280">1:N</text>
+  <!-- 범례 -->
+  <rect x="20" y="474" width="520" height="52" fill="#FFFFFF" stroke="#9CA3AF" stroke-width="1.5" rx="4"/>
   <rect x="30" y="483" width="22" height="16" fill="#374151" rx="3"/>
   <text x="41" y="495" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">PK</text>
   <rect x="62" y="483" width="22" height="16" fill="#6B7280" rx="3"/>
   <text x="73" y="495" text-anchor="middle" font-size="8" font-weight="700" fill="#FFFFFF">FK</text>
-  <text x="94" y="495" text-anchor="start" font-size="10" fill="#6B7280">= 외래키 (FOREIGN KEY)       1:N = 일대다 관계</text>
+  <text x="94" y="495" font-size="10" fill="#6B7280">= 외래키(FOREIGN KEY) 관계    1:N = 일대다</text>
+  <text x="30" y="515" font-size="9" fill="#6B7280">FK는 논리적 관계로, SQLite에서 외래키 제약조건은 따로 설정하지 않음</text>
 </svg>
