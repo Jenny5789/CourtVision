@@ -69,7 +69,7 @@ def current_user(request: Request):
 def require_user(request: Request):
     user = current_user(request)
     if user is None:
-        raise HTTPException(status_code=401, detail="로그인이 필요합니다.")
+        raise HTTPException(status_code=401, detail="로그인이 필요해요.")
     return user
 
 
@@ -109,7 +109,7 @@ async def signup(req: SignupRequest, response: Response):
 async def login(req: LoginRequest, response: Response):
     user = accounts.authenticate(req.email, req.password)
     if user is None:
-        raise HTTPException(status_code=401, detail="이메일 또는 비밀번호가 올바르지 않습니다.")
+        raise HTTPException(status_code=401, detail="이메일 또는 비밀번호가 올바르지 않아요.")
     _set_login_cookie(response, user["id"])
     return {"email": user["email"], "nickname": user["nickname"]}
 
@@ -135,7 +135,7 @@ async def extend_session(request: Request, response: Response):
     token = request.cookies.get(COOKIE_NAME)
     new_expires = accounts.extend_session(token)
     if new_expires is None:
-        raise HTTPException(status_code=401, detail="로그인이 만료되었습니다. 다시 로그인해주세요.")
+        raise HTTPException(status_code=401, detail="로그인이 만료됐어요. 다시 로그인해 주세요.")
     remaining = _seconds_left(new_expires)
     response.set_cookie(COOKIE_NAME, token, max_age=remaining,
                         httponly=True, samesite="lax", secure=COOKIE_SECURE)
@@ -152,7 +152,7 @@ async def list_my_analyses(request: Request):
 async def delete_my_analysis(analysis_id: int, request: Request):
     user = require_user(request)
     if not accounts.delete_analysis(user["id"], analysis_id):
-        raise HTTPException(status_code=404, detail="기록을 찾을 수 없습니다.")
+        raise HTTPException(status_code=404, detail="기록을 찾을 수 없어요.")
     return {"ok": True}
 
 
@@ -196,7 +196,7 @@ class SetFrameRequest(BaseModel):
 async def set_frame(req: SetFrameRequest):
     session = sessions.get(req.video_id)
     if session is None:
-        raise HTTPException(status_code=404, detail="video_id를 찾을 수 없습니다.")
+        raise HTTPException(status_code=404, detail="영상을 찾을 수 없어요. 다시 업로드해 주세요.")
 
     pipeline.save_first_frame(session["video_path"], session["output_dir"], req.time_sec)
     session["frame_time"] = req.time_sec
@@ -213,10 +213,10 @@ class CalibrateRequest(BaseModel):
 async def calibrate(req: CalibrateRequest):
     session = sessions.get(req.video_id)
     if session is None:
-        raise HTTPException(status_code=404, detail="video_id를 찾을 수 없습니다.")
+        raise HTTPException(status_code=404, detail="영상을 찾을 수 없어요. 다시 업로드해 주세요.")
 
     if len(req.corners) != 4:
-        raise HTTPException(status_code=400, detail="코트 모서리 4개를 모두 지정해주세요.")
+        raise HTTPException(status_code=400, detail="코트 모서리 4개를 모두 지정해 주세요.")
 
     H = pipeline.compute_homography(req.corners)
 
@@ -234,7 +234,7 @@ async def calibrate(req: CalibrateRequest):
     overlay = pipeline.court_overlay_segments(H)
 
     if player1_id is None:
-        raise HTTPException(status_code=400, detail="코트 안에서 선수를 찾지 못했습니다. 4점을 다시 확인해주세요.")
+        raise HTTPException(status_code=400, detail="코트 안에서 선수를 찾지 못했어요. 4점을 다시 확인해 주세요.")
 
     session["H"] = H
     session["candidates"] = candidates
@@ -255,7 +255,7 @@ class AnalyzeRequest(BaseModel):
 async def analyze_video(req: AnalyzeRequest, request: Request):
     session = sessions.get(req.video_id)
     if session is None or "H" not in session:
-        raise HTTPException(status_code=404, detail="먼저 코트 보정을 완료해주세요.")
+        raise HTTPException(status_code=404, detail="먼저 코트 보정을 완료해 주세요.")
 
     target_ids = {session["player1_id"]: "player1"}
 
@@ -276,7 +276,7 @@ async def analyze_video(req: AnalyzeRequest, request: Request):
             saved_id = accounts.save_analysis(user["id"], req.video_id, req.recorded_date,
                                               req.title, result["stats"])
         except ValueError:
-            raise HTTPException(status_code=400, detail="촬영일 형식이 올바르지 않습니다.")
+            raise HTTPException(status_code=400, detail="촬영일 형식이 올바르지 않아요.")
 
     return {
         "stats": result["stats"],

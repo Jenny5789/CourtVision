@@ -158,6 +158,6 @@ def test_run_full_analysis_stationary_player_has_near_zero_distance(clicked_corn
 
 def test_run_full_analysis_raises_for_unknown_track(clicked_corners, make_video, tmp_path):
     H = pipeline.compute_homography(clicked_corners)
-    with pytest.raises(ValueError, match="추적하지 못했습니다"):
+    with pytest.raises(ValueError, match="추적하지 못했어요"):
         pipeline.run_full_analysis(
             moving_player_tracks(1.0), 30.0, {99: "player1"}, H, make_video(frames=2), str(tmp_path / "out"))

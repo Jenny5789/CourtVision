@@ -74,11 +74,11 @@ def create_user(email: str, nickname: str, password: str) -> int:
     email = email.strip().lower()
     nickname = nickname.strip()
     if not EMAIL_RE.match(email):
-        raise ValueError("이메일 형식이 올바르지 않습니다.")
+        raise ValueError("이메일 형식이 올바르지 않아요.")
     if not (1 <= len(nickname) <= 20):
-        raise ValueError("닉네임은 1~20자로 입력해주세요.")
+        raise ValueError("닉네임은 1~20자로 입력해 주세요.")
     if len(password) < 8:
-        raise ValueError("비밀번호는 8자 이상이어야 합니다.")
+        raise ValueError("비밀번호는 8자 이상이어야 해요.")
     try:
         with _conn() as c:
             cur = c.execute(
@@ -86,7 +86,7 @@ def create_user(email: str, nickname: str, password: str) -> int:
                 (email, nickname, _hash_password(password), _now()))
             return cur.lastrowid
     except sqlite3.IntegrityError:
-        raise ValueError("이미 가입된 이메일입니다.")
+        raise ValueError("이미 가입된 이메일이에요.")
 
 
 def authenticate(email: str, password: str):

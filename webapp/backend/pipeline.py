@@ -56,7 +56,7 @@ def save_first_frame(video_path, output_dir, time_sec=0.0):
     ret, frame = cap.read()
     cap.release()
     if not ret:
-        raise ValueError("영상을 읽을 수 없습니다.")
+        raise ValueError("영상을 읽을 수 없어요.")
 
     os.makedirs(output_dir, exist_ok=True)
     frame_path = os.path.join(output_dir, "first_frame.jpg")
@@ -149,7 +149,7 @@ def run_full_analysis(full_tracks, fps, target_ids, H, video_path, output_dir):
 
     df = full_tracks[full_tracks["track_id"].isin(target_ids.keys())].copy()
     if df.empty:
-        raise ValueError("선택한 선수를 추적하지 못했습니다.")
+        raise ValueError("선택한 선수를 추적하지 못했어요.")
 
     df["player"] = df["track_id"].map(target_ids)
     df["pixel_x"] = ((df["x1"] + df["x2"]) / 2).astype(int)
