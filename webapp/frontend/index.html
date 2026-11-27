@@ -6,7 +6,7 @@
 <title>CourtVision</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Noto+Sans+KR:wght@400;500;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Noto+Sans+KR:wght@400;500;700&family=Anton&display=swap" rel="stylesheet">
 <script>
 try {
   var savedTheme = localStorage.getItem("cv-theme");
@@ -15,29 +15,29 @@ try {
 </script>
 <style>
   :root {
-    --font-serif: "Playfair Display", "Noto Serif KR", Georgia, serif;
+    --font-serif: "Anton", "Noto Sans KR", sans-serif;
     --font-sans: "Noto Sans KR", "Pretendard", "Segoe UI", sans-serif;
     --font-script: "Caveat", "Segoe Script", cursive;
 
-    --bg: #0a0a0b;
-    --bg-glow: #141312;
-    --bg-card: #131314;
-    --border: #26262a;
-    --text: #f4f0e9;
-    --text-muted: #9b968d;
-    --text-soft: #c9c4ba;
-    --accent: #d8b07a;
-    --accent-text: #d8b07a;
-    --accent-dim: #2a2318;
-    --on-accent: #1b1409;
-    --btn-bg: #d8b07a;
-    --btn-text: #1b1409;
+    --bg: #090a0c;
+    --bg-glow: #12151a;
+    --bg-card: #111316;
+    --border: #23272e;
+    --text: #f1f4f7;
+    --text-muted: #8f98a4;
+    --text-soft: #c2c8d0;
+    --accent: #cde85c;
+    --accent-text: #cde85c;
+    --accent-dim: #202a10;
+    --on-accent: #12160a;
+    --btn-bg: #cde85c;
+    --btn-text: #12160a;
     --red: #ff6b6b;
     --cyan: #5ec8e0;
     --surface-1: #17171a;
     --surface-2: #212126;
     --panel-inset: #0e0e10;
-    --live-bg: #3a2f1c;
+    --live-bg: #2f3d14;
     --disabled-bg: #2a2a2e;
     --disabled-text: #55555b;
     --glass-bg: rgba(20,20,22,0.66);
@@ -45,10 +45,11 @@ try {
     --hairline: rgba(255,255,255,0.08);
     --ghost-border: rgba(255,255,255,0.24);
     --pill-bg: rgba(255,255,255,0.04);
-    --pill-active-bg: #f1ece2;
-    --pill-active-text: #0a0a0b;
+    --pill-active-bg: #eef1f4;
+    --pill-active-text: #090a0c;
     --shadow: rgba(0,0,0,0.5);
     --hero-img: url("assets/photos/hero_serve_night.webp");
+    --hero-pos: right center;
     --hero-shift: 0%;
     --hero-mask: none;
     --hero-overlay: linear-gradient(90deg, rgba(10,10,11,0.94) 0%, rgba(10,10,11,0.62) 46%, rgba(10,10,11,0.12) 100%);
@@ -64,12 +65,12 @@ try {
     --bg-glow: #eaf0fa;
     --bg-card: #ffffff;
     --border: #dfe6f1;
-    --text: #0f1a2b;
-    --text-muted: #5b6b80;
-    --text-soft: #3d4c62;
-    --accent: #1f5fd0;
-    --accent-text: #1f5fd0;
-    --accent-dim: #e3edfc;
+    --text: #0a1220;
+    --text-muted: #4a5a70;
+    --text-soft: #243046;
+    --accent: #588a0b;
+    --accent-text: #588a0b;
+    --accent-dim: #e6f2c4;
     --on-accent: #ffffff;
     --btn-bg: #0f1a2b;
     --btn-text: #ffffff;
@@ -78,7 +79,7 @@ try {
     --surface-1: #eef3fa;
     --surface-2: #e6edf7;
     --panel-inset: #eef3fa;
-    --live-bg: #dbe7fb;
+    --live-bg: #d9ecab;
     --disabled-bg: #dde4ee;
     --disabled-text: #a0aab8;
     --glass-bg: rgba(255,255,255,0.78);
@@ -90,14 +91,15 @@ try {
     --pill-active-text: #ffffff;
     --shadow: rgba(20,40,80,0.16);
     --hero-img: url("assets/photos/ball_bounce.webp");
+    --hero-pos: center;
     --hero-mask: none;
     --hero-shift: 0%;
-    --hero-overlay: linear-gradient(90deg, rgba(246,248,252,0.97) 0%, rgba(246,248,252,0.78) 42%, rgba(246,248,252,0) 78%);
-    --sec2-img: url("assets/photos/court_topdown.webp");
-    --world-img: url("assets/photos/sunset_net.webp");
-    --world-overlay: linear-gradient(90deg, rgba(246,248,252,0.96) 0%, rgba(246,248,252,0.7) 55%, rgba(246,248,252,0.25) 100%);
-    --cta-img: url("assets/photos/court_sunset.webp");
-    --cta-overlay: linear-gradient(90deg, rgba(246,248,252,0.1) 0%, rgba(246,248,252,0.78) 55%, rgba(246,248,252,0.96) 100%);
+    --hero-overlay: linear-gradient(90deg, rgba(8,12,14,0.86) 0%, rgba(8,12,14,0.55) 46%, rgba(8,12,14,0.05) 100%);
+    --sec2-img: url("assets/photos/insight_face.webp");
+    --world-img: url("assets/photos/stadium_night.webp");
+    --world-overlay: linear-gradient(90deg, rgba(8,12,14,0.84) 0%, rgba(8,12,14,0.52) 55%, rgba(8,12,14,0.12) 100%);
+    --cta-img: url("assets/photos/cta_racket_dust.webp");
+    --cta-overlay: linear-gradient(90deg, rgba(8,12,14,0.15) 0%, rgba(8,12,14,0.7) 55%, rgba(8,12,14,0.88) 100%);
     color-scheme: light;
   }
   * { box-sizing: border-box; }
@@ -108,23 +110,31 @@ try {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    word-break: keep-all;        /* 한글을 어절 단위로 줄바꿈 */
+    overflow-wrap: break-word;   /* 긴 URL 등은 넘치지 않게 */
   }
+  .hero-ko, .hero-sub, .page-title, .feature-desc { text-wrap: balance; }
 
-  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 18px; padding: 24px; margin-bottom: 20px; }
+  .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 24px; margin-bottom: 20px; }
   .card h3 { margin: 0 0 14px; font-size: 14px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.04em; }
   .card p { color: var(--text-muted); font-size: 14px; line-height: 1.6; margin: 0 0 16px; }
 
   .upload-row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 20px; }
-  .file-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 8px; background: var(--btn-bg); color: var(--btn-text); font-size: 14px; font-weight: 700; cursor: pointer; border: 1px solid transparent; }
+  .file-btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 4px; background: var(--btn-bg); color: var(--btn-text); font-size: 14px; font-weight: 700; cursor: pointer; border: 1px solid transparent; }
   .file-btn:hover { opacity: 0.92; }
   .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
   .file-name { font-size: 13px; color: var(--text-muted); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  @media (max-width: 640px) {
+    .upload-row { align-items: stretch; }
+    .upload-row .file-btn, .upload-row .btn-primary { flex: 1 1 0; justify-content: center; text-align: center; white-space: nowrap; padding-left: 10px; padding-right: 10px; }
+    .upload-row .file-name { order: 3; flex: 1 1 100%; white-space: normal; word-break: break-all; overflow: visible; }
+  }
 
-  button { background: var(--accent); color: var(--on-accent); border: none; padding: 12px 22px; border-radius: 10px; cursor: pointer; font-size: 14px; font-weight: 700; }
+  button { background: var(--accent); color: var(--on-accent); border: none; padding: 12px 22px; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: 700; }
   button:disabled { background: var(--disabled-bg); color: var(--text-muted); cursor: not-allowed; }
   button.secondary { background: transparent; border: 1px solid var(--border); color: var(--text-muted); margin-left: 8px; }
 
-  #frame-wrap, #frame-wrap2 { position: relative; display: inline-block; border-radius: 12px; overflow: hidden; }
+  #frame-wrap, #frame-wrap2 { position: relative; display: inline-block; border-radius: 4px; overflow: hidden; }
   #frame-img, #frame-img2 { max-width: 100%; display: block; cursor: crosshair; }
 
   .corner-marker {
@@ -147,11 +157,12 @@ try {
   .corner-marker.draggable:active { cursor: grabbing; }
 
   .calib-guide { display: flex; gap: 20px; align-items: flex-start; margin-bottom: 16px; }
-  .calib-guide svg { flex-shrink: 0; background: var(--panel-inset); border: 1px solid var(--border); border-radius: 10px; padding: 8px; }
+  .calib-guide svg { flex-shrink: 0; background: var(--panel-inset); border: 1px solid var(--border); border-radius: 4px; padding: 8px; }
   .calib-steps { margin: 0 0 10px; padding-left: 18px; color: var(--text); font-size: 13px; line-height: 1.7; }
   .calib-steps b { color: var(--accent-text); }
-  .hint { font-size: 12px !important; margin: 0 !important; }
-  .calib-example { width: 100%; max-width: 440px; border-radius: 10px; border: 1px solid var(--border); margin: 12px 0 6px; display: block; }
+  .hint.file-format { margin: -6px 0 18px !important; }
+  .hint { font-size: 13px !important; margin: 0 !important; color: var(--text-soft); }
+  .calib-example { width: 100%; max-width: 440px; border-radius: 4px; border: 1px solid var(--border); margin: 12px 0 6px; display: block; }
 
   .step-label { font-size: 13px; color: var(--accent-text); font-weight: 700; margin-bottom: 10px; }
 
@@ -165,19 +176,19 @@ try {
 
   #video-bar {
     background: var(--bg-card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 20px; margin-bottom: 20px; display: none;
+    border-radius: 4px; padding: 20px; margin-bottom: 20px; display: none;
     align-items: center; gap: 16px; flex-wrap: wrap;
   }
   #video-bar.show { display: flex; }
   #video-bar .video-bar-label { flex-basis: 100%; font-size: 13px; font-weight: 700; color: var(--text-muted); }
-  video#video-player { height: 200px; width: auto; max-width: 100%; border-radius: 8px; display: block; }
+  video#video-player { height: 200px; width: auto; max-width: 100%; border-radius: 4px; display: block; }
   #use-frame-btn { margin: 0 !important; white-space: nowrap; }
 
   @keyframes flash-highlight {
     0% { box-shadow: 0 0 0 4px var(--accent); }
     100% { box-shadow: 0 0 0 0 transparent; }
   }
-  .flash { animation: flash-highlight 0.9s ease-out; border-radius: 12px; }
+  .flash { animation: flash-highlight 0.9s ease-out; border-radius: 4px; }
 
   .stats-table { width: 100%; border-collapse: collapse; margin-top: 4px; font-size: 13px; }
   .stats-table th, .stats-table td { border-bottom: 1px solid var(--border); padding: 10px; text-align: center; }
@@ -185,7 +196,7 @@ try {
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
 
   #loading, #calib-loading { display: none; color: var(--accent-text); font-size: 13px; margin-left: 12px; }
-  img.result-img { max-width: 100%; border-radius: 12px; margin-top: 10px; border: 1px solid var(--border); }
+  img.result-img { max-width: 100%; border-radius: 4px; margin-top: 10px; border: 1px solid var(--border); }
   .result-label { font-size: 13px; font-weight: 700; color: var(--text-muted); margin: 20px 0 6px; text-transform: uppercase; letter-spacing: 0.04em; }
 
   /* ---- 페이지 전환 ---- */
@@ -198,8 +209,8 @@ try {
   .site-header { position: sticky; top: 0; z-index: 40; background: color-mix(in srgb, var(--bg) 84%, transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--hairline); }
   .topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 72px; }
   .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
-  .brand img { width: 34px; height: 34px; border-radius: 9px; object-fit: cover; display: block; }
-  .brand-name { font-family: var(--font-serif); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; }
+  .brand img { width: 34px; height: 34px; border-radius: 4px; object-fit: cover; display: block; }
+  .brand-name { font-family: var(--font-serif); font-size: 24px; font-weight: 400; letter-spacing: 0; }
   .pills { display: flex; gap: 30px; }
   .pills a { position: relative; padding: 8px 2px; color: var(--text-muted); text-decoration: none; font-size: 14px; font-weight: 500; white-space: nowrap; }
   .pills a:hover, .pills a.active { color: var(--text); }
@@ -211,10 +222,10 @@ try {
   :root[data-theme="light"] .icon-sun { display: none; }
   :root[data-theme="light"] .icon-moon { display: inline; }
 
-  .btn-primary, .btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px; font-size: 14px; font-weight: 700; text-decoration: none; cursor: pointer; border: 1px solid transparent; font-family: inherit; }
+  .btn-primary, .btn-ghost { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 4px; font-size: 14px; font-weight: 700; text-decoration: none; cursor: pointer; border: 1px solid transparent; font-family: inherit; }
   .btn-primary { background: var(--btn-bg); color: var(--btn-text); }
   .btn-ghost { background: transparent; border-color: var(--ghost-border); color: var(--text); }
-  .btn-primary.small, .btn-ghost.small { padding: 8px 18px; font-size: 13px; border-radius: 6px; }
+  .btn-primary.small, .btn-ghost.small { padding: 8px 18px; font-size: 13px; border-radius: 4px; }
 
   .nav-toggle { display: none; }
   .mobile-menu { display: none; flex-direction: column; padding: 8px 24px 18px; border-top: 1px solid var(--hairline); background: var(--bg); }
@@ -234,23 +245,26 @@ try {
   /* ---- 홈 ---- */
   .script { font-family: var(--font-script); color: var(--accent-text); font-weight: 500; }
   .eyebrow { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.22em; line-height: 1.9; color: var(--text-soft); margin-bottom: 26px; padding-left: 12px; border-left: 1px solid var(--ghost-border); }
-  .section-title { font-family: var(--font-serif); font-weight: 500; font-size: 44px; line-height: 1.12; letter-spacing: -0.01em; margin: 0 0 18px; }
+  .section-title { font-family: var(--font-serif); font-weight: 400; font-size: 46px; line-height: 1.1; letter-spacing: 0; text-transform: uppercase; margin: 0 0 18px; }
   .section-ko { font-size: 14px; line-height: 1.7; color: var(--text-soft); margin: 0; }
 
   .hero { position: relative; background: var(--bg); min-height: 620px; display: flex; align-items: center; overflow: hidden; border-bottom: 1px solid var(--hairline); }
-  .hero::before { content: ""; position: absolute; inset: 0; background: var(--hero-img) center / cover no-repeat; transform: translateX(var(--hero-shift)); -webkit-mask-image: var(--hero-mask); mask-image: var(--hero-mask); }
+  .hero::before { content: ""; position: absolute; inset: 0; background: var(--hero-img) var(--hero-pos, center) / cover no-repeat; transform: translateX(var(--hero-shift)); -webkit-mask-image: var(--hero-mask); mask-image: var(--hero-mask); }
   .hero::after { content: ""; position: absolute; inset: 0; background: var(--hero-overlay); }
   .hero .container { position: relative; z-index: 1; width: 100%; padding-top: 72px; padding-bottom: 72px; }
-  .hero-title { font-family: var(--font-serif); font-weight: 500; font-size: 76px; line-height: 1.04; letter-spacing: -0.02em; margin: 0 0 26px; }
+  .hero-title { font-family: var(--font-serif); font-weight: 400; font-size: 84px; line-height: 1.04; letter-spacing: 0; text-transform: uppercase; margin: 0 0 26px; }
   .hero-title em { font-style: normal; color: var(--accent-text); display: block; }
   .hero-ko { font-size: 20px; font-weight: 700; margin: 0 0 12px; }
   .hero-sub { font-size: 15px; line-height: 1.75; color: var(--text-soft); max-width: 440px; margin: 0 0 32px; }
   .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
   .hero-script { position: absolute; right: 9%; bottom: 64px; z-index: 1; font-size: 46px; line-height: 1.05; transform: rotate(-9deg); text-align: left; }
 
-  .insight { padding: 96px 0 40px; }
-  .insight-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 48px; align-items: center; }
-  .insight-photo { position: relative; height: 320px; border-radius: 14px; overflow: hidden; background: var(--sec2-img) center / cover no-repeat; border: 1px solid var(--hairline); }
+  .insight { padding: 0 0 40px; }
+  .insight-band { position: relative; margin-top: 56px; min-height: 400px; display: flex; align-items: center; overflow: hidden; }
+  .insight-band .container { position: relative; z-index: 1; width: 100%; }
+  .insight-text { max-width: 420px; }
+
+  .insight-photo { position: absolute; top: 0; right: 0; bottom: 0; width: 60%; background: var(--sec2-img) center / cover no-repeat; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 30%, #000 65%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%); -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 30%, #000 65%), linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, transparent 100%); mask-composite: intersect; }
   .insight-tags { position: absolute; top: 18px; right: 20px; display: flex; flex-direction: column; gap: 6px; text-align: right; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; color: #fff; text-shadow: 0 1px 6px rgba(0,0,0,0.6); }
   :root[data-theme="light"] .hero-script { color: #fff; text-shadow: 0 2px 12px rgba(10,30,70,0.45); }
   .insight-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.42) 0%, rgba(0,0,0,0) 45%); pointer-events: none; }
@@ -261,24 +275,23 @@ try {
   .feature-icon { width: 56px; height: 56px; margin: 0 auto 16px; border-radius: 50%; background: var(--accent-dim); color: var(--accent-text); display: flex; align-items: center; justify-content: center; }
   .feature-icon svg { width: 26px; height: 26px; }
   .feature-name { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
-  .feature-desc { font-size: 12px; line-height: 1.6; color: var(--text-muted); }
+  .feature-desc { font-size: 13px; line-height: 1.6; color: var(--text-soft); }
 
-  .showcase { padding: 96px 0 40px; }
-  .showcase-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: center; }
-  .showcase-num { display: flex; align-items: center; gap: 14px; margin-top: 28px; font-size: 11px; font-weight: 700; color: var(--text-muted); }
-  .showcase-num::after { content: ""; width: 120px; height: 1px; background: var(--ghost-border); }
-  .showcase-card { position: relative; padding: 18px; border-radius: 16px; background: var(--bg-card); border: 1px solid var(--border); box-shadow: 0 20px 50px var(--shadow); }
-  .showcase-card img { width: 100%; display: block; border-radius: 10px; }
+  .showcase { position: relative; margin-top: 64px; padding: 96px 0; min-height: 440px; overflow: hidden; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+  .showcase .container { position: relative; z-index: 1; }
+  .showcase-text { max-width: 440px; }
+  .showcase-card { position: absolute; top: 0; right: 0; bottom: 0; width: 56%; -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 30%, #000 65%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.5) 30%, #000 65%); }
+  .showcase-card img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: center; }
   .showcase-stats { display: flex; gap: 12px; margin-top: 12px; }
-  .stat-tile { flex: 1; padding: 14px 16px; border-radius: 12px; background: var(--surface-1); border: 1px solid var(--hairline); }
+  .stat-tile { flex: 1; padding: 14px 16px; border-radius: 4px; background: var(--surface-1); border: 1px solid var(--hairline); }
   .stat-tile span { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
   .stat-tile b { font-family: var(--font-serif); font-size: 30px; font-weight: 500; }
   .stat-tile small { font-size: 12px; color: var(--text-muted); margin-left: 4px; }
-  .sample-note { margin: 10px 2px 0; font-size: 11px; color: var(--text-muted); }
-  .mock-badge { position: absolute; top: 30px; left: 30px; padding: 4px 10px; border-radius: 999px; font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.65); color: #d8b07a; border: 1px solid rgba(216,176,122,0.5); }
+  .sample-note { margin: 12px 0 0; font-size: 12.5px; line-height: 1.6; color: var(--text-soft); }
+  .mock-badge { display: inline-block; margin-top: 20px; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; background: rgba(0,0,0,0.65); color: #cde85c; }
 
   .recent-section { display: none; padding: 56px 0 0; }
-  .recent-card { padding: 8px 22px; border-radius: 14px; background: var(--bg-card); border: 1px solid var(--border); }
+  .recent-card { padding: 8px 22px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); }
   .recent-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; }
   .recent-head h3 { margin: 0; font-family: var(--font-serif); font-weight: 500; font-size: 26px; }
   .recent-head a { font-size: 13px; color: var(--accent-text); text-decoration: none; font-weight: 600; }
@@ -294,11 +307,11 @@ try {
   .world-head { min-height: 200px; }
   .world-link { display: inline-block; margin-top: 18px; font-size: 13px; font-weight: 700; color: var(--accent-text); text-decoration: none; }
   .t-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding-bottom: 8px; }
-  .t-card { display: block; text-decoration: none; color: inherit; border-radius: 12px; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border); transition: transform .15s, border-color .15s; }
+  .t-card { display: block; text-decoration: none; color: inherit; border-radius: 4px; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border); transition: transform .15s, border-color .15s; }
   .t-card:hover { transform: translateY(-3px); border-color: var(--accent); }
   .t-card-img { height: 96px; background: var(--surface-2) center / cover no-repeat; }
   .t-card-body { padding: 14px 16px 16px; }
-  .t-card-date { font-size: 12px; font-weight: 700; color: var(--accent-text); margin-bottom: 6px; }
+  .t-card-date { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
   .t-card-name { font-size: 14px; font-weight: 700; line-height: 1.4; min-height: 40px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; }
   .t-card-meta { display: flex; flex-wrap: wrap; gap: 6px; }
 
@@ -307,7 +320,7 @@ try {
   .cta::after { content: ""; position: absolute; inset: 0; background: var(--cta-overlay); }
   .cta .container { position: relative; z-index: 1; width: 100%; display: flex; justify-content: flex-end; }
   .cta-box { width: min(440px, 100%); padding: 40px 0; }
-  .cta-title { font-family: var(--font-serif); font-weight: 500; font-size: 34px; line-height: 1.2; margin: 0 0 12px; }
+  .cta-title { font-family: var(--font-serif); font-weight: 400; font-size: 36px; line-height: 1.15; text-transform: uppercase; margin: 0 0 12px; }
 
   .site-footer { border-top: 1px solid var(--hairline); padding: 44px 0 36px; }
   .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 28px; }
@@ -318,82 +331,92 @@ try {
   .footer-script { font-size: 26px; transform: rotate(-6deg); display: inline-block; margin-top: 4px; }
   .footer-copy { margin-top: 34px; padding-top: 18px; border-top: 1px solid var(--hairline); font-size: 11px; color: var(--text-muted); }
 
-  .tag { font-size: 11px; background: var(--surface-2); padding: 2px 9px; border-radius: 999px; font-weight: 700; }
+  .tag { font-size: 11px; background: var(--surface-2); padding: 2px 9px; border-radius: 4px; font-weight: 700; }
 
   @media (max-width: 900px) {
     .pills { display: none; }
     .hero { min-height: 520px; }
-    .hero-title { font-size: 46px; }
+    .hero-title { font-size: 52px; }
     .hero-script { display: none; }
-    .section-title { font-size: 34px; }
-    .insight-grid, .showcase-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 36px; }
+    .insight-band { flex-direction: column; align-items: stretch; min-height: 0; padding-top: 32px; }
+    .insight-photo { position: relative; width: 100%; height: 240px; margin-top: 32px; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%); mask-image: linear-gradient(180deg, transparent 0%, #000 30%); }
+    .showcase { padding-bottom: 0; }
+    .feature-desc br, .section-ko br, .hero-ko br { display: none; }
+    .showcase-card { position: static; width: 100%; height: 240px; margin-top: 32px; -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 30%); mask-image: linear-gradient(180deg, transparent 0%, #000 30%); }
     .features { grid-template-columns: repeat(2, 1fr); }
     .feature:nth-child(3) { border-left: none; }
     .t-cards { grid-template-columns: repeat(2, 1fr); }
+    .t-card-name { -webkit-line-clamp: 3; min-height: 0; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .cta .container { justify-content: flex-start; }
   }
 
   .chip-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
-  .chip { background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 6px 14px; font-size: 12px; border-radius: 999px; }
-  .chip.active { background: var(--accent-dim); color: var(--accent-text); border-color: var(--accent-text); }
-  .t-month { display: flex; align-items: baseline; gap: 10px; margin: 22px 0 4px; padding: 10px 14px; background: var(--surface-1); border-radius: 10px; }
+  .chip { background: transparent; color: var(--text-muted); border: 1px solid var(--border); padding: 6px 14px; font-size: 12px; border-radius: 4px; }
+  .chip.active { background: var(--surface-2); color: var(--text); border-color: var(--text); }
+  .t-month { display: flex; align-items: baseline; gap: 10px; margin: 22px 0 4px; padding: 10px 14px; background: var(--surface-1); border-radius: 4px; }
   .t-month:first-child { margin-top: 4px; }
   .t-month-title { font-size: 15px; font-weight: 800; color: var(--text); }
   .t-month-count { font-size: 12px; color: var(--text-muted); }
   .t-row { display: flex; align-items: center; gap: 16px; padding: 12px 14px; border-top: 1px solid var(--border); }
   .t-month + .t-row { border-top: none; }
-  .t-date { flex: 0 0 96px; font-size: 13px; font-weight: 700; color: var(--accent-text); }
+  .t-date { flex: 0 0 96px; font-size: 13px; font-weight: 700; color: var(--text); }
   .t-main { flex: 1; min-width: 0; }
   .t-name { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
   .t-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
-  .t-sub { font-size: 12px; color: var(--text-muted); }
-  .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 999px; background: var(--surface-2); color: var(--text-muted); }
-  .badge.open { background: var(--accent); color: var(--on-accent); }
-  .badge.live { background: var(--live-bg); color: var(--accent-text); }
-  .t-link { flex: 0 0 auto; font-size: 12px; color: var(--accent-text); text-decoration: none; white-space: nowrap; }
+  .t-sub { font-size: 13px; color: var(--text-soft); }
+  .badge { font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 4px; background: var(--surface-2); color: var(--text-soft); }
+  .badge.open { background: var(--text); color: var(--bg); }
+  .badge.live { background: var(--surface-2); color: var(--text-soft); }
+  .t-link { flex: 0 0 auto; font-size: 13px; color: var(--text); text-decoration: none; white-space: nowrap; }
   .t-link:hover { text-decoration: underline; }
 
   /* ---- 로그인 / 마이페이지 ---- */
   .user-chip { font-size: 13px; color: var(--text-soft); display: none; }
   .modal-back { position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; z-index: 100; padding: 16px; }
   .modal-back.show { display: flex; }
-  .modal { width: min(760px, 100%); display: grid; grid-template-columns: 0.9fr 1.1fr; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border); border-radius: 22px; box-shadow: 0 20px 60px var(--shadow); }
+  .modal { width: min(760px, 100%); display: grid; grid-template-columns: 0.9fr 1.1fr; overflow: hidden; background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; box-shadow: 0 20px 60px var(--shadow); }
   .modal-img { background: var(--surface-2) center/cover no-repeat url("assets/login_side.jpg"); min-height: 360px; }
   .modal-body { padding: 28px; position: relative; }
   .modal-body h3 { margin: 0 0 6px; font-size: 20px; }
   .modal-close { position: absolute; top: 12px; right: 14px; background: none; border: none; color: var(--text-muted); font-size: 22px; cursor: pointer; margin: 0; padding: 4px 8px; }
   .modal-body label { display: block; font-size: 12px; color: var(--text-muted); margin: 14px 0 5px; }
-  .modal-body input { width: 100%; box-sizing: border-box; padding: 11px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); font-size: 14px; }
+  .modal-body input { width: 100%; box-sizing: border-box; padding: 11px 14px; border-radius: 4px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); font-size: 14px; }
   .modal-body .btn-primary { width: 100%; margin-top: 20px; border: none; cursor: pointer; }
   .form-error { color: #ff6b6b; font-size: 13px; min-height: 18px; margin-top: 12px; }
   .switch-mode { background: none; border: none; color: var(--accent-text); font-size: 13px; cursor: pointer; padding: 0; margin: 12px 0 0; }
   @media (max-width: 700px) { .modal { grid-template-columns: 1fr; } .modal-img { display: none; } }
 
-  .save-box { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; padding: 14px 16px; margin: 14px 0; border: 1px dashed var(--border); border-radius: 12px; }
+  .save-box { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; padding: 14px 16px; margin: 14px 0; border: 1px dashed var(--border); border-radius: 4px; }
   .save-box label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
-  .save-box input { padding: 9px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); font-size: 14px; }
+  .save-box input { padding: 9px 12px; border-radius: 4px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); font-size: 14px; }
   .save-box .hint { margin: 0 !important; flex-basis: 100%; }
 
   .h-day { margin: 22px 0 8px; font-size: 14px; font-weight: 800; color: var(--accent-text); }
-  .h-item { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 12px; margin-bottom: 8px; background: var(--surface-1); }
-  .h-thumb { width: 96px; height: 60px; object-fit: cover; border-radius: 8px; background: var(--surface-2); flex: 0 0 auto; }
+  .h-item { display: flex; align-items: center; gap: 14px; padding: 12px 14px; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 8px; background: var(--surface-1); }
+  .h-thumb { width: 96px; height: 60px; object-fit: cover; border-radius: 4px; background: var(--surface-2); flex: 0 0 auto; }
   .h-info { flex: 1; min-width: 0; }
   .h-title { font-size: 14px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .h-sub { font-size: 12px; color: var(--text-muted); margin-top: 3px; }
   .h-actions { display: flex; gap: 8px; }
   .empty-box { text-align: center; padding: 20px 0; }
-  .empty-box img { max-width: 260px; width: 100%; border-radius: 16px; opacity: 0.9; }
+  .empty-box img { max-width: 260px; width: 100%; border-radius: 4px; opacity: 0.9; }
   .detail-back { margin-bottom: 14px; }
 
   /* ---- 영상 분석 ---- */
   .page.wide { max-width: 1120px; }
   .page-head { margin-bottom: 26px; }
-  .page-title { font-family: var(--font-serif); font-weight: 500; font-size: 60px; line-height: 1.05; letter-spacing: -0.02em; margin: 0 0 18px; }
+  #page-analyze { overflow-x: clip; }
+  #page-analyze .page-head.band { margin: 0 calc(50% - 50vw) 32px; padding: 72px calc(50vw - 50%) 56px; }
+  .band.band-analyze::before { background-image: url("assets/photos/court_sunset.webp"); }
+  .band-analyze > * { position: relative; z-index: 1; }
+  .band-analyze .section-ko { max-width: 560px; }
+  .page-title { font-family: var(--font-serif); font-weight: 400; font-size: 64px; line-height: 1.05; letter-spacing: 0; text-transform: uppercase; margin: 0 0 18px; }
   .page-title em { font-style: normal; color: var(--accent-text); }
   .page-head .hero-ko { margin: 0 0 8px; }
   .stepper { list-style: none; display: flex; gap: 8px; flex-wrap: wrap; padding: 0; margin: 0 0 24px; }
-  .stepper li { display: flex; align-items: center; gap: 10px; padding: 7px 18px 7px 7px; border-radius: 999px; border: 1px solid var(--border); color: var(--text-muted); font-size: 13px; font-weight: 600; }
+  .stepper li { display: flex; align-items: center; gap: 10px; padding: 7px 18px 7px 7px; border-radius: 4px; border: 1px solid var(--border); color: var(--text-muted); font-size: 13px; font-weight: 600; }
   .stepper li b { width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; background: var(--surface-2); font-size: 12px; }
   .stepper li.on { color: var(--text); border-color: var(--accent); }
   .stepper li.on b { background: var(--accent); color: var(--on-accent); }
@@ -404,7 +427,7 @@ try {
   .step-hint { margin: 0 0 20px !important; }
 
   .step-summaries { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-  .step-summary { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 10px; background: var(--surface-1); border: 1px solid var(--hairline); font-size: 13px; }
+  .step-summary { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 4px; background: var(--surface-1); border: 1px solid var(--hairline); font-size: 13px; }
   .step-summary .s-num { width: 22px; height: 22px; border-radius: 50%; background: var(--accent-dim); color: var(--accent-text); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 11px; flex: 0 0 auto; }
   .step-summary .s-text { flex: 1; color: var(--text-soft); }
   .step-summary .s-edit { background: none; border: none; padding: 0; color: var(--accent-text); font-size: 13px; font-weight: 600; cursor: pointer; }
@@ -412,7 +435,7 @@ try {
   @keyframes step-in { from { opacity: 0; transform: translateX(18px); } to { opacity: 1; transform: translateX(0); } }
   .step-panel.step-active { animation: step-in 0.28s ease; }
 
-  .card { border-radius: 16px; padding: 28px; }
+  .card { border-radius: 4px; padding: 28px; }
   .step-head { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; }
   .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: inline-flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex: 0 0 auto; }
   .step-title { margin: 0; font-family: var(--font-serif); font-weight: 500; font-size: 26px; }
@@ -424,12 +447,12 @@ try {
   .rules ul { margin: 0 0 12px; padding-left: 18px; font-size: 13px; line-height: 1.85; color: var(--text-soft); }
   .rules ul b { color: var(--text); }
   .guide-fig { margin: 0; }
-  .guide-fig img { width: 100%; max-height: 340px; object-fit: cover; object-position: center 72%; border-radius: 12px; border: 1px solid var(--border); display: block; }
+  .guide-fig img { width: 100%; max-height: 340px; object-fit: cover; object-position: center 72%; border-radius: 4px; border: 1px solid var(--border); display: block; }
   .guide-fig figcaption { margin-top: 8px; font-size: 12px; line-height: 1.5; color: var(--text-muted); }
 
   .calib-layout { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); gap: 24px; align-items: start; }
   .calib-side { position: sticky; top: 96px; max-height: calc(100vh - 120px); overflow: auto; padding-right: 4px; }
-  .calib-side svg { float: right; width: 110px; height: auto; margin: 0 0 8px 12px; background: var(--panel-inset); border: 1px solid var(--border); border-radius: 10px; padding: 8px; }
+  .calib-side svg { float: right; width: 110px; height: auto; margin: 0 0 8px 12px; background: var(--panel-inset); border: 1px solid var(--border); border-radius: 4px; padding: 8px; }
   .calib-side p { margin: 0 0 12px; font-size: 13px; }
   #frame-wrap, #frame-wrap2 { display: block; }
   #frame-img, #frame-img2 { width: 100%; }
@@ -437,19 +460,19 @@ try {
   details.calib-examples { margin-top: 10px; }
   details.calib-examples summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--accent-text); margin-bottom: 8px; }
 
-  .tab-bar { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: var(--surface-1); border: 1px solid var(--border); margin-bottom: 22px; }
-  .tab-btn { border-bottom: none; border-radius: 999px; padding: 9px 22px; }
+  .tab-bar { display: inline-flex; gap: 4px; padding: 4px; border-radius: 4px; background: var(--surface-1); border: 1px solid var(--border); margin-bottom: 22px; }
+  .tab-btn { border-bottom: none; border-radius: 4px; padding: 9px 22px; }
   .tab-btn.active { background: var(--accent); color: var(--on-accent); border-bottom: none; }
 
   .result-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr); gap: 20px; align-items: start; }
-  .result-card { padding: 16px; border-radius: 14px; background: var(--surface-1); border: 1px solid var(--hairline); }
+  .result-card { padding: 16px; border-radius: 4px; background: var(--surface-1); border: 1px solid var(--hairline); }
   .result-card .result-label { margin: 0 0 8px; }
-  .result-card .result-img { width: 100%; max-width: 100%; margin-top: 0; border: none; border-radius: 10px; display: block; }
+  .result-card .result-img { width: 100%; max-width: 100%; margin-top: 0; border: none; border-radius: 4px; display: block; }
   #heatmap-img { max-width: 720px; margin: 0 auto; }
-  .player-card { padding: 16px 18px; border-radius: 14px; background: var(--surface-1); border: 1px solid var(--hairline); margin-bottom: 12px; }
+  .player-card { padding: 16px 18px; border-radius: 4px; background: var(--surface-1); border: 1px solid var(--hairline); margin-bottom: 12px; }
   .player-name { display: flex; align-items: center; font-weight: 700; font-size: 14px; margin-bottom: 12px; }
   .tile-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .tile { padding: 10px 12px; border-radius: 10px; background: var(--bg-card); border: 1px solid var(--hairline); }
+  .tile { padding: 10px 12px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--hairline); }
   .tile span { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
   .tile b { font-family: var(--font-serif); font-size: 24px; font-weight: 500; }
   .tile small { font-size: 12px; color: var(--text-muted); }
@@ -458,7 +481,7 @@ try {
   @media (max-width: 900px) {
     .upload-grid, .calib-layout, .result-grid { grid-template-columns: 1fr; }
     .calib-side { position: static; max-height: none; }
-    .page-title { font-size: 42px; }
+    .page-title { font-size: 44px; }
   }
   /* ---- 대회 일정 ---- */
   .band { position: relative; padding: 72px 0 56px; overflow: hidden; border-bottom: 1px solid var(--hairline); }
@@ -468,6 +491,16 @@ try {
   .band .page-title em { display: block; }
   .band-script { position: absolute; right: 9%; top: 96px; z-index: 1; font-size: 44px; line-height: 1.1; transform: rotate(-8deg); }
   :root[data-theme="light"] .band-script { color: #fff; text-shadow: 0 2px 12px rgba(10,30,70,0.45); }
+  /* 라이트 테마: 사진 배너 위는 어두운 막 + 밝은 글자 */
+  :root[data-theme="light"] .hero,
+  :root[data-theme="light"] .band,
+  :root[data-theme="light"] .world-head,
+  :root[data-theme="light"] .cta {
+    --text: #ffffff; --text-soft: #e6eaee; --text-muted: #c9d0d8;
+    --accent-text: #cde85c; --ghost-border: rgba(255,255,255,0.45);
+    --btn-bg: #cde85c; --btn-text: #12160a;
+    color: #ffffff;
+  }
 
   .src-tabs { display: flex; gap: 30px; padding-top: 18px; border-bottom: 1px solid var(--hairline); margin-bottom: 32px; }
   .src-tab { background: none; border: none; border-bottom: 2px solid transparent; border-radius: 0; margin-bottom: -1px; padding: 12px 2px; color: var(--text-muted); font-size: 14px; font-weight: 600; cursor: pointer; }
@@ -477,27 +510,27 @@ try {
   .t-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 36px; padding-bottom: 96px; }
   .t-side h4 { margin: 0 0 12px; font-size: 13px; font-weight: 700; }
   .side-list { display: flex; flex-direction: column; gap: 4px; margin-bottom: 28px; }
-  .side-item { background: none; border: none; text-align: left; padding: 10px 12px; border-radius: 8px; color: var(--text-muted); font-size: 13px; font-weight: 600; cursor: pointer; }
+  .side-item { background: none; border: none; text-align: left; padding: 10px 12px; border-radius: 4px; color: var(--text-soft); font-size: 14px; font-weight: 600; cursor: pointer; }
   .side-item:hover { color: var(--text); }
-  .side-item.on { background: var(--accent-dim); color: var(--accent-text); }
+  .side-item.on { background: var(--surface-2); color: var(--text); font-weight: 700; }
   .check { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; font-size: 13px; color: var(--text-soft); cursor: pointer; }
   .check input { accent-color: var(--accent); width: 16px; height: 16px; }
-  .side-photo { height: 150px; border-radius: 12px; display: flex; align-items: flex-end; padding: 14px; background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.6)), url("assets/photos/court_topdown.webp") center / cover no-repeat; border: 1px solid var(--hairline); }
+  .side-photo { height: 150px; border-radius: 4px; display: flex; align-items: flex-end; padding: 14px; background: linear-gradient(180deg, rgba(0,0,0,0.05), rgba(0,0,0,0.6)), url("assets/photos/stadium_night.webp") center / cover no-repeat; border: 1px solid var(--hairline); }
   .side-photo .script { color: #fff; font-size: 24px; line-height: 1.1; transform: rotate(-4deg); }
 
   .t-sec-head { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 16px; }
   .t-sec-head h2 { margin: 0; font-family: var(--font-serif); font-weight: 500; font-size: 26px; }
 
   .tt-head, .tt-row { display: grid; grid-template-columns: 112px minmax(0, 1.7fr) 64px minmax(0, 1.1fr) 96px 34px; gap: 14px; align-items: center; }
-  .tt-head { padding: 8px; font-size: 11px; letter-spacing: 0.06em; color: var(--text-muted); border-bottom: 1px solid var(--hairline); }
-  .tt-row { padding: 14px 8px; border-top: 1px solid var(--hairline); font-size: 13px; }
+  .tt-head { padding: 8px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--text-soft); border-bottom: 1px solid var(--hairline); }
+  .tt-row { padding: 14px 8px; border-top: 1px solid var(--hairline); font-size: 14px; color: var(--text-soft); }
   .tt-row:hover { background: var(--surface-1); }
   .t-month + .tt-row { border-top: none; }
-  .tt-date { font-weight: 700; font-size: 13px; color: var(--accent-text); }
+  .tt-date { font-weight: 700; font-size: 14px; color: var(--text); }
   .tt-title { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; font-weight: 700; font-size: 14px; }
   .c-div { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .tt-go { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--ghost-border); display: inline-flex; align-items: center; justify-content: center; color: var(--text); text-decoration: none; font-size: 13px; }
-  .tt-go:hover { border-color: var(--accent); color: var(--accent-text); }
+  .tt-go:hover { border-color: var(--text); color: var(--text); }
   .only-m { display: none; }
 
   @media (max-width: 1100px) {
@@ -513,15 +546,14 @@ try {
   }
   /* ---- 마이페이지 ---- */
   :root { --my-img: url("assets/photos/bench_racket_dark.webp"); }
-  :root[data-theme="light"] { --my-img: url("assets/photos/court_sunset.webp"); }
   .band.band-my::before { background-image: var(--my-img); }
   .my-wrap { padding-top: 36px; padding-bottom: 96px; }
   .my-layout { display: none; grid-template-columns: 210px minmax(0, 1fr) 260px; gap: 28px; align-items: start; }
   .my-filters h4, .my-progress h4 { margin: 0 0 14px; font-size: 14px; font-weight: 700; }
   .field { margin-bottom: 16px; }
   .field label { display: block; margin-bottom: 6px; font-size: 12px; color: var(--text-muted); }
-  .field input, .field select { width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); font-size: 13px; font-family: inherit; }
-  .my-progress { position: sticky; top: 96px; padding: 20px; border-radius: 14px; background: var(--bg-card); border: 1px solid var(--border); }
+  .field input, .field select { width: 100%; padding: 10px 12px; border-radius: 4px; border: 1px solid var(--border); background: var(--surface-1); color: var(--text); font-size: 13px; font-family: inherit; }
+  .my-progress { position: sticky; top: 96px; padding: 20px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); }
   .progress-row { display: flex; justify-content: space-between; align-items: baseline; padding: 11px 0; border-top: 1px solid var(--hairline); font-size: 13px; color: var(--text-muted); }
   .progress-row:first-child { border-top: none; }
   .progress-row b { font-family: var(--font-serif); font-size: 22px; font-weight: 500; color: var(--text); }
@@ -529,18 +561,18 @@ try {
 
   .h-day { margin: 22px 0 10px; font-size: 13px; font-weight: 700; color: var(--accent-text); letter-spacing: 0.02em; }
   .h-day:first-child { margin-top: 0; }
-  .m-card { display: grid; grid-template-columns: 132px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 12px; margin-bottom: 10px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-card); transition: border-color .15s; }
+  .m-card { display: grid; grid-template-columns: 132px minmax(0, 1fr) auto; gap: 16px; align-items: center; padding: 12px; margin-bottom: 10px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-card); transition: border-color .15s; }
   .m-card:hover { border-color: var(--accent); }
-  .m-thumb { width: 132px; height: 84px; object-fit: cover; border-radius: 8px; background: var(--surface-2); display: block; }
+  .m-thumb { width: 132px; height: 84px; object-fit: cover; border-radius: 4px; background: var(--surface-2); display: block; }
   .m-title { font-size: 15px; font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .m-sub { margin: 4px 0 8px; font-size: 12px; color: var(--text-muted); }
   .m-badges { display: flex; flex-wrap: wrap; gap: 6px; }
   .m-actions { display: flex; gap: 8px; }
   .empty-box { text-align: center; padding: 24px 0; }
   .empty-box p { margin: 14px 0 18px; color: var(--text-muted); font-size: 14px; }
-  .empty-box img { max-width: 260px; width: 100%; border-radius: 16px; opacity: 0.92; }
+  .empty-box img { max-width: 260px; width: 100%; border-radius: 4px; opacity: 0.92; }
 
-  .gate { display: none; grid-template-columns: 0.9fr 1.1fr; border-radius: 18px; overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); }
+  .gate { display: none; grid-template-columns: 0.9fr 1.1fr; border-radius: 4px; overflow: hidden; border: 1px solid var(--border); background: var(--bg-card); }
   .gate-img { min-height: 320px; background: var(--surface-2) url("assets/login_side.jpg") center / cover no-repeat; }
   .gate-body { padding: 44px; display: flex; flex-direction: column; justify-content: center; gap: 14px; }
   .gate-body h2 { margin: 0; font-family: var(--font-serif); font-weight: 500; font-size: 30px; }
@@ -562,7 +594,6 @@ try {
   }
   /* ---- 소개 ---- */
   :root { --about-img: url("assets/photos/gear_sunset_b.webp"); }
-  :root[data-theme="light"] { --about-img: url("assets/photos/court_topdown.webp"); }
   .band.band-about { padding: 88px 0 72px; }
   .band.band-about::before { background-image: var(--about-img); }
   .band-about .hero-sub { max-width: 520px; }
@@ -574,25 +605,25 @@ try {
   .how-step:first-child { border-left: none; padding-left: 0; }
   .how-num { font-family: var(--font-serif); font-size: 34px; color: var(--accent-text); margin-bottom: 10px; }
   .how-name { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-  .how-step p, .value p { margin: 0; font-size: 13px; line-height: 1.75; color: var(--text-muted); }
+  .how-step p, .value p { margin: 0; font-size: 14px; line-height: 1.75; color: var(--text-soft); }
 
   .values { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .value { padding: 24px 22px; border-radius: 14px; background: var(--bg-card); border: 1px solid var(--border); }
+  .value { padding: 24px 22px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); }
   .value-num { font-family: var(--font-serif); font-size: 26px; color: var(--accent-text); margin-bottom: 8px; }
   .value-name { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
 
   .num-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-  .num-tile { padding: 24px 22px; border-radius: 14px; background: var(--surface-1); border: 1px solid var(--hairline); }
+  .num-tile { padding: 24px 22px; border-radius: 4px; background: var(--surface-1); border: 1px solid var(--hairline); }
   .num-tile b { display: block; font-family: var(--font-serif); font-size: 44px; font-weight: 500; line-height: 1.1; margin-bottom: 10px; color: var(--accent-text); }
   .num-tile b small { font-size: 16px; color: var(--text-muted); }
-  .num-tile span { font-size: 12px; line-height: 1.6; color: var(--text-muted); }
-  .fine { margin: 20px 0 0; font-size: 12px; line-height: 1.7; color: var(--text-muted); max-width: 760px; }
+  .num-tile span { font-size: 13px; line-height: 1.6; color: var(--text-soft); }
+  .fine { margin: 20px 0 0; font-size: 13px; line-height: 1.7; color: var(--text-soft); max-width: 760px; }
   .fine a { color: var(--accent-text); }
 
   .status-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-  .status-card { padding: 24px 24px 20px; border-radius: 14px; background: var(--bg-card); border: 1px solid var(--border); }
+  .status-card { padding: 24px 24px 20px; border-radius: 4px; background: var(--bg-card); border: 1px solid var(--border); }
   .status-card h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-size: 15px; font-weight: 700; }
-  .status-card ul { margin: 0; padding-left: 18px; font-size: 13px; line-height: 1.85; color: var(--text-soft); }
+  .status-card ul { margin: 0; padding-left: 18px; font-size: 14px; line-height: 1.85; color: var(--text-soft); }
   .dot-ok, .dot-part, .dot-no { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; }
   .dot-ok { background: var(--accent); }
   .dot-part { background: transparent; border: 2px solid var(--accent); }
@@ -660,8 +691,8 @@ try {
     <div class="container">
       <span class="eyebrow">AMATEUR TENNIS ANALYTICS<br>FOR A DEEPER GAME</span>
       <h1 class="hero-title">Every<br>Match Tells<em>a Story.</em></h1>
-      <p class="hero-ko">당신의 테니스를, 데이터로 더 깊이.</p>
-      <p class="hero-sub">연습·경기 영상을 올리면 선수를 자동으로 추적해서 이동 경로,<br>이동거리, 코트 히트맵을 만들어 드립니다.<br>전용 카메라 없이 휴대폰 영상이면 충분합니다.</p>
+      <p class="hero-ko">테니스 영상으로 이동 경로와 거리를 확인해 보세요.</p>
+      <p class="hero-sub">연습·경기 영상을 올리면 선수를 자동으로 추적해서 이동 경로,<br>이동거리, 코트 히트맵을 만들어 드려요.<br>전용 카메라 없이 휴대폰 영상이면 충분해요.</p>
       <div class="hero-cta">
         <a class="btn-primary" href="#analyze">영상 분석 시작 →</a>
         <a class="btn-ghost" href="#tournaments">다가오는 대회 보기</a>
@@ -671,36 +702,38 @@ try {
   </div>
 
   <section class="insight">
-    <div class="container">
-      <div class="insight-grid">
-        <div>
+    <div class="insight-band">
+      <div class="container">
+        <div class="insight-text">
           <h2 class="section-title">Turn Video<br>Into Insights</h2>
-          <p class="section-ko">단순한 영상이 아니라,<br>성장을 위한 데이터가 됩니다.</p>
-        </div>
-        <div class="insight-photo">
-          <div class="insight-tags"><span>PLAYER TRACKING</span><span>MOVEMENT PATTERN</span><span>COURT HEATMAP</span></div>
+          <p class="section-ko">단순한 영상이 아니라, <br>성장을 위한 데이터가 돼요.</p>
         </div>
       </div>
+      <div class="insight-photo">
+        <div class="insight-tags"><span>PLAYER TRACKING</span><span>MOVEMENT PATTERN</span><span>COURT HEATMAP</span></div>
+      </div>
+    </div>
+    <div class="container">
       <div class="features">
         <div class="feature">
           <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3.5"/><path d="M5 20c0-4 3-6.5 7-6.5s7 2.5 7 6.5"/></svg></div>
           <div class="feature-name">선수 추적</div>
-          <div class="feature-desc">영상 속 선수를 자동으로<br>찾아서 따라갑니다</div>
+          <div class="feature-desc">영상 속 선수를 자동으로 <br>찾아서 따라가요</div>
         </div>
         <div class="feature">
           <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17c4-1 4-9 8-9s3 8 8 8"/><circle cx="4" cy="17" r="1.6"/><circle cx="20" cy="16" r="1.6"/></svg></div>
           <div class="feature-name">이동거리·속도</div>
-          <div class="feature-desc">코트 4점을 기준으로<br>미터 단위로 계산합니다</div>
+          <div class="feature-desc">코트 4점을 기준으로 <br>미터 단위로 계산해요</div>
         </div>
         <div class="feature">
           <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 12h16M12 4v16"/></svg></div>
           <div class="feature-name">코트 히트맵</div>
-          <div class="feature-desc">어디에 오래 머물렀는지<br>한눈에 보여드립니다</div>
+          <div class="feature-desc">어디에 오래 머물렀는지 <br>한눈에 보여드려요</div>
         </div>
         <div class="feature">
           <div class="feature-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg></div>
           <div class="feature-name">기록 모아보기</div>
-          <div class="feature-desc">로그인하면 촬영일별로<br>저장해 다시 볼 수 있어요</div>
+          <div class="feature-desc">로그인하면 촬영일별로 <br>저장해 다시 볼 수 있어요</div>
         </div>
       </div>
     </div>
@@ -708,20 +741,15 @@ try {
 
   <section class="showcase">
     <div class="container">
-      <div class="showcase-grid">
-        <div>
-          <h2 class="section-title">See the Game<br>Differently</h2>
-          <p class="section-ko">눈으로만 보던 경기를,<br>코트 위 움직임으로 확인해 보세요.</p>
-          <div class="showcase-num">02</div>
-        </div>
-        <div>
-          <div class="showcase-card">
-            <img src="assets/photos/game_insight_mock.webp" alt="디자인 예시: 공 궤적과 코트 점유율">
-            <span class="mock-badge">예시 · 구현 예정</span>
-          </div>
-          <p class="sample-note">디자인 예시 화면입니다. 공 추적·랠리 수·코트 점유율은 구현 예정 기능이며, 표시된 수치는 실제 분석 결과가 아닙니다.</p>
-        </div>
+      <div class="showcase-text">
+        <h2 class="section-title">See the Game<br>Differently</h2>
+        <p class="section-ko">공 궤적과 코트 점유율 분석을 <br>준비 중이에요.</p>
+        <span class="mock-badge">예시 · 구현 예정</span>
+        <p class="sample-note">디자인 예시 화면이에요. 공 추적·랠리 수·코트 점유율은 구현 예정 기능이고, 표시된 수치는 실제 분석 결과가 아니에요.</p>
       </div>
+    </div>
+    <div class="showcase-card">
+      <img src="assets/photos/game_insight_mock.webp" alt="디자인 예시: 공 궤적과 코트 점유율">
     </div>
   </section>
 
@@ -757,11 +785,11 @@ try {
 </section>
 
 <section class="page narrow wide" id="page-analyze">
-<div class="page-head">
+<div class="page-head band band-analyze">
   <span class="eyebrow">ANALYZE<br>UNDERSTAND<br>IMPROVE</span>
   <h1 class="page-title">Match <em>Analysis</em></h1>
-  <p class="hero-ko">경기를 더 깊이, 데이터로 분석하세요.</p>
-  <p class="section-ko">영상을 올리고 코트 4점만 표시하면, 선수의 이동 경로·거리·속도와 코트 히트맵을 만들어 드립니다.</p>
+  <p class="hero-ko">영상을 올려 이동 경로와 히트맵을 확인해 보세요.</p>
+  <p class="section-ko">영상을 올리고 코트 4점만 표시하면, 선수의 이동 경로·거리·속도와 코트 히트맵을 만들어 드려요.</p>
 </div>
 
 <ol class="stepper" id="stepper">
@@ -770,7 +798,7 @@ try {
   <li data-step="3"><b>3</b><span>선수 선택</span></li>
   <li data-step="4"><b>4</b><span>결과</span></li>
 </ol>
-<p class="hint step-hint">완료한 단계는 위 번호를 눌러 다시 열 수 있습니다.</p>
+<p class="hint step-hint">완료한 단계는 위 번호를 눌러 다시 열 수 있어요.</p>
 <div class="step-summaries" id="step-summaries"></div>
 
 <div class="card step-panel" id="upload-card">
@@ -783,27 +811,28 @@ try {
         <span class="file-name" id="file-name">선택된 파일 없음</span>
         <button id="upload-btn" class="btn-primary">업로드</button>
       </div>
+      <p class="hint file-format">권장 형식: MP4 (H.264). 다른 형식은 재생이나 분석이 안 될 수 있어요.</p>
       <div class="rules">
         <h4>이런 영상이 좋아요</h4>
         <ul>
-          <li>삼각대 등으로 <b>카메라를 고정</b>하고, 줌·이동·편집 컷이 없는 연속 영상</li>
+          <li><b>카메라를 고정</b>하고, 줌·이동·편집 컷이 없는 연속 영상</li>
           <li><b>베이스라인 뒤 중앙</b>의 높은 곳에서 코트를 내려다보는 각도</li>
-          <li><b>가까운 쪽 코트 전체</b>(서비스라인, 네트 아래 사이드라인)와 <b>가까운 선수의 몸 전체</b>가 화면 안에 보일 것</li>
-          <li>점수판·자막이 얹힌 <b>방송용 영상은 피해주세요</b></li>
+          <li><b>가까운 쪽 코트 전체</b>(서비스라인, 네트 아래 사이드라인)와 <b>가까운 선수의 몸 전체</b>가 화면 안에 보이는 영상</li>
+          <li>점수판·자막이 없는 영상 (<b>방송용 영상 제외</b>)</li>
           <li>밝고 선명한 영상</li>
         </ul>
-        <p class="hint">조건이 맞지 않으면 결과가 부정확하거나 분석이 실패할 수 있습니다.</p>
+        <p class="hint">조건이 맞지 않으면 결과가 부정확하거나 분석이 실패할 수 있어요.</p>
       </div>
     </div>
     <figure class="guide-fig">
       <img src="assets/filming_guide.jpg" alt="촬영 위치 안내: 베이스라인 뒤쪽 높은 곳에서 코트 전체를 향해 삼각대로 고정 촬영">
-      <figcaption>베이스라인 뒤 중앙에 삼각대를 세우고, 코트가 화면에 들어오도록 고정해서 촬영합니다.</figcaption>
+      <figcaption>베이스라인 뒤 중앙에 삼각대를 세우고, 코트가 화면에 들어오도록 고정해서 촬영해 주세요.</figcaption>
     </figure>
   </div>
 </div>
 
 <div id="video-bar" class="step-panel" data-belongs-step="1">
-  <span class="video-bar-label">기본은 첫 장면을 사용합니다. 다른 장면이 더 잘 보이면 영상을 재생해 원하는 시점에서 멈추고 아래 버튼을 누르세요.</span>
+  <span class="video-bar-label">기본은 첫 장면을 사용해요. 다른 장면이 더 잘 보이면 영상을 재생해 원하는 시점에서 멈추고 아래 버튼을 눌러 주세요.</span>
   <video id="video-player" controls></video>
   <button id="use-frame-btn" class="btn-ghost small" style="display:none;">▶ 이 시점 사용</button>
 </div>
@@ -819,7 +848,7 @@ try {
       <div class="calib-actions">
         <button id="calibrate-btn" disabled>보정 완료 (0/4)</button>
         <button id="reset-corners-btn" class="secondary">다시 찍기</button>
-        <span id="calib-loading">선수 검출 중...</span>
+        <span id="calib-loading">선수를 찾는 중이에요…</span>
       </div>
     </div>
     <aside class="calib-side">
@@ -835,20 +864,20 @@ try {
         <circle cx="180" cy="10" r="10" style="fill:var(--accent)"/><text x="180" y="14" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">3</text>
         <circle cx="10" cy="10" r="10" style="fill:var(--accent)"/><text x="10" y="14" text-anchor="middle" font-size="12" font-weight="800" style="fill:var(--on-accent)">4</text>
       </svg>
-      <p>카메라에 <b>가까운 쪽 코트</b>의 사각형 4점을 클릭해주세요. <b>클릭 순서는 상관없습니다</b>(위치로 자동 정렬됩니다). 실제 거리 계산의 기준점이라 정확할수록 좋습니다.</p>
+      <p>카메라에 <b>가까운 쪽 코트</b>의 사각형 4점을 클릭해 주세요. <b>클릭 순서는 상관없어요</b>(위치로 자동 정렬돼요). 실제 거리 계산의 기준점이라 정확할수록 좋아요.</p>
       <ol class="calib-steps">
         <li><b>①</b> 가까운 서비스라인의 <b>왼쪽 끝</b> (서비스라인이 왼쪽 사이드라인과 만나는 점)</li>
         <li><b>②</b> 같은 서비스라인의 <b>오른쪽 끝</b></li>
         <li><b>③</b> 오른쪽 사이드라인이 <b>네트 아래 바닥</b>과 만나는 점</li>
         <li><b>④</b> 왼쪽 사이드라인이 네트 아래 바닥과 만나는 점</li>
       </ol>
-      <p class="hint">복식 사이드라인이 아니라 안쪽 <b>싱글 사이드라인</b> 기준입니다. 맨 아래 <b>베이스라인이 아니라</b> 그 위쪽 서비스라인입니다. 4점을 찍으면 <b>초록색 코트 선이 바로 나타납니다.</b> 실제 선과 어긋나면 <b>번호 점을 드래그해서 옮기세요</b>(선이 실시간으로 따라 움직입니다).</p>
+      <p class="hint">복식 사이드라인이 아니라 안쪽 <b>싱글 사이드라인</b> 기준이에요. 맨 아래 <b>베이스라인이 아니라</b> 그 위쪽 서비스라인이에요. 4점을 찍으면 <b>초록색 코트 선이 바로 나타나요.</b> 실제 선과 어긋나면 <b>번호 점을 드래그해서 옮겨 주세요</b>(선이 실시간으로 따라 움직여요).</p>
       <details class="calib-examples">
         <summary>예시 이미지 보기</summary>
         <img class="calib-example" src="calib_example.jpg" alt="4점 클릭 예시">
-        <p class="hint">예시: 초록 원이 클릭할 4점, 초록 선이 보정 후 나타나는 코트 선입니다.</p>
+        <p class="hint">예시: 초록 원이 클릭할 4점, 초록 선이 보정 후 나타나는 코트 선이에요.</p>
         <img class="calib-example" src="calib_example_net.jpg" alt="네트 쪽 점 확대 예시">
-        <p class="hint"><b>③④는 그물 윗선이 아니라, 흰 사이드라인이 그물 아래 바닥과 만나는 곳</b>입니다. 브라우저를 확대(Ctrl + 마우스 휠)하고 찍으면 정확합니다.</p>
+        <p class="hint"><b>③④는 그물 윗선이 아니라, 흰 사이드라인이 그물 아래 바닥과 만나는 곳</b>이에요. 브라우저를 확대(Ctrl + 마우스 휠)하고 찍으면 정확해요.</p>
       </details>
     </aside>
   </div>
@@ -862,8 +891,8 @@ try {
 
   <div id="select-panel" class="tab-panel">
     <div class="step-head"><span class="step-num">3</span><h2 class="step-title">상대 선수 선택 <small class="opt">선택사항</small></h2></div>
-    <p><b>먼저 확인:</b> 초록색 선이 실제 코트 선(외곽선, 서비스라인, 네트)과 겹쳐야 정확한 보정입니다. 어긋나면 <button type="button" id="recalibrate-btn" class="secondary" style="margin:0;padding:6px 12px;">보정 수정하기</button> (찍은 점이 그대로 남아 있어 드래그로 옮길 수 있습니다)</p>
-    <p>Player1(빨강 박스)은 자동 선택됨. 상대 선수도 분석하려면 아래 이미지에서 위치를 클릭하세요.</p>
+    <p><b>먼저 확인:</b> 초록색 선이 실제 코트 선(외곽선, 서비스라인, 네트)과 겹쳐야 정확한 보정이에요. 어긋나면 <button type="button" id="recalibrate-btn" class="secondary" style="margin:0;padding:6px 12px;">보정 수정하기</button> (찍은 점이 그대로 남아 있어 드래그로 옮길 수 있어요)</p>
+    <p>선수 1(빨간 박스)은 자동으로 선택돼요. 상대 선수도 분석하려면 아래 이미지에서 위치를 클릭해 주세요.</p>
     <div id="frame-wrap2">
       <img id="frame-img2">
       <svg id="court-overlay" xmlns="http://www.w3.org/2000/svg"></svg>
@@ -871,27 +900,27 @@ try {
     </div>
     <div class="save-box">
       <div><label for="rec-date">촬영일</label><input type="date" id="rec-date"></div>
-      <div><label for="rec-title">제목 (선택)</label><input type="text" id="rec-title" maxlength="60" placeholder="예: 주말 랠리 연습"></div>
+      <div><label for="rec-title">제목 (선택사항)</label><input type="text" id="rec-title" maxlength="60" placeholder="예: 주말 랠리 연습"></div>
       <p class="hint" id="save-hint"></p>
     </div>
     <button id="analyze-btn">분석 시작</button>
-    <span id="loading">분석 중입니다... 수 분 소요될 수 있어요</span>
+    <span id="loading">분석 중이에요. 몇 분 걸릴 수 있어요.</span>
   </div>
 
   <div id="result-panel" class="tab-panel" style="display:none;">
     <div class="step-head"><span class="step-num">4</span><h2 class="step-title">분석 결과</h2></div>
     <div class="result-grid">
       <div class="result-card">
-        <div class="result-label">Trajectory</div>
+        <div class="result-label">이동 궤적</div>
         <img class="result-img" id="trajectory-img">
       </div>
       <div>
         <div id="stats-table"></div>
-        <p class="hint note">참고용 추정값입니다. 카메라에서 먼 쪽 선수의 거리·속도는 오차가 더 크고, 코트 4점이 정확할수록 결과가 좋아집니다.</p>
+        <p class="hint note">참고용 추정값이에요. 카메라에서 먼 쪽 선수의 거리·속도는 오차가 더 크고, 코트 4점이 정확할수록 결과가 좋아져요.</p>
       </div>
     </div>
     <div class="result-card" style="margin-top:20px;">
-      <div class="result-label">Heatmap</div>
+      <div class="result-label">히트맵</div>
       <img class="result-img" id="heatmap-img">
     </div>
   </div>
@@ -904,8 +933,8 @@ try {
     <div class="container">
       <span class="eyebrow">TENNIS<br>BRINGS OUT<br>A BETTER YOU</span>
       <h1 class="page-title">Tournaments<em>Around Korea</em></h1>
-      <p class="hero-ko">국내 아마추어 테니스 대회를 한눈에.</p>
-      <p class="section-ko">한국테니스발전협의회(KATO)와 대한테니스협회(KTA)가 공개한 일정을 모아서 보여드립니다.</p>
+      <p class="hero-ko">국내 아마추어 테니스 대회 일정을 모아 보여줘요.</p>
+      <p class="section-ko">한국테니스발전협의회(KATO)와 대한테니스협회(KTA)가 공개한 일정을 모아서 보여드려요.</p>
     </div>
     <div class="band-script script">More<br>&nbsp;&nbsp;Tennis Moments</div>
   </div>
@@ -949,8 +978,8 @@ try {
     <div class="container">
       <span class="eyebrow">PLAY<br>ANALYZE<br>IMPROVE</span>
       <h1 class="page-title">My<em>Analyses</em></h1>
-      <p class="hero-ko">당신의 모든 분석이,<br>더 나은 다음 경기를 만듭니다.</p>
-      <p class="section-ko">분석한 영상을 촬영일별로 모아서 다시 볼 수 있습니다.</p>
+      <p class="hero-ko">저장한 분석 기록을 <br>여기에서 다시 볼 수 있어요.</p>
+      <p class="section-ko">분석한 영상을 촬영일별로 모아서 다시 볼 수 있어요.</p>
     </div>
     <div class="band-script script">Review<br>&nbsp;&nbsp;Learn<br>&nbsp;&nbsp;&nbsp;&nbsp;Play Better</div>
   </div>
@@ -996,16 +1025,16 @@ try {
       </div>
       <div class="result-grid">
         <div class="result-card">
-          <div class="result-label">Trajectory</div>
+          <div class="result-label">이동 궤적</div>
           <img class="result-img" id="detail-traj">
         </div>
         <div>
           <div id="detail-stats"></div>
-          <p class="hint note">참고용 추정값입니다. 카메라에서 먼 쪽 선수의 거리·속도는 오차가 더 크고, 코트 4점이 정확할수록 결과가 좋아집니다.</p>
+          <p class="hint note">참고용 추정값이에요. 카메라에서 먼 쪽 선수의 거리·속도는 오차가 더 크고, 코트 4점이 정확할수록 결과가 좋아져요.</p>
         </div>
       </div>
       <div class="result-card" style="margin-top:20px;">
-        <div class="result-label">Heatmap</div>
+        <div class="result-label">히트맵</div>
         <img class="result-img" id="detail-heat">
       </div>
     </div>
@@ -1017,8 +1046,8 @@ try {
     <div class="container">
       <span class="eyebrow">ABOUT<br>THE PROJECT</span>
       <h1 class="page-title">About<em>CourtVision</em></h1>
-      <p class="hero-ko">내 경기를, 데이터로 읽는 서비스.</p>
-      <p class="hero-sub">CourtVision은 테니스 영상 속 선수의 움직임을 분석해 이동 경로, 이동거리, 코트 히트맵으로 보여주는 웹 서비스입니다. 컴퓨터 비전과 웹 서비스 개발을 배우며 만든 학습·포트폴리오 프로젝트입니다.</p>
+      <p class="hero-ko">테니스 영상을 올리면 내 움직임을 보여줘요.</p>
+      <p class="hero-sub">CourtVision은 테니스 영상 속 선수의 움직임을 분석해 이동 경로, 이동거리, 코트 히트맵으로 보여주는 웹 서비스예요. 컴퓨터 비전과 웹 서비스 개발을 배우며 만든 학습·포트폴리오 프로젝트예요.</p>
       <div class="hero-cta"><a class="btn-primary" href="#analyze">영상 분석 시작 →</a><a class="btn-ghost" href="#tournaments">대회 일정 보기</a></div>
     </div>
     <div class="band-script script">Read<br>&nbsp;&nbsp;Your Game</div>
@@ -1027,12 +1056,12 @@ try {
   <section class="about-sec">
     <div class="container">
       <h2 class="section-title">How It Works</h2>
-      <p class="section-ko">영상 한 개가 결과가 되기까지, 네 단계입니다.</p>
+      <p class="section-ko">영상 한 개가 결과가 되기까지, 네 단계예요.</p>
       <div class="how-grid">
-        <div class="how-step"><div class="how-num">01</div><div class="how-name">영상 업로드</div><p>휴대폰으로 찍은 연습·경기 영상을 올립니다. 카메라를 고정하고 코트가 잘 보이는 영상이 가장 좋습니다.</p></div>
-        <div class="how-step"><div class="how-num">02</div><div class="how-name">코트 4점 보정</div><p>서비스라인 양 끝과 네트 아래 사이드라인 두 점을 클릭하면, 화면 좌표가 실제 코트 미터 좌표로 바뀝니다.</p></div>
-        <div class="how-step"><div class="how-num">03</div><div class="how-name">선수 검출·추적</div><p>영상 속 사람을 찾고 프레임 사이에서 같은 사람으로 이어 붙입니다. 가까운 선수는 자동으로, 상대는 클릭으로 고릅니다.</p></div>
-        <div class="how-step"><div class="how-num">04</div><div class="how-name">결과 확인</div><p>이동거리, 평균·최고 속도, 궤적, 코트 히트맵을 보여주고, 로그인하면 촬영일별로 저장합니다.</p></div>
+        <div class="how-step"><div class="how-num">01</div><div class="how-name">영상 업로드</div><p>휴대폰으로 찍은 연습·경기 영상을 올려요. 카메라를 고정하고 코트가 잘 보이는 영상이 가장 좋아요.</p></div>
+        <div class="how-step"><div class="how-num">02</div><div class="how-name">코트 4점 보정</div><p>서비스라인 양 끝과 네트 아래 사이드라인 두 점을 클릭하면, 화면 좌표가 실제 코트 미터 좌표로 바뀌어요.</p></div>
+        <div class="how-step"><div class="how-num">03</div><div class="how-name">선수 검출·추적</div><p>영상 속 사람을 찾고 프레임 사이에서 같은 사람으로 이어 붙여요. 가까운 선수는 자동으로, 상대는 클릭으로 골라요.</p></div>
+        <div class="how-step"><div class="how-num">04</div><div class="how-name">결과 확인</div><p>이동거리, 평균·최고 속도, 궤적, 코트 히트맵을 보여주고, 로그인하면 촬영일별로 저장해요.</p></div>
       </div>
     </div>
   </section>
@@ -1040,12 +1069,12 @@ try {
   <section class="about-sec">
     <div class="container">
       <h2 class="section-title">Under the Hood</h2>
-      <p class="section-ko">서비스에서 실제로 쓰는 기술입니다.</p>
+      <p class="section-ko">서비스에서 실제로 쓰는 기술이에요.</p>
       <div class="values">
-        <div class="value"><div class="value-num">01</div><div class="value-name">선수 검출</div><p>YOLO11n(COCO 사전학습)으로 사람만 찾습니다. 직접 학습하지 않은 모델입니다.</p></div>
-        <div class="value"><div class="value-num">02</div><div class="value-name">선수 추적</div><p>BoT-SORT(Ultralytics 내장, 기본 설정)로 프레임이 바뀌어도 같은 선수를 유지합니다.</p></div>
-        <div class="value"><div class="value-num">03</div><div class="value-name">좌표 변환</div><p>OpenCV의 Homography로 화면을 코트 위에서 본 좌표로 바꿉니다. 학습이 아니라 기하 계산입니다.</p></div>
-        <div class="value"><div class="value-num">04</div><div class="value-name">서비스</div><p>FastAPI와 SQLite, 단일 HTML/JS 화면. 대회 일정은 KATO·KTA 공개 정보를 매일 한 번 수집합니다.</p></div>
+        <div class="value"><div class="value-num">01</div><div class="value-name">선수 검출</div><p>YOLO11n(COCO 사전학습)으로 사람만 찾아요. 직접 학습하지 않은 모델이에요.</p></div>
+        <div class="value"><div class="value-num">02</div><div class="value-name">선수 추적</div><p>BoT-SORT(Ultralytics 내장, 기본 설정)로 프레임이 바뀌어도 같은 선수를 유지해요.</p></div>
+        <div class="value"><div class="value-num">03</div><div class="value-name">좌표 변환</div><p>OpenCV의 Homography로 화면을 코트 위에서 본 좌표로 바꿔요. 학습이 아니라 기하 계산이에요.</p></div>
+        <div class="value"><div class="value-num">04</div><div class="value-name">서비스</div><p>FastAPI와 SQLite, 단일 HTML/JS 화면. 대회 일정은 KATO·KTA 공개 정보를 매일 한 번 수집해요.</p></div>
       </div>
     </div>
   </section>
@@ -1053,24 +1082,24 @@ try {
   <section class="about-sec">
     <div class="container">
       <h2 class="section-title">Experiments in Numbers</h2>
-      <p class="section-ko">서비스와 함께 진행한 실험의 실제 수치입니다.</p>
+      <p class="section-ko">서비스와 함께 진행한 실험의 실제 수치예요.</p>
       <div class="num-strip">
         <div class="num-tile"><b>3.5<small> MB</small></b><span>INT8 경량화 모델 크기<br>(FP32 변환본 10.9MB)</span></div>
         <div class="num-tile"><b>1.7<small> ×</small></b><span>INT8 추론 속도<br>(OpenVINO FP32 대비, CPU)</span></div>
         <div class="num-tile"><b>95.3<small> %</small></b><span>공 검출 적중률<br>(오검출 15.6%, 검증 영상 1개)</span></div>
         <div class="num-tile"><b id="about-tcount">-<small> 건</small></b><span>수집 중인 예정 대회<br>(매일 무작위 시각 1회 갱신)</span></div>
       </div>
-      <p class="fine">각 실험은 1회 측정이며 영상 한 개를 기준으로 했습니다. 공 검출과 INT8은 실험 결과이고, 아직 서비스 화면에는 연결하지 않았습니다. 측정 조건과 한계는 프로젝트의 실험 기록에 정리해 두었습니다.</p>
+      <p class="fine">각 실험은 1회 측정이며 영상 한 개를 기준으로 했어요. 공 검출과 INT8은 실험 결과이고, 아직 서비스 화면에는 연결하지 않았어요. 측정 조건과 한계는 프로젝트의 실험 기록에 정리해 두었어요.</p>
     </div>
   </section>
 
   <section class="about-sec">
     <div class="container">
       <h2 class="section-title">Where We Stand</h2>
-      <p class="section-ko">되는 것과 아직 안 되는 것을 그대로 적었습니다.</p>
+      <p class="section-ko">되는 것과 아직 안 되는 것을 그대로 적었어요.</p>
       <div class="status-grid">
         <div class="status-card">
-          <h3><span class="dot-ok"></span>지금 됩니다</h3>
+          <h3><span class="dot-ok"></span>지금 돼요</h3>
           <ul>
             <li>영상 분석: 선수 추적, 이동거리·속도, 궤적, 히트맵</li>
             <li>로그인과 촬영일별 분석 기록 저장</li>
@@ -1079,17 +1108,17 @@ try {
           </ul>
         </div>
         <div class="status-card">
-          <h3><span class="dot-part"></span>실험만 했습니다</h3>
+          <h3><span class="dot-part"></span>실험만 했어요</h3>
           <ul>
             <li>공 검출 파인튜닝(검출까지, 서비스 미연결)</li>
             <li>INT8 경량화(OpenVINO, 서비스 미연결)</li>
           </ul>
         </div>
         <div class="status-card">
-          <h3><span class="dot-no"></span>아직 안 됩니다</h3>
+          <h3><span class="dot-no"></span>아직 안 돼요</h3>
           <ul>
             <li>공 추적(궤적)</li>
-            <li>이동거리·속도의 실측 검증. 지금은 참고용 추정값입니다.</li>
+            <li>이동거리·속도의 실측 검증. 지금은 참고용 추정값이에요.</li>
             <li>코트 자동 인식(지금은 4점을 직접 클릭)</li>
             <li>서버 배포(현재는 내 컴퓨터에서만 동작)</li>
           </ul>
@@ -1100,7 +1129,7 @@ try {
 
   <section class="about-sec about-credit">
     <div class="container">
-      <p class="fine">대회 정보는 <a href="https://kato.kr" target="_blank" rel="noopener noreferrer">한국테니스발전협의회(KATO)</a>와 대한테니스협회(KTA)가 공개한 일정을 요약한 것이며, 정확한 내용은 각 대회의 원본 링크에서 확인해야 합니다. 화면의 사진은 분위기를 위한 장식용 이미지입니다.</p>
+      <p class="fine">대회 정보는 <a href="https://kato.kr" target="_blank" rel="noopener noreferrer">한국테니스발전협의회(KATO)</a>와 대한테니스협회(KTA)가 공개한 일정을 요약한 것이고, 정확한 내용은 각 대회의 원본 링크에서 확인해야 해요. 화면의 사진은 분위기를 위한 장식용 이미지예요.</p>
     </div>
   </section>
 
@@ -1120,7 +1149,7 @@ try {
     <div class="footer-grid">
       <div class="footer-brand">
         <a class="brand" href="#home"><img src="assets/brand/logo_icon.webp" alt=""><span class="brand-name">CourtVision</span></a>
-        <p>내 경기를 데이터로 읽다.</p>
+        <p>테니스 영상으로 보는 내 움직임.</p>
       </div>
       <div class="footer-col">
         <h4>서비스</h4>
@@ -1136,11 +1165,11 @@ try {
       </div>
       <div class="footer-col">
         <h4>프로젝트</h4>
-        <span>학습·포트폴리오 목적의 프로젝트입니다.</span>
+        <span>학습·포트폴리오 목적의 프로젝트예요.</span>
         <span class="script footer-script">Play Smarter.</span>
       </div>
     </div>
-    <div class="footer-copy">© 2026 CourtVision. 대회 정보는 각 출처의 공개 정보를 요약한 것이며, 정확한 내용은 원본 링크에서 확인하세요.</div>
+    <div class="footer-copy">© 2026 CourtVision. 대회 정보는 각 출처의 공개 정보를 요약한 것이고, 정확한 내용은 원본 링크에서 확인해 주세요.</div>
   </div>
 </footer>
 
@@ -1150,7 +1179,7 @@ try {
     <form class="modal-body" id="auth-form">
       <button type="button" class="modal-close" id="auth-close" aria-label="닫기">×</button>
       <h3 id="auth-title">로그인</h3>
-      <p class="hint" style="margin:0 !important;">로그인하면 분석 결과가 날짜별로 저장됩니다.</p>
+      <p class="hint" style="margin:0 !important;">로그인하면 분석 결과가 날짜별로 저장돼요.</p>
       <div id="nick-row" style="display:none;"><label for="auth-nick">닉네임</label><input id="auth-nick" maxlength="20" autocomplete="nickname"></div>
       <label for="auth-email">이메일</label><input id="auth-email" type="email" autocomplete="email" required>
       <label for="auth-pw">비밀번호 (8자 이상)</label><input id="auth-pw" type="password" autocomplete="current-password" required>
@@ -1158,6 +1187,18 @@ try {
       <button type="submit" class="btn-primary" id="auth-submit">로그인</button>
       <button type="button" class="switch-mode" id="auth-switch">계정이 없나요? 회원가입</button>
     </form>
+  </div>
+</div>
+
+<div class="modal-back" id="expire-modal" role="dialog" aria-modal="true" aria-labelledby="expire-title">
+  <div class="modal" style="width:min(420px,100%); grid-template-columns:1fr;">
+    <div class="modal-body">
+      <h3 id="expire-title">로그인이 곧 만료돼요</h3>
+      <p class="hint" id="expire-msg" style="margin:8px 0 0 !important;"></p>
+      <button type="button" class="btn-primary" id="expire-extend">3시간 연장</button>
+      <button type="button" class="switch-mode" id="expire-close">나중에</button>
+      <div class="form-error" id="expire-error"></div>
+    </div>
   </div>
 </div>
 
@@ -1192,7 +1233,7 @@ document.getElementById("video-input").onchange = (e) => {
 document.getElementById("upload-btn").onclick = async () => {
   const fileInput = document.getElementById("video-input");
   if (!fileInput.files.length) {
-    alert("영상 파일을 선택해주세요.");
+    alert("영상 파일을 선택해 주세요.");
     return;
   }
 
@@ -1200,7 +1241,7 @@ document.getElementById("upload-btn").onclick = async () => {
   formData.append("file", fileInput.files[0]);
 
   document.getElementById("upload-btn").disabled = true;
-  document.getElementById("upload-btn").textContent = "업로드 중...";
+  document.getElementById("upload-btn").textContent = "업로드 중이에요…";
 
   const res = await fetch("/api/upload", { method: "POST", body: formData });
   const data = await res.json();
@@ -1566,7 +1607,7 @@ function el(tag, cls, text) {
 }
 
 // ---- 대회 일정 ----
-const CARD_PHOTOS = ["court_sunset", "sunset_net", "court_topdown", "bench_racket_dark"];
+const CARD_PHOTOS = ["court_sunset", "sunset_net", "gear_sunset_b", "bench_racket_dark"];
 const TFILTER = { source: "", division: "", openOnly: false };
 
 function isOpenReg(t) { return !!(t.registration && t.registration.includes("접수중")); }
@@ -1602,7 +1643,7 @@ async function loadTournaments() {
     data = await res.json();
   } catch (e) {
     cardsEl.replaceChildren();
-    listEl.textContent = "대회 정보를 불러오지 못했습니다.";
+    listEl.textContent = "대회 정보를 불러오지 못했어요.";
     return;
   }
   const items = TFILTER.openOnly ? data.items.filter(isOpenReg) : data.items;
@@ -1612,7 +1653,7 @@ async function loadTournaments() {
 
   listEl.replaceChildren();
   if (!items.length) {
-    listEl.appendChild(el("p", "hint", "조건에 맞는 대회가 없습니다."));
+    listEl.appendChild(el("p", "hint", "조건에 맞는 대회가 없어요."));
   } else {
     const head = el("div", "tt-head");
     ["날짜", "대회", "출처", "부", "접수", ""].forEach(h => head.appendChild(el("span", "", h)));
@@ -1663,9 +1704,9 @@ async function loadTournaments() {
   }
 
   document.getElementById("tournament-count").textContent = `${items.length}건`;
-  const when = data.last_crawled ? data.last_crawled.replace("T", " ") : "-";
+  const asOf = data.last_crawled ? ` · ${data.last_crawled.slice(0, 10).replace(/-/g, ".")} 기준` : "";
   document.getElementById("tournament-foot").textContent =
-    `출처: 한국테니스발전협의회(KATO), 대한테니스협회(KTA) · 마지막 수집: ${when} · 정확한 내용은 원본 링크에서 확인하세요.`;
+    `출처: 한국테니스발전협의회(KATO), 대한테니스협회(KTA)${asOf} · 정확한 내용은 원본 링크에서 확인해 주세요.`;
 }
 
 function bindFilter(selector, key, attr, cls) {
@@ -1690,10 +1731,10 @@ async function loadHomeTournaments() {
     const res = await fetch("/api/tournaments?upcoming=true&limit=4");
     const data = await res.json();
     box.replaceChildren();
-    if (!data.items.length) { box.appendChild(el("p", "hint", "예정된 대회가 없습니다.")); return; }
+    if (!data.items.length) { box.appendChild(el("p", "hint", "예정된 대회가 없어요.")); return; }
     data.items.forEach((t, i) => box.appendChild(makeTournamentCard(t, i)));
   } catch (e) {
-    box.textContent = "대회 정보를 불러오지 못했습니다.";
+    box.textContent = "대회 정보를 불러오지 못했어요.";
   }
 }
 loadHomeTournaments();
@@ -1762,7 +1803,7 @@ document.getElementById("auth-form").onsubmit = async (e) => {
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
     const d = data.detail;
-    document.getElementById("auth-error").textContent = typeof d === "string" ? d : "입력값을 확인해주세요.";
+    document.getElementById("auth-error").textContent = typeof d === "string" ? d : "입력값을 확인해 주세요.";
     return;
   }
   document.getElementById("auth-pw").value = "";
@@ -1802,12 +1843,49 @@ async function refreshUser() {
   document.querySelectorAll("#signup-btn, #mm-signup-btn").forEach(b => b.style.display = currentUser ? "none" : "");
   document.querySelectorAll("#logout-btn, #mm-logout-btn").forEach(b => b.style.display = currentUser ? "" : "none");
   document.getElementById("save-hint").textContent = currentUser
-    ? "분석이 끝나면 이 촬영일로 마이페이지에 자동 저장됩니다."
-    : "로그인하면 분석 결과를 촬영일별로 저장할 수 있습니다. (로그인 없이도 분석은 가능)";
+    ? "분석이 끝나면 이 촬영일로 마이페이지에 자동 저장돼요."
+    : "로그인하면 분석 결과를 촬영일별로 저장할 수 있어요. (로그인 없이도 분석은 가능해요)";
   document.getElementById("rec-date").disabled = !currentUser;
   document.getElementById("rec-title").disabled = !currentUser;
+  setExpiry(currentUser ? currentUser.expires_in : null);
   await loadHistory();
 }
+
+// ---- 로그인 만료 안내: 만료 1시간 전 팝업, '3시간 연장' 버튼 ----
+const EXPIRE_WARN_MS = 60 * 60 * 1000;
+let expiresAtMs = null, expireDismissed = false;
+
+function setExpiry(secondsLeft) {
+  expiresAtMs = secondsLeft == null ? null : Date.now() + secondsLeft * 1000;
+  expireDismissed = false;
+  document.getElementById("expire-modal").classList.remove("show");
+}
+
+function checkExpiry() {
+  if (!currentUser || expiresAtMs == null) return;
+  const left = expiresAtMs - Date.now();
+  if (left <= 0) { refreshUser(); return; }                 // 만료됨: 로그아웃 상태로 화면 갱신
+  if (left <= EXPIRE_WARN_MS && !expireDismissed) {
+    document.getElementById("expire-msg").textContent =
+      "약 " + Math.max(1, Math.ceil(left / 60000)) + "분 뒤 로그아웃돼요. 연장하지 않으면 영상 분석 결과가 저장되지 않을 수 있어요.";
+    document.getElementById("expire-modal").classList.add("show");
+  }
+}
+setInterval(checkExpiry, 30000);
+
+document.getElementById("expire-close").onclick = () => {
+  expireDismissed = true;
+  document.getElementById("expire-modal").classList.remove("show");
+};
+document.getElementById("expire-extend").onclick = async () => {
+  const err = document.getElementById("expire-error");
+  err.textContent = "";
+  try {
+    const res = await fetch("/api/session/extend", { method: "POST" });
+    if (!res.ok) { err.textContent = "로그인이 이미 만료됐어요. 다시 로그인해 주세요."; await refreshUser(); return; }
+    setExpiry((await res.json()).expires_in);
+  } catch (e) { err.textContent = "연장하지 못했어요. 잠시 뒤 다시 시도해 주세요."; }
+};
 
 // ---- 마이페이지: 날짜별 기록 ----
 const PLAYER_COLORS = { player1: "#ff6b6b", player2: "#5ec8e0" };
@@ -1820,7 +1898,7 @@ function statsTable(box, stats) {
     const dot = el("span", "dot");
     dot.style.background = PLAYER_COLORS[player] || "var(--accent)";
     name.appendChild(dot);
-    name.appendChild(document.createTextNode(player.replace(/^player(\d+)$/, "Player $1")));
+    name.appendChild(document.createTextNode(player.replace(/^player(\d+)$/, "선수 $1")));
     card.appendChild(name);
     const row = el("div", "tile-row");
     [["총 이동거리", s.total_distance_m, "m"], ["평균 속도", s.avg_speed_mps, "m/s"], ["최고 속도", s.max_speed_mps, "m/s"]].forEach(([label, v, unit]) => {
@@ -1853,7 +1931,7 @@ function renderHomeRecent() {
   box.replaceChildren();
   section.style.display = currentUser ? "block" : "none";
   if (!currentUser) return;
-  if (!myHistory.length) { box.appendChild(el("p", "hint", "아직 저장된 분석이 없습니다. 영상 분석을 시작해보세요.")); return; }
+  if (!myHistory.length) { box.appendChild(el("p", "hint", "아직 저장된 분석이 없어요. 영상 분석을 시작해 보세요.")); return; }
   for (const a of myHistory.slice(0, 3)) {
     const row = el("div", "mini-row");
     row.appendChild(el("span", "mini-date", a.recorded_date.slice(5).replace("-", ".")));
@@ -1912,8 +1990,8 @@ function renderMyGate() {
   gate.replaceChildren();
   gate.appendChild(el("div", "gate-img"));
   const body = el("div", "gate-body");
-  body.appendChild(el("h2", "", "로그인이 필요합니다"));
-  body.appendChild(el("p", "", "로그인하면 분석한 영상을 촬영일별로 모아 보고, 결과를 다시 확인할 수 있습니다. 로그인 없이도 영상 분석은 가능하지만 결과가 저장되지는 않습니다."));
+  body.appendChild(el("h2", "", "로그인이 필요해요"));
+  body.appendChild(el("p", "", "로그인하면 분석한 영상을 촬영일별로 모아 보고, 결과를 다시 확인할 수 있어요. 로그인 없이도 영상 분석은 가능하지만 결과가 저장되지는 않아요."));
   const actions = el("div", "gate-actions");
   const login = el("button", "btn-primary", "로그인"); login.type = "button"; login.onclick = () => openAuth("login");
   const signup = el("button", "btn-ghost", "회원가입"); signup.type = "button"; signup.onclick = () => openAuth("signup");
@@ -1945,13 +2023,13 @@ function renderMyList() {
     const box = el("div", "empty-box");
     const img = el("img"); img.src = "assets/empty_history.jpg"; img.alt = "";
     box.appendChild(img);
-    box.appendChild(el("p", "", "아직 저장된 분석이 없습니다."));
+    box.appendChild(el("p", "", "아직 저장된 분석이 없어요."));
     const go = el("a", "btn-primary", "영상 분석 시작 →"); go.href = "#analyze";
     box.appendChild(go);
     body.appendChild(box);
     return;
   }
-  if (!items.length) { body.appendChild(el("p", "hint", "조건에 맞는 기록이 없습니다.")); return; }
+  if (!items.length) { body.appendChild(el("p", "hint", "조건에 맞는 기록이 없어요.")); return; }
 
   let day = "";
   for (const a of items) {
@@ -1968,7 +2046,7 @@ function renderMyList() {
     const badges = el("div", "m-badges");
     const p1 = a.stats.player1;
     if (p1) {
-      badges.appendChild(el("span", "badge", `Player 1 · ${p1.total_distance_m} m`));
+      badges.appendChild(el("span", "badge", `선수 1 · ${p1.total_distance_m} m`));
       badges.appendChild(el("span", "badge", `최고 ${p1.max_speed_mps} m/s`));
     }
     if (Object.keys(a.stats).length > 1) badges.appendChild(el("span", "badge", `${Object.keys(a.stats).length}명 분석`));
@@ -2018,6 +2096,7 @@ document.getElementById("my-reset").onclick = () => {
 };
 
 refreshUser();
+
 
 // ---- 라이트/다크 전환 (선택은 이 브라우저에 저장) ----
 document.getElementById("theme-toggle").onclick = () => {
