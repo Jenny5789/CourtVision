@@ -4,7 +4,7 @@ import pandas as pd
 import os
 from ultralytics import YOLO
 
-MODEL = YOLO("yolo11n.pt")
+MODEL = YOLO("yolo26n.pt")   # 2026-11: yolo11n 에서 교체. 선수 적중률·이동거리 지표 동급, GPU/ONNX 에서 더 빠름(results/model_selection_experiment.md)
 IMGSZ = int(os.environ.get("YOLO_IMGSZ", "960"))   # CPU 컨테이너에서는 값을 낮추면 빨라짐(정확도는 약간 하락)
 
 # 사용자가 클릭하는 4점의 실제 좌표(m): 가까운 서비스라인 왼쪽 끝 -> 오른쪽 끝 -> 네트 아래 오른쪽 -> 네트 아래 왼쪽

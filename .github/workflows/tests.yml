@@ -1,0 +1,25 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # ultralytics(torch 포함)는 용량이 커서 제외. 테스트에서는 가짜 모듈로 대체한다(tests/conftest.py).
+      - name: Install dependencies
+        run: |
+          grep -v '^ultralytics' webapp/backend/requirements.txt > requirements-ci.txt
+          pip install -r requirements-ci.txt opencv-python-headless httpx pytest
+
+      - name: Run tests
+        run: pytest -q

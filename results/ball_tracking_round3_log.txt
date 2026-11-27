@@ -1,0 +1,46 @@
+후보: 프레임당 상위 8개, 적중 기준 20px(1920 너비 기준)
+  video9 (조정): 시퀀스 1개, 프레임 625, 공 보이는 프레임 170
+  TrackNet game1-5 (조정): 시퀀스 52개, 프레임 10290, 공 보이는 프레임 9918
+  video10 (시험): 시퀀스 1개, 프레임 224, 공 보이는 프레임 64
+  TrackNet game6-10 (시험): 시퀀스 43개, 프레임 9545, 공 보이는 프레임 9188
+
+[기준 방식] 조정용에서 conf 임계값 선택
+  선택: conf 0.30 (조정용 평균 F1 0.497)
+
+[추적] 조정용에서 파라미터 격자 탐색
+  {'conf_bias': 0.5, 'trim_conf': 0.0, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.449
+  {'conf_bias': 0.5, 'trim_conf': 0.35, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.449
+  {'conf_bias': 0.5, 'trim_conf': 0.42, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.449
+  {'conf_bias': 0.5, 'trim_conf': 0.46, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.450
+  {'conf_bias': 1.2, 'trim_conf': 0.0, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.509
+  {'conf_bias': 1.2, 'trim_conf': 0.35, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.506
+  {'conf_bias': 1.2, 'trim_conf': 0.42, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.498
+  {'conf_bias': 1.2, 'trim_conf': 0.46, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.493
+  {'conf_bias': 2.2, 'trim_conf': 0.0, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.498
+  {'conf_bias': 2.2, 'trim_conf': 0.35, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.506
+  {'conf_bias': 2.2, 'trim_conf': 0.42, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.504
+  {'conf_bias': 2.2, 'trim_conf': 0.46, 'start_cost': 5.0, 'min_nodes': 3, 'max_gap': 3, 'min_peak_conf': 0.3, 'max_speed': 0.12, 'dist_weight': 1.0}: F1 0.496
+  선택: TrackerConfig(max_gap=3, max_speed=0.12, start_cost=5.0, conf_bias=1.2, dist_weight=1.0, gap_cost=0.4, still_speed=0.002, still_cost=1.0, min_nodes=3, min_peak_conf=0.3, trim_conf=0.0) (조정용 평균 F1 0.509)
+
+[최종 비교]
+그룹                          방식                         재현율     정밀도      F1     오출력률     보간 정확도
+video9 (조정)                 기준 conf 0.35             95.3%   69.5%   0.804    15.6%       nan%
+video9 (조정)                 기준 conf 0.30(조정)         97.1%   65.2%   0.780    19.3%       nan%
+video9 (조정)                 추적(조정된 파라미터)             99.4%   67.9%   0.807    17.6%      50.0%
+video9 (조정)                 추적 1차 설정                100.0%   50.7%   0.673    36.3%       4.0%
+video9 (조정)                 추적 2차 설정                100.0%   53.0%   0.692    33.2%       7.1%
+TrackNet game1-5 (조정)       기준 conf 0.35              9.9%  100.0%   0.181     0.0%       nan%
+TrackNet game1-5 (조정)       기준 conf 0.30(조정)         11.9%   99.8%   0.213     0.0%       nan%
+TrackNet game1-5 (조정)       추적(조정된 파라미터)             10.6%   99.2%   0.191     0.0%      81.4%
+TrackNet game1-5 (조정)       추적 1차 설정                 18.2%   95.8%   0.306     1.1%      73.6%
+TrackNet game1-5 (조정)       추적 2차 설정                 17.0%   97.1%   0.289     1.1%      74.8%
+video10 (시험)                기준 conf 0.35             42.2%   64.3%   0.509     9.4%       nan%
+video10 (시험)                기준 conf 0.30(조정)         51.6%   54.1%   0.528    17.5%       nan%
+video10 (시험)                추적(조정된 파라미터)             46.9%   53.6%   0.500    16.2%       0.0%
+video10 (시험)                추적 1차 설정                 85.9%   30.9%   0.455    71.2%      13.0%
+video10 (시험)                추적 2차 설정                 75.0%   31.2%   0.440    65.0%       4.0%
+TrackNet game6-10 (시험)      기준 conf 0.35             13.9%   96.4%   0.243     0.0%       nan%
+TrackNet game6-10 (시험)      기준 conf 0.30(조정)         17.2%   94.7%   0.291     0.0%       nan%
+TrackNet game6-10 (시험)      추적(조정된 파라미터)             17.0%   96.6%   0.289     0.0%      81.3%
+TrackNet game6-10 (시험)      추적 1차 설정                 29.8%   84.1%   0.440     1.7%      62.8%
+TrackNet game6-10 (시험)      추적 2차 설정                 27.4%   87.3%   0.417     0.6%      71.4%

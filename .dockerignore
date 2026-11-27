@@ -5,6 +5,7 @@ models
 results
 src
 yolo11n.pt
+yolo26n.pt
 .git
 .vscode
 **/__pycache__

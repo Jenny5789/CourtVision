@@ -1,0 +1,34 @@
+공평한 비교: 모델마다 설정을 조정용(video9 + TrackNet game5)에서만 고르고, 시험(TrackNet game6-10, video10)에서 평가
+추적 설정 후보 18개 (conf_bias, min_peak_conf, trim_conf 조합), 확신도 기준 후보 17개
+
+[v2 (기존)] 선택: 프레임별 검출 conf 0.15 / 추적 {'conf_bias': 2.2, 'min_peak_conf': 0.15, 'trim_conf': 0.0, 'start_cost': 5.0, 'max_gap': 3, 'dist_weight': 1.0} (조정용 평균 F1 0.480)
+
+[v4 · yolo11n] 선택: 프레임별 검출 conf 0.40 / 추적 {'conf_bias': 0.6, 'min_peak_conf': 0.15, 'trim_conf': 0.0, 'start_cost': 5.0, 'max_gap': 3, 'dist_weight': 1.0} (조정용 평균 F1 0.743)
+
+[v4 · yolo26n] 선택: 프레임별 검출 conf 0.30 / 추적 {'conf_bias': 2.2, 'min_peak_conf': 0.45, 'trim_conf': 0.3, 'start_cost': 5.0, 'max_gap': 3, 'dist_weight': 1.0} (조정용 평균 F1 0.865)
+
+그룹                        모델            방식                         재현율     정밀도     F1     오출력률
+video9 (조정)               v2 (기존)       프레임별 검출 conf 0.15        99.4%   52.3%  0.686    33.8%
+video9 (조정)               v2 (기존)       공 추적(모델별 조정)            100.0%   53.0%  0.692    33.2%
+video9 (조정)               v4 · yolo11n  프레임별 검출 conf 0.40        87.1%   40.4%  0.552    47.9%
+video9 (조정)               v4 · yolo11n  공 추적(모델별 조정)             98.8%   41.9%  0.588    51.2%
+video9 (조정)               v4 · yolo26n  프레임별 검출 conf 0.30        92.9%   72.5%  0.814    13.2%
+video9 (조정)               v4 · yolo26n  공 추적(모델별 조정)             99.4%   71.9%  0.835    14.5%
+TrackNet game5 (조정)       v2 (기존)       프레임별 검출 conf 0.15        14.7%   98.6%  0.256     0.0%
+TrackNet game5 (조정)       v2 (기존)       공 추적(모델별 조정)             15.5%   97.4%  0.268     0.0%
+TrackNet game5 (조정)       v4 · yolo11n  프레임별 검출 conf 0.40        74.6%   82.7%  0.785    98.2%
+TrackNet game5 (조정)       v4 · yolo11n  공 추적(모델별 조정)             85.2%   94.8%  0.897     7.3%
+TrackNet game5 (조정)       v4 · yolo26n  프레임별 검출 conf 0.30        73.4%   99.3%  0.844     0.0%
+TrackNet game5 (조정)       v4 · yolo26n  공 추적(모델별 조정)             82.5%   98.0%  0.896     0.0%
+TrackNet game6-10 (시험)    v2 (기존)       프레임별 검출 conf 0.15        24.8%   87.2%  0.386     1.1%
+TrackNet game6-10 (시험)    v2 (기존)       공 추적(모델별 조정)             27.5%   87.3%  0.418     0.6%
+TrackNet game6-10 (시험)    v4 · yolo11n  프레임별 검출 conf 0.40        42.3%   52.5%  0.468    38.9%
+TrackNet game6-10 (시험)    v4 · yolo11n  공 추적(모델별 조정)             67.1%   85.4%  0.752     9.8%
+TrackNet game6-10 (시험)    v4 · yolo26n  프레임별 검출 conf 0.30        43.9%   62.3%  0.515    29.4%
+TrackNet game6-10 (시험)    v4 · yolo26n  공 추적(모델별 조정)             68.9%   78.9%  0.736    38.4%
+video10 (시험·참고)           v2 (기존)       프레임별 검출 conf 0.15        73.4%   38.8%  0.508    46.2%
+video10 (시험·참고)           v2 (기존)       공 추적(모델별 조정)             75.0%   31.2%  0.440    65.0%
+video10 (시험·참고)           v4 · yolo11n  프레임별 검출 conf 0.40        73.4%   73.4%  0.734     9.4%
+video10 (시험·참고)           v4 · yolo11n  공 추적(모델별 조정)             87.5%   67.5%  0.762    16.9%
+video10 (시험·참고)           v4 · yolo26n  프레임별 검출 conf 0.30        39.1%   96.2%  0.556     0.6%
+video10 (시험·참고)           v4 · yolo26n  공 추적(모델별 조정)              0.0%    0.0%  0.000     0.0%
